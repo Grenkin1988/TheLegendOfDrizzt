@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using TheLegendOfDrizzt.Assets.Scripts.Data;
 using Random = System.Random;
 
 namespace Model {
@@ -14,12 +15,12 @@ namespace Model {
         }
 
         private void InitializeStartTiles() {
-            var startTile1 = new Tile("Wall;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall");
+            var startTile1 = new Tile(TilesLibrary.StartTileLeft.Layout);
             startTile1.PlaceTile(0, 0);
             startTile1.RotateTileClockwise();
             startTile1.RotateTileClockwise();
             startTile1.RotateTileClockwise();
-            var startTile2 = new Tile("Wall;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall");
+            var startTile2 = new Tile(TilesLibrary.StartTileRight.Layout);
             startTile2.PlaceTile(4, 0);
             startTile2.RotateTileClockwise();
             startTile1.SetNeighbor(startTile2, Directions.East);
