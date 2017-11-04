@@ -32,4 +32,9 @@ namespace Model {
         North = 3,
         East = 4,
     }
+
+    public enum ArrowColor {
+        White = 1,
+        Black = 2,
+    }
 }
