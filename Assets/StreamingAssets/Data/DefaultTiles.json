@@ -1,8 +1,8 @@
 {
     "Items": [
         {
-            "Name": "Usual 1",
+            "Name": "Volcanic-1",
             "Layout": "Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Wall;VolcanicVent;Wall"
-        }
+        },
     ]
 }
