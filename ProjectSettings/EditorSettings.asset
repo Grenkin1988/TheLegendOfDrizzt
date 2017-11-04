@@ -10,7 +10,7 @@ EditorSettings:
   m_SpritePackerMode: 4
   m_SpritePackerPaddingPower: 1
   m_ProjectGenerationIncludedExtensions: txt;xml;fnt;cd
-  m_ProjectGenerationRootNamespace: 
+  m_ProjectGenerationRootNamespace: TheLegendOfDrizzt
   m_UserGeneratedProjectSuffix: 
   m_CollabEditorSettings:
     inProgressEnabled: 1
