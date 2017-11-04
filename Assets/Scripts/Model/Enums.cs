@@ -37,4 +37,9 @@ namespace Model {
         White = 1,
         Black = 2,
     }
+
+    public enum SpecialEffect {
+        VolcanicVent = 1,
+        NarrowPassage = 2,
+    }
 }

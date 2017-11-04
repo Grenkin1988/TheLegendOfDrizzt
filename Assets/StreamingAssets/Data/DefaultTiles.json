@@ -3,42 +3,74 @@
         {
             "Name": "Volcanic-1",
             "Layout": "Wall;Floor;Floor;Wall;Floor;Floor;Floor;VolcanicVent;Floor;Mashrooms;Floor;Wall;Wall;Floor;Floor;Wall",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
         },
         {
             "Name": "Volcanic-2",
             "Layout": "Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor;VolcanicVent;Floor;Floor;Floor;Wall;Wall;Wall;Wall;Wall",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
         },
         {
             "Name": "Volcanic-3",
             "Layout": "Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Wall;VolcanicVent;Wall",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
         },
         {
             "Name": "Volcanic-4",
             "Layout": "Wall;Wall;VolcanicVent;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Wall;Wall;Wall;Wall",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
         },
         {
             "Name": "Volcanic-5",
             "Layout": "Wall;Wall;Wall;Wall;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Wall;Wall;VolcanicVent;Wall",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
         },
         {
             "Name": "Volcanic-6",
             "Layout": "Wall;VolcanicVent;Wall;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
         },
         {
             "Name": "Volcanic-7",
             "Layout": "Wall;VolcanicVent;Wall;Wall;Floor;Floor;Wall;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor;Wall",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
         },
         {
             "Name": "Volcanic-8",
             "Layout": "Mashrooms;Floor;Floor;Wall;Floor;Floor;Floor;Wall;Floor;Floor;Floor;VolcanicVent;Floor;Floor;Floor;Wall",
-            "ArrorColor": "Black"
+            "ArrorColor": "Black",
+            "SpecialEffect": "VolcanicVent"
+        },
+        {
+            "Name": "Narrow-1",
+            "Layout": "Wall;Floor;Floor;Wall;Floor;Wall;Floor;Wall;Floor;Mashrooms;Floor;Wall;Wall;Wall;Wall;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "NarrowPassage"
+        },
+        {
+            "Name": "Narrow-2",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Floor;Mashrooms;Floor;Floor;Wall;Wall;Floor;Wall;Wall;Wall;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "NarrowPassage"
+        },
+        {
+            "Name": "Narrow-3",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Mashrooms;Floor;Wall;Floor;Wall;Floor;Wall;Wall;Floor;Floor;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "NarrowPassage"
+        },
+        {
+            "Name": "Narrow-4",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Wall;Wall;Floor;Floor;Floor;Mashrooms;Floor;Wall;Wall;Wall;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "NarrowPassage"
         }
     ]
 }

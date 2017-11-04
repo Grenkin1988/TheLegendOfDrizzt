@@ -7,5 +7,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         public string Name;
         public string Layout;
         public ArrowColor ArrorColor;
+        public SpecialEffect SpecialEffect;
     }
 }
