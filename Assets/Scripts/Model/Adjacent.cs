@@ -1,8 +1,4 @@
-﻿// =======================================================================
-//  Copyright Glib "Grenkin" Kruglov 2016.
-// =======================================================================
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Model {

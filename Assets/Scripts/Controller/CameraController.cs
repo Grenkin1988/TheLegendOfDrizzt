@@ -1,7 +1,4 @@
-﻿// =======================================================================
-//  Copyright Glib "Grenkin" Kruglov 2016.
-// =======================================================================
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Controller {
     public class CameraController : MonoBehaviour {

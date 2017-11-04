@@ -1,8 +1,4 @@
-﻿//=======================================================================
-// Copyright Glib "Grenkin" Kruglov 2016.
-//=======================================================================
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -200,10 +196,7 @@ namespace Model {
         public event Action<Tile> NewTileCreated;
 
         private void OnNewTileCreated(Tile tile) {
-            Action<Tile> handler = NewTileCreated;
-            if (handler != null) {
-                handler(tile);
-            }
+            NewTileCreated?.Invoke(tile);
         }
     }
 }

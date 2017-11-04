@@ -1,8 +1,4 @@
-﻿//=======================================================================
-// Copyright Glib "Grenkin" Kruglov 2016.
-//=======================================================================
-
-namespace Model {
+﻿namespace Model {
     public class Square {
         public TerrainTypes TerrainType { get; private set; }
 
@@ -11,7 +7,7 @@ namespace Model {
         }
 
         public override string ToString() {
-            return string.Format("Terrain: {0}", TerrainType);
+            return $"Terrain: {TerrainType}";
         }
     }
 }

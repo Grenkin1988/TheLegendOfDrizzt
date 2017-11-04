@@ -1,7 +1,4 @@
-﻿// =======================================================================
-//  Copyright Glib "Grenkin" Kruglov 2016.
-// =======================================================================
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Controller {
@@ -13,8 +10,8 @@ namespace Controller {
                 if (hit.collider != null) {
                     if (hit.collider.gameObject.name.StartsWith("Square_")) {
                         Vector3 position = hit.collider.gameObject.transform.localPosition;
-                        var x = (int)position.x;
-                        var y = (int)position.y;
+                        int x = (int)position.x;
+                        int y = (int)position.y;
                         GameObject tileGameObject = hit.collider.gameObject.transform.parent.gameObject;
                         if (tileGameObject.name.StartsWith("Tile_") && x >= 0 && y >= 0) {
                             OnTileClicked(tileGameObject, x, y);
@@ -27,10 +24,7 @@ namespace Controller {
         public event Action<GameObject, int, int> TileClicked;
 
         protected virtual void OnTileClicked(GameObject tileGameObject, int squareX, int squareY) {
-            Action<GameObject, int, int> handler = TileClicked;
-            if (handler != null) {
-                handler(tileGameObject, squareX, squareY);
-            }
+            TileClicked?.Invoke(tileGameObject, squareX, squareY);
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿//=======================================================================
-// Copyright Glib "Grenkin" Kruglov 2016.
-//=======================================================================
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,8 +36,8 @@ namespace Model {
             string[] splittedSequence = squaresSequence.Split(';');
             if (splittedSequence.Length != TileSize * TileSize) { throw new InvalidOperationException("Squares sequence must contain 16 squares"); }
             int splittedSequenceIndex = 0;
-            for (var x = 0; x < TileSize; x++) {
-                for (var y = 0; y < TileSize; y++) {
+            for (int x = 0; x < TileSize; x++) {
+                for (int y = 0; y < TileSize; y++) {
                     string terrainTypeText = splittedSequence[splittedSequenceIndex];
                     var terrain = Enums.ParceEnumValue<TerrainTypes>(terrainTypeText);
                     Squares[x, y] = new Square(terrain);
@@ -77,8 +73,8 @@ namespace Model {
         public string DisplayTile() {
             int longestNameLength = Enums.GetValues<TerrainTypes>().Select(value => value.ToString().Length).Concat(new[] { 0 }).Max();
             var sb = new StringBuilder();
-            for (var y = 3; y >= 0; y--) {
-                for (var x = 0; x < 4; x++) {
+            for (int y = 3; y >= 0; y--) {
+                for (int x = 0; x < 4; x++) {
                     string squareTerrainText = Squares[x, y].TerrainType.ToString();
                     int numberOfAdditionalSpace = longestNameLength - squareTerrainText.Length;
                     squareTerrainText += new string(' ', numberOfAdditionalSpace);
@@ -91,7 +87,7 @@ namespace Model {
                 sb.AppendLine(new string('-', longestNameLength * 4 + 3 * 3));
             }
             sb.AppendLine(new string('-', longestNameLength * 4 + 3 * 3));
-            sb.AppendLine(string.Format("======== Arrow to the {0} ========", ArrowDirection));
+            sb.AppendLine($"======== Arrow to the {ArrowDirection} ========");
             return sb.ToString();
         }
     }

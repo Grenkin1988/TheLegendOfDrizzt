@@ -1,8 +1,4 @@
-﻿// =======================================================================
-//  Copyright Glib "Grenkin" Kruglov 2016.
-// =======================================================================
-
-using Model;
+﻿using Model;
 using UnityEngine;
 
 namespace ViewModel {
@@ -22,8 +18,8 @@ namespace ViewModel {
             TileGameObject.transform.position = new Vector3(Tile.X, Tile.Y, 0);
             TileGameObject.transform.SetParent(ParentTransform, true);
 
-            for (var x = 0; x < 4; x++) {
-                for (var y = 0; y < 4; y++) {
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
                     var squareGameObject = new GameObject("Square_" + x + "_" + y);
                     squareGameObject.transform.position = new Vector3(x, y, 0);
                     squareGameObject.transform.SetParent(TileGameObject.transform, false);

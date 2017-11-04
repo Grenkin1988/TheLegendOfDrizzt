@@ -1,8 +1,4 @@
-﻿//=======================================================================
-// Copyright Glib "Grenkin" Kruglov 2016.
-//=======================================================================
-
-using UnityEditor;
+﻿using UnityEditor;
 using ViewModel;
 
 namespace Editor {
