@@ -71,6 +71,78 @@
             "Layout": "Wall;Wall;Wall;Wall;Floor;Wall;Wall;Floor;Floor;Floor;Mashrooms;Floor;Wall;Wall;Wall;Wall",
             "ArrorColor": "White",
             "SpecialEffect": "NarrowPassage"
+        },
+        {
+            "Name": "Simple-1",
+            "Layout": "Floor;Floor;Floor;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Wall;Wall;Wall;Wall;Wall;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-2",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Wall",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-3",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-4",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Floor;Floor;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-5",
+            "Layout": "Floor;Floor;Floor;Wall;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-6",
+            "Layout": "Wall;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-7",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-8",
+            "Layout": "Wall;Floor;Floor;Wall;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Floor;Floor;Wall",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-9",
+            "Layout": "Mashrooms;Floor;Floor;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-10",
+            "Layout": "Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall;Floor;Floor;Wall",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-11",
+            "Layout": "Floor;Floor;Floor;Wall;Floor;Floor;Floor;Wall;Floor;Floor;Mashrooms;Wall;Floor;Floor;Floor;Wall",
+            "ArrorColor": "White",
+            "SpecialEffect": "None"
+        },
+        {
+            "Name": "Simple-12",
+            "Layout": "Wall;Floor;Floor;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor",
+            "ArrorColor": "Black",
+            "SpecialEffect": "None"
         }
     ]
 }

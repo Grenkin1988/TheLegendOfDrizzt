@@ -26,7 +26,7 @@ namespace Model {
         VolcanicVent = 4,
     }
 
-    public enum Directions {       
+    public enum Directions {
         South = 1,
         West = 2,
         North = 3,
@@ -39,6 +39,7 @@ namespace Model {
     }
 
     public enum SpecialEffect {
+        None = 0,
         VolcanicVent = 1,
         NarrowPassage = 2,
     }
