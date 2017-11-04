@@ -10,11 +10,12 @@ namespace ViewModel {
         private Map Map;
         private MouseController MouseController;
 
-        private readonly TilesDeck Deck = new TilesDeck();
+        private TilesDeck Deck;
         private readonly Dictionary<Tile, TileViewModel> TileViewModels = new Dictionary<Tile, TileViewModel>();
         public static readonly Dictionary<string, Sprite> SpritesMap = new Dictionary<string, Sprite>();
 
         private void Start() {
+            Deck = new TilesDeck();
             Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Tiles");
             foreach (Sprite sprite in sprites) {
                 SpritesMap.Add(sprite.name, sprite);
@@ -41,7 +42,9 @@ namespace ViewModel {
             if (Map.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
                 if (!placementDirection.HasValue) { return; }
                 Tile newTile = Deck.GetNexTile();
-                Map.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
+                if (newTile != null) {
+                    Map.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
+                }
             }
         }
 

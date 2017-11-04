@@ -18,9 +18,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
 
         static TilesLibrary() {
             DefaultTiles = new TileData[] { };
+        }
 
-            // Path.Combine combines strings into a file path
-            // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
+        public static void InitializeLibrary() {
             string filePath = Path.Combine(Application.streamingAssetsPath, "Data/DefaultTiles.json");
 
             if (File.Exists(filePath)) {
