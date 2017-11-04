@@ -14,7 +14,7 @@ namespace ViewModel {
         }
 
         public void DrawTile() {
-            TileGameObject = new GameObject("Tile_" + Tile.X + "_" + Tile.Y);
+            TileGameObject = new GameObject($"Tile_{Tile.X}_{Tile.Y}-{Tile.Name}");
             TileGameObject.transform.position = new Vector3(Tile.X, Tile.Y, 0);
             TileGameObject.transform.SetParent(ParentTransform, true);
 

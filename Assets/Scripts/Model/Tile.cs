@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheLegendOfDrizzt.Assets.Scripts.Data;
 
 namespace Model {
     public class Tile {
@@ -12,6 +13,7 @@ namespace Model {
         public Directions ArrowDirection { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
+        public string Name { get; }
 
         public Square this[int x, int y] {
             get {
@@ -21,10 +23,11 @@ namespace Model {
             }
         }
 
-        internal Tile(string squaresSequence) {
+        internal Tile(TileData tileData) {
             AdjacentTiles = new Adjacent<Tile>();
             Squares = new Square[TileSize, TileSize];
-            FillTileByXML(squaresSequence);
+            Name = tileData.Name;
+            FillTileByXML(tileData.Layout);
         }
 
         public void PlaceTile(int x, int y) {

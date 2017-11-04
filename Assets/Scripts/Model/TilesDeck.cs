@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace Model {
 
         public Tile GetNexTile() {
             if (Deck.Count != 0) {
-                return new Tile(Deck.Dequeue().Layout);
+                return new Tile(Deck.Dequeue());
             } else {
                 Debug.Log("No more Tiles");
                 return null;

@@ -15,12 +15,12 @@ namespace Model {
         }
 
         private void InitializeStartTiles() {
-            var startTile1 = new Tile(TilesLibrary.StartTileLeft.Layout);
+            var startTile1 = new Tile(TilesLibrary.StartTileLeft);
             startTile1.PlaceTile(0, 0);
             startTile1.RotateTileClockwise();
             startTile1.RotateTileClockwise();
             startTile1.RotateTileClockwise();
-            var startTile2 = new Tile(TilesLibrary.StartTileRight.Layout);
+            var startTile2 = new Tile(TilesLibrary.StartTileRight);
             startTile2.PlaceTile(4, 0);
             startTile2.RotateTileClockwise();
             startTile1.SetNeighbor(startTile2, Directions.East);
@@ -101,7 +101,7 @@ namespace Model {
                 case TerrainTypes.VolcanicVent:
                 return false;
                 default:
-                throw new ArgumentOutOfRangeException("type", type, null);
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
 
@@ -154,7 +154,7 @@ namespace Model {
                 case Directions.North:
                 return existenTile.X;
                 default:
-                throw new ArgumentOutOfRangeException("placementDirection", placementDirection, null);
+                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 
@@ -168,7 +168,7 @@ namespace Model {
                 case Directions.East:
                 return existenTile.Y;
                 default:
-                throw new ArgumentOutOfRangeException("placementDirection", placementDirection, null);
+                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 
@@ -183,7 +183,7 @@ namespace Model {
                 case Directions.East:
                 return 1;
                 default:
-                throw new ArgumentOutOfRangeException("placementDirection", placementDirection, null);
+                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 
