@@ -11,7 +11,11 @@ public class TileGeneratorEditor : EditorWindow {
     }
 
     private void OnGUI() {
-        layout = EditorGUILayout.TextField("Layout", layout);
+        layout = EditorGUILayout.TextField("Layout", layout, new GUIStyle {
+            wordWrap = true,
+            richText = true,
+            stretchHeight = true
+        }, GUILayout.ExpandHeight(true));
 
         if (GUILayout.Button("Clear")) {
             Clear();
