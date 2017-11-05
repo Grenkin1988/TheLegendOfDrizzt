@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Controller;
 using Model;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
 
 namespace ViewModel {
@@ -16,6 +17,9 @@ namespace ViewModel {
 
         private void Start() {
             Deck = new TilesDeck();
+            Deck.SetSpecialTile("UndergroundRiver", 9);
+            Deck.GenerateTileStack();
+            Deck.ShuffleTileStack();
             Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Tiles");
             foreach (Sprite sprite in sprites) {
                 SpritesMap.Add(sprite.name, sprite);

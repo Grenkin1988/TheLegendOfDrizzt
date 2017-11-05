@@ -108,6 +108,7 @@
     <Compile Include="Assets\Scripts\Model\Square.cs" />
     <Compile Include="Assets\Scripts\Model\Tile.cs" />
     <Compile Include="Assets\Scripts\Model\TilesDeck.cs" />
+    <Compile Include="Assets\Scripts\Utility\FisherYatesShuffle.cs" />
     <Compile Include="Assets\Scripts\Utility\JsonHelper .cs" />
     <Compile Include="Assets\Scripts\ViewModel\MapViewModel.cs" />
     <Compile Include="Assets\Scripts\ViewModel\TileViewModel.cs" />

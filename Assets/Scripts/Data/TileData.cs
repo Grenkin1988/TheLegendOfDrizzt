@@ -8,5 +8,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         public string Layout;
         public ArrowColor ArrorColor;
         public SpecialEffect SpecialEffect;
+
+        public override string ToString() {
+            return $"{Name}| {ArrorColor}-->>, Effect: {SpecialEffect}";
+        }
     }
 }
