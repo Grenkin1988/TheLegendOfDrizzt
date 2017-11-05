@@ -7,6 +7,7 @@ using Random = System.Random;
 
 namespace Model {
     public class Map {
+        private const string START_TILE_NAME = "StartTile";
         private readonly List<Tile> Tiles;
         private readonly TilesLibrary TilesLibrary;
 
@@ -17,12 +18,16 @@ namespace Model {
         }
 
         private void InitializeStartTiles() {
-            var startTile1 = new Tile(TilesLibrary.StartTileLeft);
+            TileData[] startingTiles = TilesLibrary.GetDubleTile(START_TILE_NAME);
+            if (startingTiles == null || startingTiles.Length != 2) {
+                throw new ApplicationException("Starting tiles not found, or wrong quantity");
+            }
+            var startTile1 = new Tile(startingTiles[0]);
             startTile1.PlaceTile(0, 0);
             startTile1.RotateTileClockwise();
             startTile1.RotateTileClockwise();
             startTile1.RotateTileClockwise();
-            var startTile2 = new Tile(TilesLibrary.StartTileRight);
+            var startTile2 = new Tile(startingTiles[1]);
             startTile2.PlaceTile(4, 0);
             startTile2.RotateTileClockwise();
             startTile1.SetNeighbor(startTile2, Directions.East);
