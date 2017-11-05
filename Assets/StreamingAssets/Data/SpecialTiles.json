@@ -2,7 +2,7 @@
     "Items": [
         {
             "Name": "DarkChasm",
-            "Layout": "Wall;Wall;Wall;Wall;Floor;Chasm;Chasm;Mashrooms;Floor;ChasmBridge;ChasmBridge;Floor;Wall;Wall;Wall;Wall",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;Chasm;Chasm;Mashrooms;Floor;Bridge;Bridge;Floor;Wall;Wall;Wall;Wall",
             "ArrorColor": "White",
             "SpecialEffect": "DarkChasm"
         },
@@ -14,7 +14,7 @@
         },
         {
             "Name": "UndergroundRiver",
-            "Layout": "Wall;Wall;Wall;Wall;Floor;River;River;Mashrooms;Floor;RiverBridge;RiverBridge;Floor;Wall;Wall;Wall;Wall",
+            "Layout": "Wall;Wall;Wall;Wall;Floor;River;River;Mashrooms;Floor;Bridge;Bridge;Floor;Wall;Wall;Wall;Wall",
             "ArrorColor": "White",
             "SpecialEffect": "UndergroundRiver"
         },

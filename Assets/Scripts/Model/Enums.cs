@@ -25,10 +25,9 @@ namespace Model {
         Mashrooms = 3,
         VolcanicVent = 4,
         Chasm = 5,
-        ChasmBridge = 6,
+        Bridge = 6,
         Pillar = 7,
         River = 8,
-        RiverBridge = 9,
         Crystal = 10,
         Campfire = 11,
         DwarfStatue = 12

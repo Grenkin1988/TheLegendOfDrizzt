@@ -35,17 +35,14 @@ public class TileGeneratorEditor : EditorWindow {
         if (GUILayout.Button("Chasm")) {
             AddSquare(TerrainTypes.Chasm);
         }
-        if (GUILayout.Button("ChasmBridge")) {
-            AddSquare(TerrainTypes.ChasmBridge);
-        }
         if (GUILayout.Button("Pillar")) {
             AddSquare(TerrainTypes.Pillar);
         }
         if (GUILayout.Button("River")) {
             AddSquare(TerrainTypes.River);
         }
-        if (GUILayout.Button("RiverBridge")) {
-            AddSquare(TerrainTypes.RiverBridge);
+        if (GUILayout.Button("Bridge")) {
+            AddSquare(TerrainTypes.Bridge);
         }
         if (GUILayout.Button("Crystal")) {
             AddSquare(TerrainTypes.Crystal);
