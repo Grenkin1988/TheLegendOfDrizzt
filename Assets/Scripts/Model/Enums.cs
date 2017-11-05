@@ -30,7 +30,9 @@ namespace Model {
         River = 8,
         Crystal = 10,
         Campfire = 11,
-        DwarfStatue = 12
+        DwarfStatue = 12,
+        Throne = 13,
+        Lair = 14,
     }
 
     public enum Directions {
