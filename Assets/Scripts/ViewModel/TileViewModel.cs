@@ -29,6 +29,7 @@ namespace ViewModel {
                     var squareRenderer = squareGameObject.AddComponent<SpriteRenderer>();
                     string tileTypeText = Tile[x, y].TerrainType.ToString();
                     squareRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
+                    squareRenderer.sortingLayerName = "Tiles";
                 }
             }
         }
