@@ -1,4 +1,5 @@
 ﻿using Model;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
 
 namespace ViewModel {
@@ -27,9 +28,7 @@ namespace ViewModel {
                     boxCollier2D.offset = new Vector2(0.5f, 0.5f);
                     var squareRenderer = squareGameObject.AddComponent<SpriteRenderer>();
                     string tileTypeText = Tile[x, y].TerrainType.ToString();
-                    if (MapViewModel.SpritesMap.ContainsKey(tileTypeText)) {
-                        squareRenderer.sprite = MapViewModel.SpritesMap[tileTypeText];
-                    }
+                    squareRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
                 }
             }
         }

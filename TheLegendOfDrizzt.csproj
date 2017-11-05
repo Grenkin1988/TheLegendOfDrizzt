@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\Model\Adjacent.cs" />
     <Compile Include="Assets\Scripts\Model\Enums.cs" />
     <Compile Include="Assets\Scripts\Model\Map.cs" />
+    <Compile Include="Assets\Scripts\Model\SpriteManager.cs" />
     <Compile Include="Assets\Scripts\Model\Square.cs" />
     <Compile Include="Assets\Scripts\Model\Tile.cs" />
     <Compile Include="Assets\Scripts\Model\TileStack.cs" />

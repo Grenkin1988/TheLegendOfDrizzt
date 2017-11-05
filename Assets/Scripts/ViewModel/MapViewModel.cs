@@ -13,17 +13,12 @@ namespace ViewModel {
 
         private TileStack Deck;
         private readonly Dictionary<Tile, TileViewModel> TileViewModels = new Dictionary<Tile, TileViewModel>();
-        public static readonly Dictionary<string, Sprite> SpritesMap = new Dictionary<string, Sprite>();
 
         private void Start() {
             Deck = new TileStack();
             Deck.SetSpecialTile("UndergroundRiver", 8);
             Deck.GenerateTileStack();
             Deck.ShuffleTileStack();
-            Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Tiles");
-            foreach (Sprite sprite in sprites) {
-                SpritesMap.Add(sprite.name, sprite);
-            }
 
             MouseController = GameObject.FindGameObjectWithTag("MouseController").GetComponent<MouseController>();
             if (MouseController == null) { throw new NullReferenceException("No MouseController found"); }
