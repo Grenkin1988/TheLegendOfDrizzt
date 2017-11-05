@@ -6,7 +6,7 @@ using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
-    public class TilesDeck {
+    public class TileStack {
         private const int TIMES_TO_SHUFFLE = 5;
         private readonly Stack<TileData> _deck;
         private readonly TilesLibrary TilesLibrary;
@@ -15,7 +15,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private string _specialTileName;
         private int _specialTilePosition;
 
-        public TilesDeck() {
+        public TileStack() {
             TilesLibrary = TilesLibrary.Instance;
             _deck = new Stack<TileData>();
             _allTilesWithoutSpecial = new List<TileData>();
