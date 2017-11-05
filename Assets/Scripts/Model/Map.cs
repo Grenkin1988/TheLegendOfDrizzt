@@ -8,9 +8,11 @@ using Random = System.Random;
 namespace Model {
     public class Map {
         private readonly List<Tile> Tiles;
+        private readonly TilesLibrary TilesLibrary;
 
         public Map() {
             Tiles = new List<Tile>();
+            TilesLibrary = TilesLibrary.Instance;
             InitializeStartTiles();
         }
 

@@ -5,10 +5,11 @@ using UnityEngine;
 namespace Model {
     public class TilesDeck {
         private readonly Queue<TileData> Deck;
+        private readonly TilesLibrary TilesLibrary;
 
         public TilesDeck() {
-            TilesLibrary.InitializeLibrary();
-            Deck = new Queue<TileData>(TilesLibrary.DefaultTiles);
+            TilesLibrary = TilesLibrary.Instance;
+            Deck = new Queue<TileData>(TilesLibrary.SimpleTiles.Values);
         }
 
         public Tile GetNexTile() {

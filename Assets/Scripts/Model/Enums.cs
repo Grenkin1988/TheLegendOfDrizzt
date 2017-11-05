@@ -24,6 +24,14 @@ namespace Model {
         Wall = 2,
         Mashrooms = 3,
         VolcanicVent = 4,
+        Chasm = 5,
+        ChasmBridge = 6,
+        Pillar = 7,
+        River = 8,
+        RiverBridge = 9,
+        Crystal = 10,
+        Campfire = 11,
+        DwarfStatue = 12
     }
 
     public enum Directions {
@@ -42,5 +50,12 @@ namespace Model {
         None = 0,
         VolcanicVent = 1,
         NarrowPassage = 2,
+        DarkChasm = 3,
+        BrokerDoor = 4,
+        UndergroundRiver = 5,
+        DrowGlyph = 6,
+        CrystalShard = 7,
+        SecretCave = 8,
+        DwarvenStatue = 9
     }
 }
