@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
-    public class FisherYatesShuffle {
+    public static class FisherYatesShuffle {
         private static readonly Random _random = new Random();
 
         public static void ShuffleSequence<T>(T[] sequence) {

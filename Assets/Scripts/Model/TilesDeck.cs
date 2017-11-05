@@ -4,7 +4,6 @@ using Model;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using UnityEngine;
-using Random = System.Random;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class TilesDeck {

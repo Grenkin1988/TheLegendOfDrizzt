@@ -6,8 +6,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
     public class TileData {
         public string Name;
         public string Layout;
-        public ArrowColor ArrorColor;
-        public SpecialEffect SpecialEffect;
+        public string ArrorColor;
+        public string SpecialEffect;
 
         public override string ToString() {
             return $"{Name}| {ArrorColor}-->>, Effect: {SpecialEffect}";

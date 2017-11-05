@@ -17,7 +17,7 @@ namespace ViewModel {
 
         private void Start() {
             Deck = new TilesDeck();
-            Deck.SetSpecialTile("UndergroundRiver", 9);
+            Deck.SetSpecialTile("UndergroundRiver", 8);
             Deck.GenerateTileStack();
             Deck.ShuffleTileStack();
             Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Tiles");
