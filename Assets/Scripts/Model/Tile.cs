@@ -12,6 +12,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private Square[,] Squares;
 
         public Directions ArrowDirection { get; private set; }
+        public ArrowColor ArrowColor { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
         public string Name { get; }
@@ -28,6 +29,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             AdjacentTiles = new Adjacent<Tile>();
             Squares = new Square[TileSize, TileSize];
             Name = tileData.Name;
+            ArrowColor = tileData.ArrowColor;
             FillTileByLayout(tileData.Layout);
         }
 
@@ -64,7 +66,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         public void RotateTileCounterClockwise() {
             Square[,] newArray = MathUtility.RotateArrayCounterClockwise(Squares, TileSize);
             int newArrowDirection = (int)ArrowDirection - 1;
-            if (newArrowDirection < 0) { newArrowDirection += 4; }
+            if (newArrowDirection <= 0) { newArrowDirection += 4; }
             ArrowDirection = (Directions)newArrowDirection;
             Squares = newArray;
         }

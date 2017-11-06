@@ -101,12 +101,12 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             switch (type) {
                 case TerrainTypes.Floor:
                 case TerrainTypes.Mashrooms:
+                case TerrainTypes.Crystal:
+                case TerrainTypes.Bridge:
+                case TerrainTypes.Lair:
                 return true;
-                case TerrainTypes.Wall:
-                case TerrainTypes.VolcanicVent:
-                return false;
                 default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                return false;
             }
         }
 
