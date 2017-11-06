@@ -24,7 +24,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
 
             foreach (Tile tile in _map.GetAllTiles()) {
                 var tileViewModel = new TileView(tile, _adventureMapGameObject.transform);
-                tileViewModel.DrawTile();
+                tileViewModel.Draw();
                 TileViewModels.Add(tile, tileViewModel);
             }
         }
@@ -35,7 +35,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
 
         private void MapOnNewTileCreated(Tile tile) {
             var tileViewModel = new TileView(tile, _adventureMapGameObject.transform);
-            tileViewModel.DrawTile();
+            tileViewModel.Draw();
             TileViewModels.Add(tile, tileViewModel);
         }
 

@@ -71,27 +71,5 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             IList<Tile> adjacent = AdjacentTiles.GetAdjacent(direction);
             return adjacent != null && adjacent.Any() ? adjacent.First() : null;
         }
-
-        [Obsolete]
-        public string DisplayTile() {
-            int longestNameLength = Enums.GetValues<TerrainTypes>().Select(value => value.ToString().Length).Concat(new[] { 0 }).Max();
-            var sb = new StringBuilder();
-            for (int y = 3; y >= 0; y--) {
-                for (int x = 0; x < 4; x++) {
-                    string squareTerrainText = Squares[x, y].TerrainType.ToString();
-                    int numberOfAdditionalSpace = longestNameLength - squareTerrainText.Length;
-                    squareTerrainText += new string(' ', numberOfAdditionalSpace);
-                    sb.Append(squareTerrainText);
-                    if (x == 3) { continue; }
-                    sb.Append("|||");
-                }
-                sb.Append("\n");
-                if (y == 0) { continue; }
-                sb.AppendLine(new string('-', longestNameLength * 4 + 3 * 3));
-            }
-            sb.AppendLine(new string('-', longestNameLength * 4 + 3 * 3));
-            sb.AppendLine($"======== Arrow to the {ArrowDirection} ========");
-            return sb.ToString();
-        }
     }
 }
