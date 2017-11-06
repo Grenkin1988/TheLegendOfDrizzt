@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfTileData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TileData Name="Volcanic-1" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Wall;Floor;Floor;Wall;Floor;Floor;Floor;VolcanicVent;Floor;Mashrooms;Floor;Wall;Wall;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Volcanic-2" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor;VolcanicVent;Floor;Floor;Floor;Wall;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Volcanic-3" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Wall;VolcanicVent;Wall</Layout>
+  </TileData>
+  <TileData Name="Volcanic-4" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Wall;Wall;VolcanicVent;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Volcanic-5" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Wall;Wall;VolcanicVent;Wall</Layout>
+  </TileData>
+  <TileData Name="Volcanic-6" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Wall;VolcanicVent;Wall;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor</Layout>
+  </TileData>
+  <TileData Name="Volcanic-7" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Wall;VolcanicVent;Wall;Wall;Floor;Floor;Wall;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Volcanic-8" ArrowColor="Black" SpecialEffect="VolcanicVent">
+    <Layout>Mashrooms;Floor;Floor;Wall;Floor;Floor;Floor;Wall;Floor;Floor;Floor;VolcanicVent;Floor;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Narrow-1" ArrowColor="White" SpecialEffect="NarrowPassage">
+    <Layout>Wall;Floor;Floor;Wall;Floor;Wall;Floor;Wall;Floor;Mashrooms;Floor;Wall;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Narrow-2" ArrowColor="White" SpecialEffect="NarrowPassage">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Floor;Mashrooms;Floor;Floor;Wall;Wall;Floor;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Narrow-3" ArrowColor="White" SpecialEffect="NarrowPassage">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Mashrooms;Floor;Wall;Floor;Wall;Floor;Wall;Wall;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Narrow-4" ArrowColor="White" SpecialEffect="NarrowPassage">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Wall;Wall;Floor;Floor;Floor;Mashrooms;Floor;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-1" ArrowColor="White" SpecialEffect="None">
+    <Layout>Floor;Floor;Floor;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Wall;Wall;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-2" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-3" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor</Layout>
+  </TileData>
+  <TileData Name="Simple-4" ArrowColor="White" SpecialEffect="None">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Floor;Floor;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-5" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Floor;Floor;Floor;Wall;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-6" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Wall;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-7" ArrowColor="White" SpecialEffect="None">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-8" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Wall;Floor;Floor;Wall;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-9" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Mashrooms;Floor;Floor;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-10" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor;Wall;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-11" ArrowColor="White" SpecialEffect="None">
+    <Layout>Floor;Floor;Floor;Wall;Floor;Floor;Floor;Wall;Floor;Floor;Mashrooms;Wall;Floor;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="Simple-12" ArrowColor="Black" SpecialEffect="None">
+    <Layout>Wall;Floor;Floor;Wall;Floor;Floor;Floor;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Floor</Layout>
+  </TileData>
+</ArrayOfTileData>

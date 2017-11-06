@@ -144,6 +144,11 @@
     <Compile Include="Assets\Scripts\Editor\MapViewModelEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\TileGeneratorEditor.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\StreamingAssets\Data\DoubleTiles.xml" />
+    <None Include="Assets\StreamingAssets\Data\SimpleTiles.xml" />
+    <None Include="Assets\StreamingAssets\Data\SpecialTiles.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

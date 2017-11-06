@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -10,6 +12,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         private static TilesLibrary _instance;
         private static readonly object _padlock = new object();
         private const char NAME_SEPARATOR = '_';
+        private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(TileData[]));
 
         private readonly Dictionary<string, TileData> _simpleTiles;
         private readonly Dictionary<string, TileData> _specialTiles;
@@ -53,26 +56,26 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         }
 
         private void LoadSimpleTiles() {
-            string filePath = Path.Combine(Application.streamingAssetsPath, "Data/SimpleTiles.json");
+            string filePath = Path.Combine(Application.streamingAssetsPath, "Data/SimpleTiles.xml");
 
             if (File.Exists(filePath)) {
-                string dataAsJson = File.ReadAllText(filePath);
-                TileData[] loadedData = JsonHelper.FromJson<TileData>(dataAsJson);
+                string xml = File.ReadAllText(filePath);
+                var loadedData = (TileData[])Serializer.Deserialize(new StringReader(xml));
 
                 foreach (TileData tileData in loadedData) {
                     _simpleTiles[tileData.Name] = tileData;
-                }
+                }              
             } else {
                 Debug.LogError("Cannot Simple Tiles data!");
             }
         }
 
         private void LoadSpecialTiles() {
-            string filePath = Path.Combine(Application.streamingAssetsPath, "Data/SpecialTiles.json");
+            string filePath = Path.Combine(Application.streamingAssetsPath, "Data/SpecialTiles.xml");
 
             if (File.Exists(filePath)) {
-                string dataAsJson = File.ReadAllText(filePath);
-                TileData[] loadedData = JsonHelper.FromJson<TileData>(dataAsJson);
+                string xml = File.ReadAllText(filePath);
+                var loadedData = (TileData[])Serializer.Deserialize(new StringReader(xml));
 
                 foreach (TileData tileData in loadedData) {
                     _specialTiles[tileData.Name] = tileData;
@@ -90,11 +93,12 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         }
 
         private void LoadDoubleTiles() {
-            string filePath = Path.Combine(Application.streamingAssetsPath, "Data/DoubleTiles.json");
+            string filePath = Path.Combine(Application.streamingAssetsPath, "Data/DoubleTiles.xml");
 
             if (File.Exists(filePath)) {
-                string dataAsJson = File.ReadAllText(filePath);
-                TileData[] loadedData = JsonHelper.FromJson<TileData>(dataAsJson);
+                string xml = File.ReadAllText(filePath);
+                var loadedData = (TileData[])Serializer.Deserialize(new StringReader(xml));
+
                 foreach (TileData tileData in loadedData) {
                     string[] name = GetTileDataName(tileData);
                     if (!_doubleTiles.ContainsKey(name[0])) {

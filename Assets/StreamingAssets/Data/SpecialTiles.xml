@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfTileData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TileData Name="DarkChasm" ArrowColor="White" SpecialEffect="DarkChasm">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Chasm;Chasm;Mashrooms;Floor;Bridge;Bridge;Floor;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="BrokerDoor" ArrowColor="White" SpecialEffect="BrokerDoor">
+    <Layout>Wall;Floor;Floor;Pillar;Floor;Floor;Floor;Mashrooms;Floor;Floor;Floor;Floor;Wall;Floor;Floor;Pillar</Layout>
+  </TileData>
+  <TileData Name="UndergroundRiver" ArrowColor="White" SpecialEffect="UndergroundRiver">
+    <Layout>Wall;Wall;Wall;Wall;Floor;River;River;Mashrooms;Floor;Bridge;Bridge;Floor;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="DrowGlyph" ArrowColor="White" SpecialEffect="DrowGlyph">
+    <Layout>Wall;Mashrooms;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Floor;Wall;Floor;Floor;Floor</Layout>
+  </TileData>
+  <TileData Name="CrystalShard" ArrowColor="White" SpecialEffect="CrystalShard">
+    <Layout>Wall;Floor;Floor;Wall;Floor;Floor;Crystal;Wall;Floor;Mashrooms;Floor;Wall;Wall;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="SecretCave" ArrowColor="White" SpecialEffect="SecretCave">
+    <Layout>Wall;Wall;Wall;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Campfire;Wall;Wall;Wall;Wall;Wall</Layout>
+  </TileData>
+  <TileData Name="DwarvenStatue-1" ArrowColor="White" SpecialEffect="DwarvenStatue">
+    <Layout>Floor;Floor;Floor;Wall;Floor;Floor;DwarfStatue;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;Floor;Wall</Layout>
+  </TileData>
+  <TileData Name="DwarvenStatue-2" ArrowColor="Black" SpecialEffect="DwarvenStatue">
+    <Layout>Floor;Floor;Floor;Wall;Floor;Mashrooms;Floor;Wall;Floor;Floor;DwarfStatue;Wall;Floor;Floor;Floor;Wall</Layout>
+  </TileData>
+</ArrayOfTileData>

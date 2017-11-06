@@ -1,15 +1,20 @@
 ﻿using System;
+using System.Xml.Serialization;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Data {
     [Serializable]
     public class TileData {
-        public string Name;
-        public string Layout;
-        public string ArrorColor;
-        public string SpecialEffect;
+        [XmlAttribute]
+        public string Name { get; set; }
+        public string Layout { get; set; }
+        [XmlAttribute]
+        public ArrowColor ArrowColor { get; set; }
+        [XmlAttribute]
+        public SpecialEffect SpecialEffect { get; set; }
 
         public override string ToString() {
-            return $"{Name}| {ArrorColor}-->>, Effect: {SpecialEffect}";
+            return $"{Name}| {ArrowColor}-->>, Effect: {SpecialEffect}";
         }
     }
 }
