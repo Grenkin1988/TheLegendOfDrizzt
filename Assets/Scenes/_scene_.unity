@@ -239,7 +239,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1173692740
 MonoBehaviour:
@@ -260,9 +260,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1571444484}
-  - component: {fileID: 1571444485}
+  - component: {fileID: 1571444486}
   m_Layer: 0
-  m_Name: MapViewModel
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,9 +279,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1571444485
+--- !u!114 &1571444486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -289,6 +289,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1571444483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43765249193d9db4bb79f91eaf7b4f85, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d6919ac38b4154a95b3098edd558bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

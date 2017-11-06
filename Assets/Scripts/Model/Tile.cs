@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 
-namespace Model {
+namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Tile {
         public static readonly int TileSize = 4;
         private readonly Adjacent<Tile> AdjacentTiles;

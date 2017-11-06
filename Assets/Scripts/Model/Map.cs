@@ -5,7 +5,7 @@ using System.Linq;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using Random = System.Random;
 
-namespace Model {
+namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Map {
         private const string START_TILE_NAME = "StartTile";
         private readonly List<Tile> Tiles;

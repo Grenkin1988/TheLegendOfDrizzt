@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model {
+namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public static class Enums {
         public static IEnumerable<T> GetValues<T>() where T : struct, IConvertible {
             if (!typeof(T).IsEnum) {

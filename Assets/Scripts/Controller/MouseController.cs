@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Controller {
+namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class MouseController : MonoBehaviour {
         private void Update() {
             if (Input.GetMouseButtonUp(0)) {

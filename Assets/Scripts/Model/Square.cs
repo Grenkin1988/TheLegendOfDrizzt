@@ -1,4 +1,4 @@
-﻿namespace Model {
+﻿namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Square {
         public TerrainTypes TerrainType { get; private set; }
 

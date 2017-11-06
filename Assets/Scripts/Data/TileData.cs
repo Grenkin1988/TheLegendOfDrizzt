@@ -1,5 +1,4 @@
 ﻿using System;
-using Model;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Data {
     [Serializable]

@@ -1,15 +1,14 @@
-﻿using Model;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+﻿using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
 
-namespace ViewModel {
-    public class TileViewModel {
+namespace TheLegendOfDrizzt.Assets.Scripts.View {
+    public class TileView {
         private readonly Tile Tile;
         private readonly Transform ParentTransform;
 
         public GameObject TileGameObject { get; private set; }
 
-        public TileViewModel(Tile tile, Transform parentTransform) {
+        public TileView(Tile tile, Transform parentTransform) {
             Tile = tile;
             ParentTransform = parentTransform;
         }
