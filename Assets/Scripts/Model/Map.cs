@@ -24,9 +24,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
             var startTile1 = new Tile(startingTiles[0]);
             startTile1.PlaceTile(0, 0);
-            startTile1.RotateTileClockwise();
-            startTile1.RotateTileClockwise();
-            startTile1.RotateTileClockwise();
+            startTile1.RotateTileCounterClockwise();
             var startTile2 = new Tile(startingTiles[1]);
             startTile2.PlaceTile(4, 0);
             startTile2.RotateTileClockwise();
@@ -184,7 +182,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
                 case Directions.South:
                 return 2;
                 case Directions.West:
-                return 3;
+                return -1;
                 case Directions.North:
                 return 0;
                 case Directions.East:
@@ -195,9 +193,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         }
 
         private static void RotateTile(Tile tile, int numberOfRotations) {
-            while (numberOfRotations > 0) {
-                tile.RotateTileClockwise();
-                numberOfRotations--;
+            if (numberOfRotations < 0) {
+                tile.RotateTileCounterClockwise();
+            } else {
+                while (numberOfRotations > 0) {
+                    tile.RotateTileClockwise();
+                    numberOfRotations--;
+                }
             }
         }
 

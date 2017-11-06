@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
+using TheLegendOfDrizzt.Assets.Scripts.Utility;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Tile {
@@ -27,7 +28,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             AdjacentTiles = new Adjacent<Tile>();
             Squares = new Square[TileSize, TileSize];
             Name = tileData.Name;
-            FillTileByXML(tileData.Layout);
+            FillTileByLayout(tileData.Layout);
         }
 
         public void PlaceTile(int x, int y) {
@@ -35,9 +36,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             Y = y;
         }
 
-        private void FillTileByXML(string squaresSequence) {
+        private void FillTileByLayout(string squaresSequence) {
             string[] splittedSequence = squaresSequence.Split(';');
-            if (splittedSequence.Length != TileSize * TileSize) { throw new InvalidOperationException("Squares sequence must contain 16 squares"); }
+            if (splittedSequence.Length != TileSize * TileSize) {
+                throw new InvalidOperationException($"Squares sequence must contain {TileSize * TileSize} squares");
+            }
             int splittedSequenceIndex = 0;
             for (int x = 0; x < TileSize; x++) {
                 for (int y = 0; y < TileSize; y++) {
@@ -51,14 +54,17 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         }
 
         public void RotateTileClockwise() {
-            var newArray = new Square[TileSize, TileSize];
-            for (int i = TileSize - 1; i >= 0; --i) {
-                for (int j = 0; j < TileSize; ++j) {
-                    newArray[j, TileSize - 1 - i] = Squares[i, j];
-                }
-            }
+            Square[,] newArray = MathUtility.RotateArrayClockwise(Squares, TileSize);
             int newArrowDirection = (int)ArrowDirection + 1;
             if (newArrowDirection > 4) { newArrowDirection -= 4; }
+            ArrowDirection = (Directions)newArrowDirection;
+            Squares = newArray;
+        }
+
+        public void RotateTileCounterClockwise() {
+            Square[,] newArray = MathUtility.RotateArrayCounterClockwise(Squares, TileSize);
+            int newArrowDirection = (int)ArrowDirection - 1;
+            if (newArrowDirection < 0) { newArrowDirection += 4; }
             ArrowDirection = (Directions)newArrowDirection;
             Squares = newArray;
         }

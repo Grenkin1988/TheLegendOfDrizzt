@@ -112,6 +112,7 @@
     <Compile Include="Assets\Scripts\Model\Tile.cs" />
     <Compile Include="Assets\Scripts\Model\TileStack.cs" />
     <Compile Include="Assets\Scripts\Utility\FisherYatesShuffle.cs" />
+    <Compile Include="Assets\Scripts\Utility\MathUtility.cs" />
     <Compile Include="Assets\Scripts\View\MapView.cs" />
     <Compile Include="Assets\Scripts\View\SquareView.cs" />
     <Compile Include="Assets\Scripts\View\TileView.cs" />
