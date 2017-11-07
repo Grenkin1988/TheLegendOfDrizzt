@@ -82,7 +82,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             switch (type) {
                 case TerrainTypes.Floor:               
                 case TerrainTypes.Mashrooms:
-                case TerrainTypes.VolcanicVent:
                 case TerrainTypes.Chasm:
                 case TerrainTypes.Pillar:
                 case TerrainTypes.River:
@@ -90,13 +89,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
                     return GetRandomSpriteRotation();
                 }
 
+                case TerrainTypes.VolcanicVent:
                 case TerrainTypes.Bridge:
-                case TerrainTypes.Crystal:
-                case TerrainTypes.DwarfStatue:
+                case TerrainTypes.Crystal:               
                 case TerrainTypes.Throne: {
                     return GetNumberOfSpriteRotationsNeeded(placementDirection);
                 }
 
+                case TerrainTypes.DwarfStatue:
                 case TerrainTypes.Wall:
                 case TerrainTypes.Campfire: {
                     return 0;
