@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Utility;
 
@@ -16,11 +15,12 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         public int X { get; private set; }
         public int Y { get; private set; }
         public string Name { get; }
+        public string Decal { get; }
 
         public Square this[int x, int y] {
             get {
-                if (x >= TileSize || x < 0) { throw new ArgumentOutOfRangeException("x"); }
-                if (y >= TileSize || y < 0) { throw new ArgumentOutOfRangeException("y"); }
+                if (x >= TileSize || x < 0) { throw new ArgumentOutOfRangeException(nameof(x)); }
+                if (y >= TileSize || y < 0) { throw new ArgumentOutOfRangeException(nameof(y)); }
                 return Squares[x, y];
             }
         }
@@ -30,6 +30,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             Squares = new Square[TileSize, TileSize];
             Name = tileData.Name;
             ArrowColor = tileData.ArrowColor;
+            Decal = tileData.Decal;
             FillTileByLayout(tileData.Layout);
         }
 

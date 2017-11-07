@@ -12,6 +12,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         public ArrowColor ArrowColor { get; set; }
         [XmlAttribute]
         public SpecialEffect SpecialEffect { get; set; }
+        [XmlAttribute]
+        public string Decal { get; set; }
 
         public override string ToString() {
             return $"{Name}| {ArrowColor}-->>, Effect: {SpecialEffect}";

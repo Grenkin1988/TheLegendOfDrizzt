@@ -13,12 +13,17 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
             _square = square;
         }
 
-        public void Draw(int x, int y) {
+        public void Draw(int x, int y, Directions placementDirection) {
+            float newX = x + 0.5f;
+            float newY = y + 0.5f;
             SquareGameObject = new GameObject("Square_" + x + "_" + y);
-            SquareGameObject.transform.position = new Vector3(x, y, 0);
+            SquareGameObject.transform.position = new Vector3(newX, newY, 0);
+            SquareGameObject.transform.Rotate(
+                0, 
+                0, 
+                90 * SpriteManager.GetNumberOfTileSpriteRotationsNeeded(_square.TerrainType, placementDirection));
             SquareGameObject.transform.SetParent(_parentTransform, false);
-            var boxCollier2D = SquareGameObject.AddComponent<BoxCollider2D>();
-            boxCollier2D.offset = new Vector2(0.5f, 0.5f);
+            SquareGameObject.AddComponent<BoxCollider2D>();
             var squareRenderer = SquareGameObject.AddComponent<SpriteRenderer>();
             string tileTypeText = _square.TerrainType.ToString();
             squareRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
