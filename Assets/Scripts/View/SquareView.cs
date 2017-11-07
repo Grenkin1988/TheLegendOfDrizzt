@@ -1,4 +1,5 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Model;
+﻿using TheLegendOfDrizzt.Assets.Scripts.Controller;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.View {

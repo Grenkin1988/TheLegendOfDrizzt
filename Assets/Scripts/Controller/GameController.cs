@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using TheLegendOfDrizzt.Assets.Scripts.View;
 using UnityEngine;
@@ -9,12 +11,23 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private MapView _mapView;
         private TileStack _tileStack;
         private MouseController _mouseController;
+        private List<Player> _players = new List<Player>();
 
         private void Awake() { }
 
         private void Start() {
             _adventureMap = new Map();
             _mapView = new MapView(_adventureMap);
+
+            SetUpPlayers(new PlayerData[] {
+                new PlayerData {
+                    Name = "Palayer 1",
+                    CharacterData = new CharacterData {
+                        Name = "Drizzt"
+                    }
+                }
+            });
+            _adventureMap.SetStartingPlayersPosition(_players.ToArray());
 
             _tileStack = new TileStack();
             PrepareTileStackForAdventure(_tileStack, AdventureController.CurrentAdventureName);
@@ -59,6 +72,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 if (newTile != null) {
                     _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
                 }
+            }
+        }
+
+        private void SetUpPlayers(params PlayerData[] data) {
+            foreach (PlayerData playerData in data) {
+                var character = new Character(playerData.CharacterData);
+                var player = new Player(playerData, character);
+                _players.Add(player);
             }
         }
     }

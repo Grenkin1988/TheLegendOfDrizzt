@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
+using UnityEngine;
 using Random = System.Random;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
@@ -10,27 +11,20 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private const string START_TILE_NAME = "StartTile";
         private readonly List<Tile> Tiles;
         private readonly TilesLibrary TilesLibrary;
+        private readonly Random _random = new Random();
+        private readonly List<Vector2> _startingPositions = new List<Vector2> {
+            new Vector2(1, 1),
+            new Vector2(1, 2),
+            new Vector2(2, 1),
+            new Vector2(2, 2),
+            new Vector2(3, 1),
+            new Vector2(3, 2)
+        };
 
         public Map() {
             Tiles = new List<Tile>();
             TilesLibrary = TilesLibrary.Instance;
             InitializeStartTiles();
-        }
-
-        private void InitializeStartTiles() {
-            TileData[] startingTiles = TilesLibrary.GetDubleTile(START_TILE_NAME);
-            if (startingTiles == null || startingTiles.Length != 2) {
-                throw new ApplicationException("Starting tiles not found, or wrong quantity");
-            }
-            var startTile1 = new Tile(startingTiles[0]);
-            startTile1.PlaceTile(0, 0);
-            startTile1.RotateTileCounterClockwise();
-            var startTile2 = new Tile(startingTiles[1]);
-            startTile2.PlaceTile(4, 0);
-            startTile2.RotateTileClockwise();
-            startTile1.SetNeighbor(startTile2, Directions.East);
-            startTile2.SetNeighbor(startTile1, Directions.West);
-            Tiles.AddRange(new[] { startTile1, startTile2 });
         }
 
         public ICollection<Tile> GetAllTiles() {
@@ -47,6 +41,51 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             Tiles.Add(newTile);
             SetNeighborsForNewTile(newTile);
             OnNewTileCreated(newTile);
+        }
+
+        public bool TryGetTile(float x, float y, out Tile foundTile) {
+            foundTile = Tiles.FirstOrDefault(tile =>
+                                                 tile.X <= x &&
+                                                 tile.X + Tile.TileSize >= x &&
+                                                 tile.Y <= y &&
+                                                 tile.Y + Tile.TileSize >= y);
+            return foundTile != null;
+        }
+
+        public bool IsValidPositionForNewTilePlacement(Tile tile, int x, int y, out Directions? placementDirection) {
+            Square square = tile[x, y];
+            placementDirection = null;
+            if (!IsValidTerrainTypeForNewTilePlacement(square.TerrainType)) { return false; }
+            if (!IsValidSquarePositionForNewTilePlacement(x, y)) { return false; }
+            placementDirection = GetDirectionForNewTilePlacement(tile, x, y);
+            return placementDirection.HasValue;
+        }
+
+        public void SetStartingPlayersPosition(params Player[] players) {
+            foreach (Player player in players) {
+                int positionIndex = _random.Next(0, _startingPositions.Count);
+                Vector2 position = _startingPositions[positionIndex];
+                player.Character.Place((int)position.x, (int)position.y);
+                _startingPositions.RemoveAt(positionIndex);
+            }
+        }
+
+        private void InitializeStartTiles() {
+            TileData[] startingTiles = TilesLibrary.GetDubleTile(START_TILE_NAME);
+            if (startingTiles == null || startingTiles.Length != 2) {
+                throw new ApplicationException("Starting tiles not found, or wrong quantity");
+            }
+            var startTile1 = new Tile(startingTiles[0]);
+            startTile1.PlaceTile(0, 0);
+            startTile1.RotateTileCounterClockwise();
+            var startTile2 = new Tile(startingTiles[1]);
+            startTile2.PlaceTile(4, 0);
+            startTile2.RotateTileClockwise();
+            startTile1.SetNeighbor(startTile2, Directions.East);
+            startTile2.SetNeighbor(startTile1, Directions.West);
+            Tiles.AddRange(new[] {
+                startTile1, startTile2
+            });
         }
 
         private void SetNeighborsForNewTile(Tile newTile) {
@@ -79,24 +118,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
         }
 
-        public bool TryGetTile(float x, float y, out Tile foundTile) {
-            foundTile = Tiles.FirstOrDefault(tile =>
-                tile.X <= x &&
-                tile.X + Tile.TileSize >= x &&
-                tile.Y <= y &&
-                tile.Y + Tile.TileSize >= y);
-            return foundTile != null;
-        }
-
-        public bool IsValidPositionForNewTilePlacement(Tile tile, int x, int y, out Directions? placementDirection) {
-            Square square = tile[x, y];
-            placementDirection = null;
-            if (!IsValidTerrainTypeForNewTilePlacement(square.TerrainType)) { return false; }
-            if (!IsValidSquarePositionForNewTilePlacement(x, y)) { return false; }
-            placementDirection = GetDirectionForNewTilePlacement(tile, x, y);
-            return placementDirection.HasValue;
-        }
-
         private static bool IsValidTerrainTypeForNewTilePlacement(TerrainTypes type) {
             switch (type) {
                 case TerrainTypes.Floor:
@@ -104,9 +125,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
                 case TerrainTypes.Crystal:
                 case TerrainTypes.Bridge:
                 case TerrainTypes.Lair:
-                return true;
+                    return true;
                 default:
-                return false;
+                    return false;
             }
         }
 
@@ -152,43 +173,43 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private static int GetNewTileX(Tile existenTile, Directions placementDirection) {
             switch (placementDirection) {
                 case Directions.West:
-                return existenTile.X - Tile.TileSize;
+                    return existenTile.X - Tile.TileSize;
                 case Directions.East:
-                return existenTile.X + Tile.TileSize;
+                    return existenTile.X + Tile.TileSize;
                 case Directions.South:
                 case Directions.North:
-                return existenTile.X;
+                    return existenTile.X;
                 default:
-                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
+                    throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 
         private static int GetNewTileY(Tile existenTile, Directions placementDirection) {
             switch (placementDirection) {
                 case Directions.South:
-                return existenTile.Y - Tile.TileSize;
+                    return existenTile.Y - Tile.TileSize;
                 case Directions.North:
-                return existenTile.Y + Tile.TileSize;
+                    return existenTile.Y + Tile.TileSize;
                 case Directions.West:
                 case Directions.East:
-                return existenTile.Y;
+                    return existenTile.Y;
                 default:
-                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
+                    throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 
         private static int GetNumberOfRotationsNeeded(Directions placementDirection) {
             switch (placementDirection) {
                 case Directions.South:
-                return 2;
+                    return 2;
                 case Directions.West:
-                return -1;
+                    return -1;
                 case Directions.North:
-                return 0;
+                    return 0;
                 case Directions.East:
-                return 1;
+                    return 1;
                 default:
-                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
+                    throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 

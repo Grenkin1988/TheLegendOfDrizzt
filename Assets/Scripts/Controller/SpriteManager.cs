@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
 using Random = System.Random;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class SpriteManager {
         private static SpriteManager _instance;
         private static readonly object _padlock = new object();
         private static readonly Random _random = new Random();
         private const string TILE_SPRITE_PATH = "Images/Tiles";
-        private const string TILE_DECAL_PATH = "Images/Decals";
+        private const string DECAL_SPRITE_PATH = "Images/Decals";
+        private const string CHARACTERS_SPRITE_PATH = "Images/Characters";
         private const string DEFAULT_SPRITE_NAME = "Default";
         private const char NAME_SEPARATOR = '_';
 
@@ -35,6 +37,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private SpriteManager() {
             LoadTileSprites();
             LoadDecalSprites();
+            LoadCharacterSprites();
         }
 
         public Sprite LoadSpriteByName(string name) {
@@ -61,7 +64,18 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         }
 
         private void LoadDecalSprites() {
-            Sprite[] sprites = Resources.LoadAll<Sprite>(TILE_DECAL_PATH);
+            Sprite[] sprites = Resources.LoadAll<Sprite>(DECAL_SPRITE_PATH);
+            foreach (Sprite sprite in sprites) {
+                string name = GetSpriteName(sprite);
+                if (!_spritesMap.ContainsKey(name)) {
+                    _spritesMap[name] = new List<Sprite>();
+                }
+                _spritesMap[name].Add(sprite);
+            }
+        }
+
+        private void LoadCharacterSprites() {
+            Sprite[] sprites = Resources.LoadAll<Sprite>(CHARACTERS_SPRITE_PATH);
             foreach (Sprite sprite in sprites) {
                 string name = GetSpriteName(sprite);
                 if (!_spritesMap.ContainsKey(name)) {

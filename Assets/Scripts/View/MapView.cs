@@ -18,8 +18,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
 
         private void InitializeMapView() {
             _map.NewTileCreated += MapOnNewTileCreated;
-
             _adventureMapGameObject = new GameObject("AdventureMap");
+            _adventureMapGameObject.transform.SetParent(GameObject.Find("_Dynamic").transform);
             _adventureMapGameObject.transform.position = new Vector3();
 
             foreach (Tile tile in _map.GetAllTiles()) {
