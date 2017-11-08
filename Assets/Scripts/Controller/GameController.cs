@@ -91,16 +91,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 _turnController.CurrentPlayer.Character.MoveHere(x, y, tile);
                 _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
             }
-
-            //Directions? placementDirection;
-            //if (_adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
-            //    if (!placementDirection.HasValue) { return; }
-            //    Tile newTile = _tileStack.GetNexTile();
-            //    if (newTile != null) {
-            //        _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
-            //        _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
-            //    }
-            //}
         }
 
         private void SetUpPlayers(params PlayerData[] data) {
@@ -129,6 +119,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 _turnController.TakeTurn(_players[NextplayerIndex()]);
             }
             _uiController.UpdateUI();
+            ExecutePhase();
         }
 
         private void SetMoveMode() {
@@ -138,5 +129,39 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private void SetAttackMode() {
             _mouseController.ChangeMouseMode(MouseController.MouseModes.Attack);
         }
+
+        private void ExecutePhase() {
+            switch (_turnController.CurrentPhase) {
+                case TurnController.Phases.Hero: { return; }
+                case TurnController.Phases.Exploration: {
+                    ExecuteExplorationPhase();
+                    return;
+                }
+                case TurnController.Phases.Villain: {
+                    ExecuteVillainPhase();
+                    return;
+                }
+                default:
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void ExecuteExplorationPhase() {
+            Directions? placementDirection;
+            Character character = _turnController.CurrentPlayer.Character;
+            if (_adventureMap.IsValidPositionForNewTilePlacement(
+                character.CurrentTile, 
+                character.X - character.CurrentTile.X,
+                character.Y - character.CurrentTile.Y, 
+                out placementDirection)) {
+                if (!placementDirection.HasValue) { return; }
+                Tile newTile = _tileStack.GetNexTile();
+                if (newTile != null) {
+                    _adventureMap.PlaceNewTileNearExistent(character.CurrentTile, newTile, placementDirection.Value);
+                }
+            }
+        }
+
+        private void ExecuteVillainPhase() { }
     }
 }
