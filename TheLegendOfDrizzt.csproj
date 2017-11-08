@@ -12,10 +12,8 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.1f1</UnityVersion>
@@ -104,6 +102,9 @@
     <Compile Include="Assets\Scripts\Controller\GameController.cs" />
     <Compile Include="Assets\Scripts\Controller\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Controller\MouseController.cs" />
+    <Compile Include="Assets\Scripts\Controller\SpriteManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\TurnController.cs" />
+    <Compile Include="Assets\Scripts\Controller\UIController.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data\TileData.cs" />
@@ -113,7 +114,6 @@
     <Compile Include="Assets\Scripts\Model\Enums.cs" />
     <Compile Include="Assets\Scripts\Model\Map.cs" />
     <Compile Include="Assets\Scripts\Model\Player.cs" />
-    <Compile Include="Assets\Scripts\Controller\SpriteManager.cs" />
     <Compile Include="Assets\Scripts\Model\Square.cs" />
     <Compile Include="Assets\Scripts\Model\Tile.cs" />
     <Compile Include="Assets\Scripts\Model\TileStack.cs" />
