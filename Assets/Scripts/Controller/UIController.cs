@@ -5,32 +5,47 @@ using UnityEngine.UI;
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class UIController : MonoBehaviour {
         private TurnController _turnController;
+        private GameObject _mainCanvas;
 
         private Text _currecntPlayerText;
         private Text _currentPhaseText;
+
         private Button _nextPhaseButton;
         private Text _nextPhaseButtonText;
-        private GameObject _mainCanvas;
+
+        private Button _moveButton;
+        private Button _attackButton;
 
         public void UpdateUI() {
+            UpdateButtonsState();
             UpdateCurrentPlayer();
             UpdateCurrentPhase();
             UpdateNextPhaseButton();
         }
 
-        private void Start() {
+        private void Awake() {
             _mainCanvas = GameObject.Find("MainCanvas");
             if (_mainCanvas == null) { throw new NullReferenceException("No MainCanvas found in scene"); }
 
             _turnController = FindObjectOfType<TurnController>();
             if (_turnController == null) { throw new NullReferenceException("No TurnController found in scene"); }
 
-            _nextPhaseButton = _mainCanvas.transform.Find("NextPhaseButton").GetComponent<Button>();
-            _nextPhaseButton.onClick.AddListener(OnNextPhaseButtonClicked);
+            SetUpButtons();
         }
 
-        private void Update() {
+        private void Start() { }
 
+        private void Update() { }
+
+        private void SetUpButtons() {
+            _nextPhaseButton = _mainCanvas.transform.Find("NextPhaseButton").GetComponent<Button>();
+            _nextPhaseButton.onClick.AddListener(OnNextPhaseButtonClicked);
+
+            _moveButton = _mainCanvas.transform.Find("MoveButton").GetComponent<Button>();
+            _moveButton.onClick.AddListener(OnMoveButtonClicked);
+
+            _attackButton = _mainCanvas.transform.Find("AttackButton").GetComponent<Button>();
+            _attackButton.onClick.AddListener(OnAttackButtonClicked);
         }
 
         private void UpdateCurrentPlayer() {            
@@ -56,9 +71,25 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             _nextPhaseButtonText.text = buttonText;
         }
 
+        private void UpdateButtonsState() {
+            bool heroPhaseButtonsEnabled = _turnController.CurrentPhase == TurnController.Phases.Hero;
+            _moveButton.interactable = heroPhaseButtonsEnabled;
+            _attackButton.interactable = heroPhaseButtonsEnabled;
+        }
+
         public event Action NextPhaseButtonClicked;
         protected virtual void OnNextPhaseButtonClicked() {
             NextPhaseButtonClicked?.Invoke();
+        }
+
+        public event Action MoveButtonClicked;
+        protected virtual void OnMoveButtonClicked() {
+            MoveButtonClicked?.Invoke();
+        }
+
+        public event Action AttackButtonClicked;
+        protected virtual void OnAttackButtonClicked() {
+            AttackButtonClicked?.Invoke();
         }
     }
 }

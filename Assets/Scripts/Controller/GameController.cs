@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using TheLegendOfDrizzt.Assets.Scripts.View;
@@ -17,14 +16,20 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private List<Player> _players = new List<Player>();
         private int? _nextPlayerIndex = null;
 
-        public void NextPhase() {
-            if (!_turnController.NextPhase()) {
-                _turnController.TakeTurn(_players[NextplayerIndex()]);
-            }
-            _uiController.UpdateUI();
-        }
+        private void Awake() {
+            _mouseController = FindObjectOfType<MouseController>();
+            if (_mouseController == null) { throw new NullReferenceException("No MouseController found in scene"); }
+            _mouseController.TileClicked += MouseControllerOnTileClicked;
 
-        private void Awake() { }
+            _turnController = FindObjectOfType<TurnController>();
+            if (_turnController == null) { throw new NullReferenceException("No TurnController found in scene"); }
+
+            _uiController = FindObjectOfType<UIController>();
+            if (_uiController == null) { throw new NullReferenceException("No UIController found in scene"); }
+            _uiController.NextPhaseButtonClicked += NextPhase;
+            _uiController.MoveButtonClicked += SetMoveMode;
+            _uiController.AttackButtonClicked += SetAttackMode;
+        }
 
         private void Start() {
             _adventureMap = new Map();
@@ -43,17 +48,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             _tileStack = new TileStack();
             PrepareTileStackForAdventure(_tileStack, AdventureController.CurrentAdventureName);
 
-            _mouseController = FindObjectOfType<MouseController>();
-            if (_mouseController == null) { throw new NullReferenceException("No MouseController found in scene"); }
-            _mouseController.TileClicked += MouseControllerOnTileClicked;
-
-            _turnController = FindObjectOfType<TurnController>();
-            if (_turnController == null) { throw new NullReferenceException("No TurnController found in scene"); }
             _turnController.TakeTurn(_players[NextplayerIndex()]);
 
-            _uiController = FindObjectOfType<UIController>();
-            if (_uiController == null) { throw new NullReferenceException("No UIController found in scene"); }
-            _uiController.NextPhaseButtonClicked += NextPhase;
             _uiController.UpdateUI();
         }
 
@@ -71,6 +67,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             }
             if (_uiController != null) {
                 _uiController.NextPhaseButtonClicked -= NextPhase;
+                _uiController.MoveButtonClicked -= SetMoveMode;
+                _uiController.AttackButtonClicked -= SetAttackMode;
             }
             _mapView?.Dispose();
         }
@@ -94,6 +92,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 Tile newTile = _tileStack.GetNexTile();
                 if (newTile != null) {
                     _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
+                    _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
                 }
             }
         }
@@ -116,6 +115,22 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 _nextPlayerIndex = 0;
             }
             return _nextPlayerIndex.Value;
+        }
+
+        private void NextPhase() {
+            _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+            if (!_turnController.NextPhase()) {
+                _turnController.TakeTurn(_players[NextplayerIndex()]);
+            }
+            _uiController.UpdateUI();
+        }
+
+        private void SetMoveMode() {
+            _mouseController.ChangeMouseMode(MouseController.MouseModes.Move);
+        }
+
+        private void SetAttackMode() {
+            _mouseController.ChangeMouseMode(MouseController.MouseModes.Attack);
         }
     }
 }

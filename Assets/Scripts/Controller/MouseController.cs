@@ -3,8 +3,20 @@ using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class MouseController : MonoBehaviour {
+        public enum MouseModes {
+            None = 0,
+            Move = 1,
+            Attack = 2
+        }
+
+        private MouseModes CurrentMode = MouseModes.None;
+
+        public void ChangeMouseMode(MouseModes newMode) {
+            CurrentMode = newMode;
+        }
+
         private void Update() {
-            if (Input.GetMouseButtonUp(0)) {
+            if (CurrentMode == MouseModes.Move && Input.GetMouseButtonDown(0)) {
                 Vector3 mouseCoordinate = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(mouseCoordinate, Vector2.zero);
                 if (hit.collider != null) {
@@ -22,7 +34,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         public event Action<GameObject, int, int> TileClicked;
-
         protected virtual void OnTileClicked(GameObject tileGameObject, int squareX, int squareY) {
             TileClicked?.Invoke(tileGameObject, squareX, squareY);
         }
