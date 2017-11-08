@@ -33,6 +33,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         DwarfStatue = 12,
         Throne = 13,
         Lair = 14,
+        Exit = 15,
     }
 
     public enum Directions {

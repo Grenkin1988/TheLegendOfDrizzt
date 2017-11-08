@@ -112,7 +112,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
                 case TerrainTypes.DwarfStatue:
                 case TerrainTypes.Wall:
-                case TerrainTypes.Campfire: {
+                case TerrainTypes.Campfire:
+                case TerrainTypes.Exit: {
                     return 0;
                 }
                 default:
