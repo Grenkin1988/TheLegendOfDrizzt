@@ -89,17 +89,18 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
             if (tile.CanMoveHere(x, y, _turnController.CurrentPlayer.Character)) {
                 _turnController.CurrentPlayer.Character.MoveHere(x, y, tile);
+                _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
             }
 
-            Directions? placementDirection;
-            if (_adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
-                if (!placementDirection.HasValue) { return; }
-                Tile newTile = _tileStack.GetNexTile();
-                if (newTile != null) {
-                    _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
-                    _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
-                }
-            }
+            //Directions? placementDirection;
+            //if (_adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
+            //    if (!placementDirection.HasValue) { return; }
+            //    Tile newTile = _tileStack.GetNexTile();
+            //    if (newTile != null) {
+            //        _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
+            //        _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+            //    }
+            //}
         }
 
         private void SetUpPlayers(params PlayerData[] data) {
