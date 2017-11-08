@@ -17,6 +17,22 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
             return (T)Enum.Parse(typeof(T), enumValueText);
         }
+
+        public static bool CanMoveOnHere(this TerrainTypes type) {
+            switch (type) {
+                case TerrainTypes.Floor:
+                case TerrainTypes.Mashrooms:
+                case TerrainTypes.Crystal:
+                case TerrainTypes.Bridge:
+                case TerrainTypes.Lair:
+                case TerrainTypes.Exit: {
+                    return true;
+                }
+                default: {
+                    return false;
+                }
+            }
+        }
     }
 
     public enum TerrainTypes {

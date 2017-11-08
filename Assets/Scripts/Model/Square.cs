@@ -1,4 +1,6 @@
-﻿namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+﻿using System;
+
+namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Square {
         public TerrainTypes TerrainType { get; private set; }
 
@@ -8,6 +10,10 @@
 
         public override string ToString() {
             return $"Terrain: {TerrainType}";
+        }
+
+        public bool CanMoveHere() {
+            return TerrainType.CanMoveOnHere();
         }
     }
 }

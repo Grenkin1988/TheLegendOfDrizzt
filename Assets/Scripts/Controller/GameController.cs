@@ -86,6 +86,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private void MouseControllerOnTileClicked(GameObject tileGameObject, int x, int y) {
             Tile tile = _mapView.GetTileByGameObject(tileGameObject);
             if (tile == null) { return; }
+
+            if (tile.CanMoveHere(x, y, _turnController.CurrentPlayer.Character)) {
+                _turnController.CurrentPlayer.Character.MoveHere(x, y, tile);
+            }
+
             Directions? placementDirection;
             if (_adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
                 if (!placementDirection.HasValue) { return; }

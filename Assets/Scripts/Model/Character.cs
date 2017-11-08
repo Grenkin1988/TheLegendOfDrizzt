@@ -6,6 +6,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Character {
         public string Name { get; }
         public GameObject CharacterGameObject { get; private set; }
+        public Tile CurrentTile { get; private set; }
+        public Square CurrentSquare { get; private set; }
 
         public Character(CharacterData data) {
             Name = data.Name;
@@ -17,6 +19,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             if (!CharacterGameObject.activeSelf) {
                 CharacterGameObject.SetActive(true);
             }
+        }
+
+        public void MoveHere(int x, int y, Tile tile) {
+            CurrentTile = tile;
+            Square square = tile[x, y];
+            CurrentSquare = square;
+            CharacterGameObject.transform.position = new Vector3(x + tile.X, y + tile.Y, 0);
         }
 
         private void InitializeCharacter() {

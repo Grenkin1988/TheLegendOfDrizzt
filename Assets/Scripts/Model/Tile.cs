@@ -80,5 +80,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             IList<Tile> adjacent = AdjacentTiles.GetAdjacent(direction);
             return adjacent != null && adjacent.Any() ? adjacent.First() : null;
         }
+
+        public bool CanMoveHere(int x, int y, Character character) {
+            Square square = Squares[x, y];
+            return square.CanMoveHere();
+        }
     }
 }
