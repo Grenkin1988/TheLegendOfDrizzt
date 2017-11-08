@@ -15,6 +15,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private UIController _uiController;
         private List<Player> _players = new List<Player>();
         private int? _nextPlayerIndex = null;
+        private AdventureController _adventureController;
 
         private void Awake() {
             _mouseController = FindObjectOfType<MouseController>();
@@ -23,6 +24,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
             _turnController = FindObjectOfType<TurnController>();
             if (_turnController == null) { throw new NullReferenceException("No TurnController found in scene"); }
+
+            _adventureController = FindObjectOfType<AdventureController>();
+            if (_adventureController == null) { throw new NullReferenceException("No AdventureController found in scene"); }
 
             _uiController = FindObjectOfType<UIController>();
             if (_uiController == null) { throw new NullReferenceException("No UIController found in scene"); }
@@ -34,23 +38,19 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private void Start() {
             _adventureMap = new Map();
             _mapView = new MapView(_adventureMap);
+            _adventureMap.NewTileCreated += AdventureMapOnNewTileCreated;
 
-            SetUpPlayers(new PlayerData[] {
-                new PlayerData {
-                    Name = "Palayer 1",
-                    CharacterData = new CharacterData {
-                        Name = "Drizzt"
-                    }
-                }
-            });
+            SetUpPlayers(AdventureManager.GetDefaultPlayers());
+            _adventureController.SetUpAdventure(new Adventure(AdventureManager.GetDefaultAdventure1()));
             _adventureMap.SetStartingPlayersPosition(_players.ToArray());
 
             _tileStack = new TileStack();
-            PrepareTileStackForAdventure(_tileStack, AdventureController.CurrentAdventureName);
+            PrepareTileStackForAdventure(_tileStack, AdventureManager.CurrentAdventureName);
 
             _turnController.TakeTurn(_players[NextplayerIndex()]);
 
             _uiController.UpdateUI();
+            TriggerEvent("StartTile");
         }
 
         private void Update() { }
@@ -62,6 +62,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private void OnDisable() { }
 
         private void OnDestroy() {
+            if (_adventureMap != null) {
+                _adventureMap.NewTileCreated -= AdventureMapOnNewTileCreated;
+            }
             if (_mouseController != null) {
                 _mouseController.TileClicked -= MouseControllerOnTileClicked;
             }
@@ -75,6 +78,16 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         private void OnApplicationQuit() {
             OnDestroy();
+        }
+
+        private void AdventureMapOnNewTileCreated(Tile tile) {
+            if (!string.IsNullOrEmpty(tile.Trigger)) {
+                TriggerEvent(tile.Trigger);
+            }
+        }
+
+        private void TriggerEvent(string tileTrigger) {
+            _adventureController.TriggerEvent(tileTrigger);
         }
 
         private void PrepareTileStackForAdventure(TileStack tileStack, string adventureName) {

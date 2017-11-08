@@ -13,6 +13,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         [XmlAttribute]
         public SpecialEffect SpecialEffect { get; set; }
         [XmlAttribute]
+        public string Trigger { get; set; }
+        [XmlAttribute]
         public string Decal { get; set; }
 
         public override string ToString() {

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MouseController
+  - ModalPanel
   layers:
   - Default
   - TransparentFX

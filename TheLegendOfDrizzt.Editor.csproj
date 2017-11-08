@@ -145,6 +145,7 @@
     <Compile Include="Assets\Scripts\Editor\TileGeneratorEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\StreamingAssets\Data\Adventures.xml" />
     <None Include="Assets\StreamingAssets\Data\DoubleTiles.xml" />
     <None Include="Assets\StreamingAssets\Data\SimpleTiles.xml" />
     <None Include="Assets\StreamingAssets\Data\SpecialTiles.xml" />

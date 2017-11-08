@@ -16,6 +16,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private Button _moveButton;
         private Button _attackButton;
 
+        public GameObject ModalPanel;
+        public Text PopupText;
         public void UpdateUI() {
             UpdateButtonsState();
             UpdateCurrentPlayer();
@@ -23,9 +25,20 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             UpdateNextPhaseButton();
         }
 
+        public void ShowPopupDialog(string text) {
+            if (PopupText == null) {
+                throw new NullReferenceException("No PopupText found in scene");
+            }
+            PopupText.text = text;
+            ModalPanel.SetActive(true);
+        }
+
         private void Awake() {
             _mainCanvas = GameObject.Find("MainCanvas");
             if (_mainCanvas == null) { throw new NullReferenceException("No MainCanvas found in scene"); }
+
+            ModalPanel = _mainCanvas.transform.Find("ModalPanel").gameObject;
+            if (ModalPanel == null) { throw new NullReferenceException("No ModalPanel found in scene"); }
 
             _turnController = FindObjectOfType<TurnController>();
             if (_turnController == null) { throw new NullReferenceException("No TurnController found in scene"); }

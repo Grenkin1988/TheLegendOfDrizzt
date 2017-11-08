@@ -7,7 +7,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         public void LoadAdventure(string name) {
             Debug.Log($"Load adventure {name}");
-            AdventureController.CurrentAdventureName = name;
+            AdventureManager.CurrentAdventureName = name;
             SceneManager.LoadScene(ADVENTURE_SCENE);
         }
 

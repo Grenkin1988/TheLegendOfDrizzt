@@ -10,12 +10,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private readonly Adjacent<Tile> AdjacentTiles;
         private Square[,] Squares;
 
+        public string Name { get; }
+        public ArrowColor ArrowColor { get; }
+        public string Trigger { get; }
+        public string Decal { get; }
         public Directions ArrowDirection { get; private set; }
-        public ArrowColor ArrowColor { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
-        public string Name { get; }
-        public string Decal { get; }
 
         public Square this[int x, int y] {
             get {
@@ -25,11 +26,12 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
         }
 
-        internal Tile(TileData tileData) {
+        public Tile(TileData tileData) {
             AdjacentTiles = new Adjacent<Tile>();
             Squares = new Square[TileSize, TileSize];
             Name = tileData.Name;
             ArrowColor = tileData.ArrowColor;
+            Trigger = tileData.Trigger;
             Decal = tileData.Decal;
             FillTileByLayout(tileData.Layout);
         }

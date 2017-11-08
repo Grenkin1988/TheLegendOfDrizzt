@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controller\AdventureController.cs" />
+    <Compile Include="Assets\Scripts\Controller\AdventureManager.cs" />
     <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
     <Compile Include="Assets\Scripts\Controller\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Controller\GameController.cs" />
@@ -105,11 +106,15 @@
     <Compile Include="Assets\Scripts\Controller\SpriteManager.cs" />
     <Compile Include="Assets\Scripts\Controller\TurnController.cs" />
     <Compile Include="Assets\Scripts\Controller\UIController.cs" />
+    <Compile Include="Assets\Scripts\Data\AdventureData.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data\TileData.cs" />
     <Compile Include="Assets\Scripts\Data\TilesLibrary.cs" />
+    <Compile Include="Assets\Scripts\Data\Trigger\BaseTriggerData.cs" />
+    <Compile Include="Assets\Scripts\Data\Trigger\TextTriggerData.cs" />
     <Compile Include="Assets\Scripts\Model\Adjacent.cs" />
+    <Compile Include="Assets\Scripts\Model\Adventure.cs" />
     <Compile Include="Assets\Scripts\Model\Character.cs" />
     <Compile Include="Assets\Scripts\Model\Enums.cs" />
     <Compile Include="Assets\Scripts\Model\Map.cs" />
@@ -117,13 +122,17 @@
     <Compile Include="Assets\Scripts\Model\Square.cs" />
     <Compile Include="Assets\Scripts\Model\Tile.cs" />
     <Compile Include="Assets\Scripts\Model\TileStack.cs" />
+    <Compile Include="Assets\Scripts\Model\Trigger\BaseTrigger.cs" />
+    <Compile Include="Assets\Scripts\Model\Trigger\TextTrigger.cs" />
     <Compile Include="Assets\Scripts\Utility\FisherYatesShuffle.cs" />
+    <Compile Include="Assets\Scripts\Utility\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utility\MathUtility.cs" />
     <Compile Include="Assets\Scripts\View\MapView.cs" />
     <Compile Include="Assets\Scripts\View\SquareView.cs" />
     <Compile Include="Assets\Scripts\View\TileView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\StreamingAssets\Data\Adventures.xml" />
     <None Include="Assets\StreamingAssets\Data\DoubleTiles.xml" />
     <None Include="Assets\StreamingAssets\Data\SimpleTiles.xml" />
     <None Include="Assets\StreamingAssets\Data\SpecialTiles.xml" />
