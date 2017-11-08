@@ -64,7 +64,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             foreach (Player player in players) {
                 int positionIndex = _random.Next(0, _startingPositions.Count);
                 Vector2 position = _startingPositions[positionIndex];
-                player.Character.MoveHere((int)position.x, (int)position.y, Tiles[0]);
+                player.Character.Place((int)position.x, (int)position.y, Tiles[0]);
                 _startingPositions.RemoveAt(positionIndex);
             }
         }

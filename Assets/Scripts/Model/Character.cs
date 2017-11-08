@@ -14,8 +14,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             InitializeCharacter();
         }
 
-        public void Place(int x, int y) {
-            CharacterGameObject.transform.position = new Vector3(x, y, 0);
+        public void Place(int x, int y, Tile tile) {
+            MoveHere(x, y, tile);
             if (!CharacterGameObject.activeSelf) {
                 CharacterGameObject.SetActive(true);
             }
