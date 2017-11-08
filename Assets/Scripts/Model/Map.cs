@@ -9,7 +9,7 @@ using Random = System.Random;
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Map {
         private const string START_TILE_NAME = "StartTile";
-        private readonly List<Tile> Tiles;
+        private readonly Dictionary<string, Tile> Tiles;
         private readonly TilesLibrary TilesLibrary;
         private readonly Random _random = new Random();
         private readonly List<Vector2> _startingPositions = new List<Vector2> {
@@ -21,13 +21,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         };
 
         public Map() {
-            Tiles = new List<Tile>();
+            Tiles = new Dictionary<string, Tile>();
             TilesLibrary = TilesLibrary.Instance;
             InitializeStartTiles();
         }
 
-        public ICollection<Tile> GetAllTiles() {
-            return new ReadOnlyCollection<Tile>(Tiles);
+        public IReadOnlyDictionary<string, Tile> GetAllTiles() {
+            return new ReadOnlyDictionary<string, Tile>(Tiles);
         }
 
         public void PlaceNewTileNearExistent(Tile existenTile, Tile newTile, Directions placementDirection) {
@@ -37,13 +37,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
 
             RotateTile(newTile, GetNumberOfRotationsNeeded(placementDirection));
 
-            Tiles.Add(newTile);
+            Tiles.Add(newTile.Name, newTile);
             SetNeighborsForNewTile(newTile);
             OnNewTileCreated(newTile);
         }
 
         public bool TryGetTile(float x, float y, out Tile foundTile) {
-            foundTile = Tiles.FirstOrDefault(tile =>
+            foundTile = Tiles.Values.FirstOrDefault(tile =>
                                                  tile.X <= x &&
                                                  tile.X + Tile.TileSize >= x &&
                                                  tile.Y <= y &&
@@ -64,13 +64,27 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             foreach (Player player in players) {
                 int positionIndex = _random.Next(0, _startingPositions.Count);
                 Vector2 position = _startingPositions[positionIndex];
-                player.Character.Place((int)position.x, (int)position.y, Tiles[0]);
+                player.Character.Place((int)position.x, (int)position.y, Tiles["StartTile_1"]);
                 _startingPositions.RemoveAt(positionIndex);
             }
         }
 
+        public void PlaceDoubleTileToTileWithName(string doubleTileNeme, string tileName) {
+            tileName = tileName.Split('-', '_').First();
+            if (!Tiles.ContainsKey(tileName)) {
+                throw new ArgumentException($"There is no tile ({tileName}) in Map");
+            }
+            Tile tile = Tiles[tileName];
+            Tile[] dubleTile = TilesLibrary.GetDoubleTile(doubleTileNeme).Select(data => new Tile(data)).ToArray();
+            if (dubleTile == null || dubleTile.Length != 2) {
+                throw new ApplicationException($"Double tile ({doubleTileNeme}) not found, or wrong quantity");
+            }
+            PlaceNewTileNearExistent(tile, dubleTile[0], tile.ArrowDirection.Oposite());
+            PlaceNewTileNearExistent(dubleTile[0], dubleTile[1], dubleTile[0].ArrowDirection.Oposite());
+        }
+
         private void InitializeStartTiles() {
-            TileData[] startingTiles = TilesLibrary.GetDubleTile(START_TILE_NAME);
+            TileData[] startingTiles = TilesLibrary.GetDoubleTile(START_TILE_NAME);
             if (startingTiles == null || startingTiles.Length != 2) {
                 throw new ApplicationException("Starting tiles not found, or wrong quantity");
             }
@@ -82,14 +96,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             startTile2.RotateTileClockwise();
             startTile1.SetNeighbor(startTile2, Directions.East);
             startTile2.SetNeighbor(startTile1, Directions.West);
-            Tiles.AddRange(new[] {
-                startTile1, startTile2
-            });
+            Tiles[startTile1.Name] = startTile1;
+            Tiles[startTile2.Name] = startTile2;
         }
 
         private void SetNeighborsForNewTile(Tile newTile) {
             int neighborsFound = 0;
-            foreach (Tile tile in Tiles) {
+            foreach (Tile tile in Tiles.Values) {
                 if (neighborsFound >= 4) { break; }
                 if (newTile.X + Tile.TileSize == tile.X && newTile.Y == tile.Y) {
                     newTile.SetNeighbor(tile, Directions.East);

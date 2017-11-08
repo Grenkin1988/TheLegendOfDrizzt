@@ -22,7 +22,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
             _adventureMapGameObject.transform.SetParent(GameObject.Find("_Dynamic").transform);
             _adventureMapGameObject.transform.position = new Vector3();
 
-            foreach (Tile tile in _map.GetAllTiles()) {
+            foreach (Tile tile in _map.GetAllTiles().Values) {
                 var tileViewModel = new TileView(tile, _adventureMapGameObject.transform);
                 tileViewModel.Draw();
                 TileViewModels.Add(tile, tileViewModel);

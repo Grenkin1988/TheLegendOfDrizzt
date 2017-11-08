@@ -33,6 +33,17 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
                 }
             }
         }
+
+        public static Directions Oposite(this Directions direction) {
+            switch (direction) {
+                case Directions.South: { return Directions.North; }
+                case Directions.West: { return Directions.East; }
+                case Directions.North: { return Directions.South; }
+                case Directions.East: { return Directions.West; }
+                default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+            }
+        }
     }
 
     public enum TerrainTypes {

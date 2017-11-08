@@ -41,7 +41,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             _adventureMap.NewTileCreated += AdventureMapOnNewTileCreated;
 
             SetUpPlayers(AdventureManager.GetDefaultPlayers());
-            _adventureController.SetUpAdventure(new Adventure(AdventureManager.GetDefaultAdventure1()));
+            _adventureController.SetUpAdventureController(new Adventure(AdventureManager.GetDefaultAdventure1()), _adventureMap);
             _adventureMap.SetStartingPlayersPosition(_players.ToArray());
 
             _tileStack = new TileStack();

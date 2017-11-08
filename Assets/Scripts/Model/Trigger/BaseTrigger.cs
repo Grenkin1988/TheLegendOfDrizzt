@@ -12,6 +12,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.Trigger {
             if (data is TextTriggerData) {
                 return new TextTrigger((TextTriggerData)data);
             }
+            if (data is PlaceDoubleTileTriggerData) {
+                return new PlaceDoubleTileTrigger((PlaceDoubleTileTriggerData)data);
+            }
             return new BaseTrigger(data);
         }
     }

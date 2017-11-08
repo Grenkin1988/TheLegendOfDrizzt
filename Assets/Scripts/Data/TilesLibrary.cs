@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.IO;
-using System.Xml;
+using System.Linq;
 using System.Xml.Serialization;
-using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Data {
@@ -41,7 +39,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
             InitializeLibrary();
         }
 
-        public TileData[] GetDubleTile(string name) {
+        public TileData[] GetDoubleTile(string name) {
             if (_doubleTiles.ContainsKey(name)) {
                 return _doubleTiles[name].ToArray();
             }
@@ -64,7 +62,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
 
                 foreach (TileData tileData in loadedData) {
                     _simpleTiles[tileData.Name] = tileData;
-                }              
+                }
             } else {
                 Debug.LogError("Cannot Simple Tiles data!");
             }
@@ -89,7 +87,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
             if (tileData.Name.Contains(NAME_SEPARATOR)) {
                 return tileData.Name.Split(NAME_SEPARATOR);
             }
-            return new []{ tileData.Name };
+            return new[] {
+                tileData.Name
+            };
         }
 
         private void LoadDoubleTiles() {
@@ -105,7 +105,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
                         _doubleTiles[name[0]] = new List<TileData>();
                     }
                     int result;
-                    if (name.Length > 1 
+                    if (name.Length > 1
                         && int.TryParse(name[1], out result)
                         && result > 0) {
                         _doubleTiles[name[0]].Insert(result - 1, tileData);

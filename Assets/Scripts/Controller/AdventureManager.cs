@@ -1,5 +1,6 @@
 ﻿using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Data.Trigger;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public static class AdventureManager {
@@ -20,7 +21,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         public static AdventureData GetDefaultAdventure1() {
             var adventureData = new AdventureData {
                 Name = "Adventure1",
-                Triggers = new [] {
+                Triggers = new BaseTriggerData[] {
                     new TextTriggerData {
                         Name = "StartTile",
                         Text = "Life is normally difficult in the Underdark, but the spider goddess Lolth's demand for your sacrifice has made it impossible. You are left with one choice: You must fight your way through the Underdark and find your way to the surface."
@@ -29,8 +30,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                         Name = "SurfaceHollow",
                         Text = "The sound of running water is a welcome respite from the silence of the caves. After days of traveling through the dark, you see the soft glow of sunlight ahead. Only a few monsters stand between you and freedom!"
                     },
-                    new BaseTriggerData {
-                        Name = "UndergroundRiver"
+                    new PlaceDoubleTileTriggerData {
+                        Name = "UndergroundRiver",
+                        DoubleTileName = "SurfaceHollow",
+                        TileToAttach = "UndergroundRiver"
                     }
                 }
             };
