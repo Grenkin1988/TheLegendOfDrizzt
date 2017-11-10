@@ -43,6 +43,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                     Distanse = 1
                 }
             };
+
             return adventureData;
         }
     }

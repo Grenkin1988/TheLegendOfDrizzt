@@ -5,7 +5,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
     public abstract class WinningConditionBase {
         public abstract bool IsConditionMet(Player palyer);
 
-        public static WinningConditionBase CreateTrigger(IWinningConditionData data) {
+        public static WinningConditionBase CreateTrigger(WinningConditionBaseData data) {
             if (data is StandNearSquareConditionData) {
                 return new StandNearSquareCondition((StandNearSquareConditionData)data);
             }

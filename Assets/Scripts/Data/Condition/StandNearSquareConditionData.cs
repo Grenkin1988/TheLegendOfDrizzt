@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
     [Serializable]
-    public class StandNearSquareConditionData : IWinningConditionData {
+    public class StandNearSquareConditionData : WinningConditionBaseData {
         [XmlAttribute]
         public string RelatedTileName { get; set; }
         [XmlAttribute]

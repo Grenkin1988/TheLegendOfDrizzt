@@ -5,6 +5,10 @@ using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Data {
     [Serializable]
+    [XmlInclude(typeof(TextTriggerData))]
+    [XmlInclude(typeof(PlaceDoubleTileTriggerData))]
+    [XmlInclude(typeof(StandNearSquareConditionData))]
+    [XmlRoot("AdventureData", Namespace = null, IsNullable = false)]
     public class AdventureData {
         [XmlAttribute]
         public string Name { get; set; }
@@ -12,6 +16,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Data {
         [XmlArray]
         public BaseTriggerData[] Triggers { get; set; }
 
-        public IWinningConditionData WinningCondition { get; set; }
+        public WinningConditionBaseData WinningCondition { get; set; }
     }
 }

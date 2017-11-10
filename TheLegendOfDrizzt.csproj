@@ -111,7 +111,7 @@
     <Compile Include="Assets\Scripts\Data\AdventureData.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Data\Condition\StandNearSquareConditionData.cs" />
-    <Compile Include="Assets\Scripts\Data\Condition\WinningConditionData.cs" />
+    <Compile Include="Assets\Scripts\Data\Condition\WinningConditionBaseData.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data\TileData.cs" />
     <Compile Include="Assets\Scripts\Data\TilesLibrary.cs" />

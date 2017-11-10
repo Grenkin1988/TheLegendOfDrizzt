@@ -6,15 +6,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
     public class StandNearSquareCondition : WinningConditionBase {
         private Map _adventureMap;
         private List<Coordinates> _coordinatesToCheck = new List<Coordinates>();
-
-        public string RelatedTileName { get; }
-        public TerrainTypes Type { get; }
-        public int Distanse { get; }
+        private string _relatedTileName;
+        private TerrainTypes _type;
+        private int _distanse;
 
         public StandNearSquareCondition(StandNearSquareConditionData data) {
-            RelatedTileName = data.RelatedTileName;
-            Type = data.Type;
-            Distanse = data.Distanse;
+            _relatedTileName = data.RelatedTileName;
+            _type = data.Type;
+            _distanse = data.Distanse;
             InitializeCoordinatesToCheck();
         }
 
@@ -26,11 +25,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
             if (_adventureMap == null) {
                 throw new NullReferenceException($"No AdventureMap found. Probably forgot to {nameof(SetUpCondition)}");
             }
-            if (!string.IsNullOrEmpty(RelatedTileName)
-                && player.Character.CurrentTile.Name != RelatedTileName) {
+            if (!string.IsNullOrEmpty(_relatedTileName)
+                && player.Character.CurrentTile.Name != _relatedTileName) {
                 return false;
             }
-            if (player.Character.CurrentSquare.TerrainType == Type) { return true; }
+            if (player.Character.CurrentSquare.TerrainType == _type) { return true; }
             Coordinates currentSquareCordinates = _adventureMap.SquaresMap.CoordinatesOf(player.Character.CurrentSquare);
             int x = currentSquareCordinates.X;
             int y = currentSquareCordinates.Y;
@@ -47,7 +46,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
                     continue;
                 }
                 Square squareToCheck = _adventureMap.SquaresMap[coordinateToCheck.X, coordinateToCheck.Y];
-                if (squareToCheck?.TerrainType == Type) {
+                if (squareToCheck?.TerrainType == _type) {
                     return true;
                 }
             }
@@ -56,8 +55,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
         }
 
         private void InitializeCoordinatesToCheck() {
-            for (int x = -Distanse; x <= Distanse; x++) {
-                for (int y = -Distanse; y <= Distanse; y++) {
+            for (int x = -_distanse; x <= _distanse; x++) {
+                for (int y = -_distanse; y <= _distanse; y++) {
                     _coordinatesToCheck.Add(new Coordinates(x, y));
                 }
             }
