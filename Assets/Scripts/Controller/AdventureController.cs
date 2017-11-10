@@ -1,5 +1,6 @@
 ﻿using System;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
 using TheLegendOfDrizzt.Assets.Scripts.Model.Trigger;
 using UnityEngine;
 
@@ -22,6 +23,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             if (_adventure.Triggers.ContainsKey(tileTrigger)) {
                 TriggerEvent(_adventure.Triggers[tileTrigger]);
             }
+        }
+
+        public bool CheckWinningCondition(Player player) {
+            if (_adventure.WinningCondition is StandNearSquareCondition) {
+                return CheckWinningCondition(player, (StandNearSquareCondition)_adventure.WinningCondition);
+            }
+            return false;
         }
 
         private void Awake() {
@@ -53,6 +61,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 throw new NullReferenceException($"No Map found. Probably forgot to {nameof(SetUpAdventureController)}");
             }
             _adventureMap.PlaceDoubleTileToTileWithName(trigger.DoubleTileName, trigger.TileToAttach);
+        }
+
+        private bool CheckWinningCondition(Player player, StandNearSquareCondition winningCondition) {
+            winningCondition.SetUpCondition(_adventureMap);
+            return winningCondition.IsConditionMet(player);
         }
     }
 }

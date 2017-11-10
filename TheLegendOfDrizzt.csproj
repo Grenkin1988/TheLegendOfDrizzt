@@ -110,6 +110,8 @@
     <Compile Include="Assets\Scripts\Controller\UIController.cs" />
     <Compile Include="Assets\Scripts\Data\AdventureData.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterData.cs" />
+    <Compile Include="Assets\Scripts\Data\Condition\StandNearSquareConditionData.cs" />
+    <Compile Include="Assets\Scripts\Data\Condition\WinningConditionData.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data\TileData.cs" />
     <Compile Include="Assets\Scripts\Data\TilesLibrary.cs" />
@@ -119,6 +121,9 @@
     <Compile Include="Assets\Scripts\Model\Adjacent.cs" />
     <Compile Include="Assets\Scripts\Model\Adventure.cs" />
     <Compile Include="Assets\Scripts\Model\Character.cs" />
+    <Compile Include="Assets\Scripts\Model\Condition\StandNearSquareCondition.cs" />
+    <Compile Include="Assets\Scripts\Model\Condition\WinningCondition.cs" />
+    <Compile Include="Assets\Scripts\Model\Coordinates.cs" />
     <Compile Include="Assets\Scripts\Model\Enums.cs" />
     <Compile Include="Assets\Scripts\Model\Map.cs" />
     <Compile Include="Assets\Scripts\Model\Player.cs" />
@@ -139,10 +144,9 @@
     <None Include="Assets\StreamingAssets\Data\Adventures.xml" />
     <None Include="Assets\StreamingAssets\Data\DoubleTiles.xml" />
     <None Include="Assets\StreamingAssets\Data\SimpleTiles.xml" />
-    <None Include="Assets\StreamingAssets\Data\SpecialTiles.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Assets\StreamingAssets\Data\SpecialTiles.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

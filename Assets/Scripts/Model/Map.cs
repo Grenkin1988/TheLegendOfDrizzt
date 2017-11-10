@@ -30,8 +30,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
 
         private readonly Dictionary<string, Tile> Tiles;
 
-        public Tile[,] _tilesMap = new Tile[0, 0];
-        public Square[,] _squaresMap = new Square[0, 0];
+        public Tile[,] TilesMap { get; private set; } = new Tile[0, 0];
+        public Square[,] SquaresMap { get; private set; } = new Square[0, 0];
 
         public Map() {
             Tiles = new Dictionary<string, Tile>();
@@ -121,15 +121,15 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             // Get new tiles map sizes
             int length = 1 + _tileMaxX / 4 + Math.Abs(_tileMinX) / 4 + TileMapBorder * 2;
             int width = 1 + _tileMaxY / 4 + Math.Abs(_tileMinY) / 4 + TileMapBorder * 2;
-            _tilesMap = new Tile[length, width];
+            TilesMap = new Tile[length, width];
             // Get indexes for 0,0 tile in map
             int zeroTileX = Math.Abs(_tileMinX) / 4 + TileMapBorder;
             int zeroTileY = Math.Abs(_tileMinY) / 4 + TileMapBorder;
 
             // Get new squares map sizes
-            length = _tilesMap.GetLength(0) * 4 + SquareMapBorder * 2;
-            width = _tilesMap.GetLength(1) * 4 + SquareMapBorder * 2;
-            _squaresMap = new Square[length, width];
+            length = TilesMap.GetLength(0) * 4 + SquareMapBorder * 2;
+            width = TilesMap.GetLength(1) * 4 + SquareMapBorder * 2;
+            SquaresMap = new Square[length, width];
 
             // Get indexes for 0,0 square in 0,0 tile in map
             int zeroSquareX = Math.Abs(_tileMinX);
@@ -138,11 +138,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             zeroSquareY += zeroSquareY == 0 ? SquareMapBorder : 0;
 
             foreach (Tile tile in Tiles.Values) {
-                _tilesMap[zeroTileX + tile.X / 4, zeroTileY + tile.Y / 4] = tile;
+                TilesMap[zeroTileX + tile.X / 4, zeroTileY + tile.Y / 4] = tile;
 
                 for (int x = 0; x < Tile.TileSize; x++) {
                     for (int y = 0; y < Tile.TileSize; y++) {
-                        _squaresMap[zeroSquareX + x + tile.X, zeroSquareY + y + tile.Y] = tile[x, y];
+                        SquaresMap[zeroSquareX + x + tile.X, zeroSquareY + y + tile.Y] = tile[x, y];
                     }
                 }
             }

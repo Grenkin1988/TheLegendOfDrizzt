@@ -1,4 +1,4 @@
-﻿using System;
+﻿using TheLegendOfDrizzt.Assets.Scripts.Model;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
     public static class MathUtility {
@@ -22,7 +22,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
             return newArray;
         }
 
-        public static Tuple<int, int> CoordinatesOf<T>(this T[,] matrix, T value) {
+        public static Coordinates CoordinatesOf<T>(this T[,] matrix, T value) {
             int w = matrix.GetLength(0); // width
             int h = matrix.GetLength(1); // height
 
@@ -31,12 +31,12 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
                     T value2 = matrix[x, y];
                     if (value2 == null) { continue; }
                     if (matrix[x, y].Equals(value)) {
-                        return Tuple.Create(x, y);
+                        return new Coordinates(x, y);
                     }
                 }
             }
 
-            return Tuple.Create(-1, -1);
+            return new Coordinates(-1, -1);
         }
     }
 }

@@ -143,6 +143,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         private void NextPhase() {
             _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+
+            ExecutePhaseEnd();
+
             if (!_turnController.NextPhase()) {
                 _turnController.TakeTurn(_players[NextplayerIndex()]);
             }
@@ -195,5 +198,31 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         private void ExecuteVillainPhase() { }
+
+        private void ExecutePhaseEnd() {
+            switch (_turnController.CurrentPhase) {
+                case TurnController.Phases.Hero: {
+                    ExecuteHeroEnd();
+                    return;
+                }
+                case TurnController.Phases.Exploration: {
+                    //ExecuteExplorationPhaseEnd();
+                    return;
+                }
+                case TurnController.Phases.Villain: {
+                    //ExecuteVillainPhaseEnd();
+                    return;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void ExecuteHeroEnd() {
+            bool doWeWin = _adventureController.CheckWinningCondition(_turnController.CurrentPlayer);
+            if (doWeWin) {
+                _uiController.ShowPopupDialog("WE WIN!!!!!! ARAAAAAAA");
+            }
+        }
     }
 }

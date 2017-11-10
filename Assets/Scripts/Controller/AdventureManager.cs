@@ -1,6 +1,7 @@
 ﻿using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Data.Trigger;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public static class AdventureManager {
@@ -35,6 +36,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                         DoubleTileName = "SurfaceHollow",
                         TileToAttach = "UndergroundRiver"
                     }
+                },
+                WinningCondition = new StandNearSquareConditionData {
+                    RelatedTileName = "SurfaceHollow_2",
+                    Type = TerrainTypes.Exit,
+                    Distanse = 1
                 }
             };
             return adventureData;
