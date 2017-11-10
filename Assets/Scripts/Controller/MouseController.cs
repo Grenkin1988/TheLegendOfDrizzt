@@ -6,17 +6,20 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         public enum MouseModes {
             None = 0,
             Move = 1,
-            Attack = 2
+            Attack = 2,
+
+            Debug_PlaceTile = 10001
         }
 
-        private MouseModes CurrentMode = MouseModes.None;
+        public MouseModes CurrentMode { get; private set; }= MouseModes.None;
 
         public void ChangeMouseMode(MouseModes newMode) {
             CurrentMode = newMode;
         }
 
         private void Update() {
-            if (CurrentMode == MouseModes.Move && Input.GetMouseButtonDown(0)) {
+            if ((CurrentMode == MouseModes.Move || CurrentMode == MouseModes.Debug_PlaceTile) 
+                && Input.GetMouseButtonDown(0)) {
                 Vector3 mouseCoordinate = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(mouseCoordinate, Vector2.zero);
                 if (hit.collider != null) {

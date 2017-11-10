@@ -9,7 +9,7 @@ using Random = System.Random;
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Map {
         private const string START_TILE_NAME = "StartTile";
-        private readonly Dictionary<string, Tile> Tiles;
+
         private readonly TilesLibrary TilesLibrary;
         private readonly Random _random = new Random();
         private readonly List<Vector2> _startingPositions = new List<Vector2> {
@@ -19,6 +19,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             new Vector2(3, 1),
             new Vector2(3, 2)
         };
+
+        private readonly Dictionary<string, Tile> Tiles;
+
+        private Tile[,] _tilesMap = new Tile[0, 0];
+        private Square[,] _squaresMap = new Square[0, 0];
 
         public Map() {
             Tiles = new Dictionary<string, Tile>();
@@ -37,7 +42,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
 
             RotateTile(newTile, GetNumberOfRotationsNeeded(placementDirection));
 
-            Tiles.Add(newTile.Name, newTile);
+            AddTile(newTile);
             SetNeighborsForNewTile(newTile);
             OnNewTileCreated(newTile);
         }
@@ -83,6 +88,56 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             PlaceNewTileNearExistent(dubleTile[0], dubleTile[1], dubleTile[0].ArrowDirection.Oposite());
         }
 
+        private int _tileMaxX = 0;
+        private int _tileMinX = 0;
+        private int _tileMaxY = 0;
+        private int _tileMinY = 0;
+
+        private void AddTile(Tile tile) {
+            Tiles[tile.Name] = tile;
+            UpdateBorders(tile);
+            UpdateTilesMap();
+        }
+
+        private void UpdateBorders(Tile tile) {
+            if (tile.X > _tileMaxX) {
+                _tileMaxX = tile.X;
+            }
+            if (tile.X < _tileMinX) {
+                _tileMinX = tile.X;
+            }
+            if (tile.Y > _tileMaxY) {
+                _tileMaxY = tile.Y;
+            }
+            if (tile.Y < _tileMinY) {
+                _tileMinY = tile.Y;
+            }
+        }
+
+        private void UpdateTilesMap() {
+            int length = 3 + _tileMaxX / 4 + Math.Abs(_tileMinX) / 4;
+            int width = 3 + _tileMaxY / 4 + Math.Abs(_tileMinY) / 4;
+            Debug.Log($"Nem map sizes: {length}/{width}");
+            _tilesMap = new Tile[length, width];
+            int centerX = Math.Abs(_tileMinX) / 4 + 1;
+            int centerY = Math.Abs(_tileMinY) / 4 + 1;
+            foreach (Tile tile in Tiles.Values) {
+                _tilesMap[centerX + tile.X / 4, centerY + tile.Y / 4] = tile;
+            }
+            DrawTileMap();
+        }
+
+        private void DrawTileMap() {
+            string line = string.Empty;
+            for (int y = _tilesMap.GetLength(1) - 1; y >= 0; y--) {
+                for (int x = 0; x < _tilesMap.GetLength(0); x++) {
+                    line += _tilesMap[x, y] != null ? "[T]" : "[X]";
+                }
+                line += "\n";
+            }
+            Debug.Log(line);
+        }
+
         private void InitializeStartTiles() {
             TileData[] startingTiles = TilesLibrary.GetDoubleTile(START_TILE_NAME);
             if (startingTiles == null || startingTiles.Length != 2) {
@@ -96,8 +151,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             startTile2.RotateTileClockwise();
             startTile1.SetNeighbor(startTile2, Directions.East);
             startTile2.SetNeighbor(startTile1, Directions.West);
-            Tiles[startTile1.Name] = startTile1;
-            Tiles[startTile2.Name] = startTile2;
+            AddTile(startTile1);
+            AddTile(startTile2);
         }
 
         private void SetNeighborsForNewTile(Tile newTile) {
@@ -137,9 +192,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
                 case TerrainTypes.Crystal:
                 case TerrainTypes.Bridge:
                 case TerrainTypes.Lair:
-                    return true;
+                return true;
                 default:
-                    return false;
+                return false;
             }
         }
 
@@ -185,43 +240,43 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private static int GetNewTileX(Tile existenTile, Directions placementDirection) {
             switch (placementDirection) {
                 case Directions.West:
-                    return existenTile.X - Tile.TileSize;
+                return existenTile.X - Tile.TileSize;
                 case Directions.East:
-                    return existenTile.X + Tile.TileSize;
+                return existenTile.X + Tile.TileSize;
                 case Directions.South:
                 case Directions.North:
-                    return existenTile.X;
+                return existenTile.X;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
+                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 
         private static int GetNewTileY(Tile existenTile, Directions placementDirection) {
             switch (placementDirection) {
                 case Directions.South:
-                    return existenTile.Y - Tile.TileSize;
+                return existenTile.Y - Tile.TileSize;
                 case Directions.North:
-                    return existenTile.Y + Tile.TileSize;
+                return existenTile.Y + Tile.TileSize;
                 case Directions.West:
                 case Directions.East:
-                    return existenTile.Y;
+                return existenTile.Y;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
+                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 
         private static int GetNumberOfRotationsNeeded(Directions placementDirection) {
             switch (placementDirection) {
                 case Directions.South:
-                    return 2;
+                return 2;
                 case Directions.West:
-                    return -1;
+                return -1;
                 case Directions.North:
-                    return 0;
+                return 0;
                 case Directions.East:
-                    return 1;
+                return 1;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
+                throw new ArgumentOutOfRangeException(nameof(placementDirection), placementDirection, null);
             }
         }
 

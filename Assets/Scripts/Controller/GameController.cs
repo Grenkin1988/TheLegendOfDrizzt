@@ -33,6 +33,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             _uiController.NextPhaseButtonClicked += NextPhase;
             _uiController.MoveButtonClicked += SetMoveMode;
             _uiController.AttackButtonClicked += SetAttackMode;
+
+            _uiController.Debug_PlaceTileButtonClicked += SetDebug_PlaceTileMode;
         }
 
         private void Start() {
@@ -72,6 +74,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 _uiController.NextPhaseButtonClicked -= NextPhase;
                 _uiController.MoveButtonClicked -= SetMoveMode;
                 _uiController.AttackButtonClicked -= SetAttackMode;
+                _uiController.Debug_PlaceTileButtonClicked -= SetDebug_PlaceTileMode;
             }
             _mapView?.Dispose();
         }
@@ -100,9 +103,21 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             Tile tile = _mapView.GetTileByGameObject(tileGameObject);
             if (tile == null) { return; }
 
-            if (tile.CanMoveHere(x, y, _turnController.CurrentPlayer.Character)) {
+            if (_mouseController.CurrentMode == MouseController.MouseModes.Move 
+                && tile.CanMoveHere(x, y, _turnController.CurrentPlayer.Character)) {
                 _turnController.CurrentPlayer.Character.MoveHere(x, y, tile);
                 _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+            }
+
+            Directions? placementDirection;
+            if (_mouseController.CurrentMode == MouseController.MouseModes.Debug_PlaceTile 
+                && _adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
+                if (!placementDirection.HasValue) { return; }
+                Tile newTile = _tileStack.GetNexTile();
+                if (newTile != null) {
+                    _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
+                    //_mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+                }
             }
         }
 
@@ -141,6 +156,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         private void SetAttackMode() {
             _mouseController.ChangeMouseMode(MouseController.MouseModes.Attack);
+        }
+
+        private void SetDebug_PlaceTileMode() {
+            _mouseController.ChangeMouseMode(MouseController.MouseModes.Debug_PlaceTile);
         }
 
         private void ExecutePhase() {
