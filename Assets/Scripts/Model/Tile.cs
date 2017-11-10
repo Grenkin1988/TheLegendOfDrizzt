@@ -10,6 +10,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private readonly Adjacent<Tile> AdjacentTiles;
         private Square[,] Squares;
 
+        public string ID => $"{Name}_{X}_{Y}";
         public string Name { get; }
         public ArrowColor ArrowColor { get; }
         public string Trigger { get; }
@@ -87,5 +88,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             Square square = Squares[x, y];
             return square.CanMoveHere();
         }
+
+        public override string ToString() => ID;
     }
 }

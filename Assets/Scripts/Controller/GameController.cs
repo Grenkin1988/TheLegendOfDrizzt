@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using TheLegendOfDrizzt.Assets.Scripts.View;
 using UnityEngine;
 
@@ -116,7 +117,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 Tile newTile = _tileStack.GetNexTile();
                 if (newTile != null) {
                     _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
-                    //_mouseController.ChangeMouseMode(MouseController.MouseModes.None);
                 }
             }
         }

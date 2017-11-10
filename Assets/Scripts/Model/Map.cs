@@ -10,6 +10,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Map {
         private const string START_TILE_NAME = "StartTile";
 
+        private const int TileMapBorder = 0;
+        private const int SquareMapBorder = 1;
+
+        private int _tileMaxX = 0;
+        private int _tileMinX = 0;
+        private int _tileMaxY = 0;
+        private int _tileMinY = 0;
+
         private readonly TilesLibrary TilesLibrary;
         private readonly Random _random = new Random();
         private readonly List<Vector2> _startingPositions = new List<Vector2> {
@@ -22,8 +30,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
 
         private readonly Dictionary<string, Tile> Tiles;
 
-        private Tile[,] _tilesMap = new Tile[0, 0];
-        private Square[,] _squaresMap = new Square[0, 0];
+        public Tile[,] _tilesMap = new Tile[0, 0];
+        public Square[,] _squaresMap = new Square[0, 0];
 
         public Map() {
             Tiles = new Dictionary<string, Tile>();
@@ -88,16 +96,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             PlaceNewTileNearExistent(dubleTile[0], dubleTile[1], dubleTile[0].ArrowDirection.Oposite());
         }
 
-        private int _tileMaxX = 0;
-        private int _tileMinX = 0;
-        private int _tileMaxY = 0;
-        private int _tileMinY = 0;
-
         private void AddTile(Tile tile) {
             Tiles[tile.Name] = tile;
             UpdateBorders(tile);
-            UpdateTilesMap();
-            UpdateSquaresMap();
+            UpdateArrayMaps();
         }
 
         private void UpdateBorders(Tile tile) {
@@ -115,92 +117,34 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
         }
 
-        private const int TileMapBorder = 0;
-        private const int SquareMapBorder = 1;
-
-        private void UpdateTilesMap() {
+        private void UpdateArrayMaps() {
+            // Get new tiles map sizes
             int length = 1 + _tileMaxX / 4 + Math.Abs(_tileMinX) / 4 + TileMapBorder * 2;
             int width = 1 + _tileMaxY / 4 + Math.Abs(_tileMinY) / 4 + TileMapBorder * 2;
             _tilesMap = new Tile[length, width];
+            // Get indexes for 0,0 tile in map
             int zeroTileX = Math.Abs(_tileMinX) / 4 + TileMapBorder;
             int zeroTileY = Math.Abs(_tileMinY) / 4 + TileMapBorder;
-            foreach (Tile tile in Tiles.Values) {
-                _tilesMap[zeroTileX + tile.X / 4, zeroTileY + tile.Y / 4] = tile;
-            }
-            //DrawTileMap();
-        }
 
-        private void DrawTileMap() {
-            string map = string.Empty;
-            for (int y = _tilesMap.GetLength(1) - 1; y >= 0; y--) {
-                for (int x = 0; x < _tilesMap.GetLength(0); x++) {
-                    map += _tilesMap[x, y] != null ? "[T]" : "[X]";
-                }
-                map += "\n";
-            }
-            Debug.Log(map);
-        }
-
-        private void UpdateSquaresMap() {
-            int length = _tilesMap.GetLength(0) * 4 + SquareMapBorder * 2;
-            int width = _tilesMap.GetLength(1) * 4 + SquareMapBorder * 2;
+            // Get new squares map sizes
+            length = _tilesMap.GetLength(0) * 4 + SquareMapBorder * 2;
+            width = _tilesMap.GetLength(1) * 4 + SquareMapBorder * 2;
             _squaresMap = new Square[length, width];
 
-            int zeroSquareX = Math.Abs(_tileMinX) + TileMapBorder;
-            int zeroSquareY = Math.Abs(_tileMinY) + TileMapBorder;
+            // Get indexes for 0,0 square in 0,0 tile in map
+            int zeroSquareX = Math.Abs(_tileMinX);
+            int zeroSquareY = Math.Abs(_tileMinY);
+            zeroSquareX += zeroSquareX == 0 ? SquareMapBorder : 0;
+            zeroSquareY += zeroSquareY == 0 ? SquareMapBorder : 0;
+
             foreach (Tile tile in Tiles.Values) {
+                _tilesMap[zeroTileX + tile.X / 4, zeroTileY + tile.Y / 4] = tile;
+
                 for (int x = 0; x < Tile.TileSize; x++) {
                     for (int y = 0; y < Tile.TileSize; y++) {
-                        _squaresMap[zeroSquareX + x, zeroSquareY + y] = tile[x, y];
+                        _squaresMap[zeroSquareX + x + tile.X, zeroSquareY + y + tile.Y] = tile[x, y];
                     }
                 }
-            }
-            DrawSquaresMap();
-        }
-
-        private void DrawSquaresMap() {
-            string map = string.Empty;
-            for (int y = _squaresMap.GetLength(1) - 1; y >= 0; y--) {
-                for (int x = 0; x < _squaresMap.GetLength(0); x++) {
-                    map += _squaresMap[x, y] == null ? "[X]" : DrawTerrain(_squaresMap[x, y].TerrainType);
-                }
-                map += "\n";
-            }
-            Debug.Log(map);
-        }
-
-        private string DrawTerrain(TerrainTypes type) {
-            switch (type) {
-                case TerrainTypes.Floor:
-                    return "[F]";
-                case TerrainTypes.Wall:
-                    return "[W]";
-                case TerrainTypes.Mashrooms:
-                    return "[M]";
-                case TerrainTypes.VolcanicVent:
-                    return "[V]";
-                case TerrainTypes.Chasm:
-                    return "[C]";
-                case TerrainTypes.Bridge:
-                    return "[B]";
-                case TerrainTypes.Pillar:
-                    return "[P]";
-                case TerrainTypes.River:
-                    return "[R]";
-                case TerrainTypes.Crystal:
-                    return "[Y]";
-                case TerrainTypes.Campfire:
-                    return "[P]";
-                case TerrainTypes.DwarfStatue:
-                    return "[D]";
-                case TerrainTypes.Throne:
-                    return "[T]";
-                case TerrainTypes.Lair:
-                    return "[L]";
-                case TerrainTypes.Exit:
-                    return "[E]";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
 

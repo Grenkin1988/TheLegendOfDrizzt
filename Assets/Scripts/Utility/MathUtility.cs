@@ -1,6 +1,7 @@
-﻿
+﻿using System;
+
 namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
-    public class MathUtility {
+    public static class MathUtility {
         public static T[,] RotateArrayClockwise<T>(T[,] inputArray, int arraySize) {
             var newArray = new T[arraySize, arraySize];
             for (int i = arraySize - 1; i >= 0; --i) {
@@ -19,6 +20,23 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
                 }
             }
             return newArray;
+        }
+
+        public static Tuple<int, int> CoordinatesOf<T>(this T[,] matrix, T value) {
+            int w = matrix.GetLength(0); // width
+            int h = matrix.GetLength(1); // height
+
+            for (int x = 0; x < w; ++x) {
+                for (int y = 0; y < h; ++y) {
+                    T value2 = matrix[x, y];
+                    if (value2 == null) { continue; }
+                    if (matrix[x, y].Equals(value)) {
+                        return Tuple.Create(x, y);
+                    }
+                }
+            }
+
+            return Tuple.Create(-1, -1);
         }
     }
 }
