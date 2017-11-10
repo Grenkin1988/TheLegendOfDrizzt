@@ -26,6 +26,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
             if (_adventureMap == null) {
                 throw new NullReferenceException($"No AdventureMap found. Probably forgot to {nameof(SetUpCondition)}");
             }
+            if (!string.IsNullOrEmpty(RelatedTileName)
+                && player.Character.CurrentTile.Name != RelatedTileName) {
+                return false;
+            }
             if (player.Character.CurrentSquare.TerrainType == Type) { return true; }
             Coordinates currentSquareCordinates = _adventureMap.SquaresMap.CoordinatesOf(player.Character.CurrentSquare);
             int x = currentSquareCordinates.X;
