@@ -50,7 +50,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         public Tile GetNexTile() {
             if (_deck.Count != 0) {
                 TileData tile = _deck.Pop();
-                Debug.Log($"Next tile is: {tile}");
                 return new Tile(tile);
             } else {
                 Debug.LogError("No more Tiles in stack");

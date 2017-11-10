@@ -114,13 +114,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
         }
 
+        private const int TileMapBorder = 0;
+
         private void UpdateTilesMap() {
-            int length = 3 + _tileMaxX / 4 + Math.Abs(_tileMinX) / 4;
-            int width = 3 + _tileMaxY / 4 + Math.Abs(_tileMinY) / 4;
-            Debug.Log($"Nem map sizes: {length}/{width}");
+            int length = 1 + _tileMaxX / 4 + Math.Abs(_tileMinX) / 4 + TileMapBorder * 2;
+            int width = 1 + _tileMaxY / 4 + Math.Abs(_tileMinY) / 4 + TileMapBorder * 2;
             _tilesMap = new Tile[length, width];
-            int centerX = Math.Abs(_tileMinX) / 4 + 1;
-            int centerY = Math.Abs(_tileMinY) / 4 + 1;
+            int centerX = Math.Abs(_tileMinX) / 4 + TileMapBorder;
+            int centerY = Math.Abs(_tileMinY) / 4 + TileMapBorder;
             foreach (Tile tile in Tiles.Values) {
                 _tilesMap[centerX + tile.X / 4, centerY + tile.Y / 4] = tile;
             }
@@ -128,14 +129,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         }
 
         private void DrawTileMap() {
-            string line = string.Empty;
+            string map = string.Empty;
             for (int y = _tilesMap.GetLength(1) - 1; y >= 0; y--) {
                 for (int x = 0; x < _tilesMap.GetLength(0); x++) {
-                    line += _tilesMap[x, y] != null ? "[T]" : "[X]";
+                    map += _tilesMap[x, y] != null ? "[T]" : "[X]";
                 }
-                line += "\n";
+                map += "\n";
             }
-            Debug.Log(line);
+            Debug.Log(map);
         }
 
         private void InitializeStartTiles() {
