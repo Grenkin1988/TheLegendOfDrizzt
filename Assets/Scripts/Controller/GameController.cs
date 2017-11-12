@@ -221,7 +221,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private void ExecuteHeroEnd() {
             bool doWeWin = _adventureController.CheckWinningCondition(_turnController.CurrentPlayer);
             if (doWeWin) {
-                _uiController.ShowPopupDialog("WE WIN!!!!!! ARAAAAAAA");
+                _uiController.ShowWinScreenDialog("WE WIN!!!!!! ARAAAAAAA");
             }
         }
     }

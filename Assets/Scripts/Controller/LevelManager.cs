@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class LevelManager : MonoBehaviour {
+        private const string START_MENU_SCENE = "Start Menu";
         private const string ADVENTURE_SCENE = "Adventure";
 
         public void LoadAdventure(string name) {
@@ -18,6 +19,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 #else
             Application.Quit();
 #endif
+        }
+
+        public void GoToMainMenu() {
+            SceneManager.LoadScene(START_MENU_SCENE);
+        }
+
+        private void Awake() {
+            DontDestroyOnLoad(this);
         }
     }
 }

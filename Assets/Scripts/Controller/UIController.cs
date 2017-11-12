@@ -1,4 +1,5 @@
 ﻿using System;
+using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class UIController : MonoBehaviour {
         private TurnController _turnController;
         private GameObject _mainCanvas;
+        private LevelManager _levelManager;
 
         private Text _currecntPlayerText;
         private Text _currentPhaseText;
@@ -19,6 +21,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         public GameObject ModalPanel;
         public Text PopupText;
+
+        private GameObject _winScreenPanel;
+        private Text _winScreenText;
+        private Button _winScreenOKButton;
+
         public void UpdateUI() {
             UpdateButtonsState();
             UpdateCurrentPlayer();
@@ -34,6 +41,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             ModalPanel.SetActive(true);
         }
 
+        public void ShowWinScreenDialog(string text) {
+            if (_winScreenText == null) {
+                throw new NullReferenceException("No WinScreenText found in scene");
+            }
+            _winScreenText.text = text;
+            _winScreenPanel.SetActive(true);
+        }
+
         private void Awake() {
             _mainCanvas = GameObject.Find("MainCanvas");
             if (_mainCanvas == null) { throw new NullReferenceException("No MainCanvas found in scene"); }
@@ -44,7 +59,17 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             _turnController = FindObjectOfType<TurnController>();
             if (_turnController == null) { throw new NullReferenceException("No TurnController found in scene"); }
 
+            _winScreenPanel = _mainCanvas.transform.Find("WinScreenPanel").gameObject;
+            if (_winScreenPanel == null) { throw new NullReferenceException("No WinScreenPanel found in scene"); }
+
+            _levelManager = FindObjectOfType<LevelManager>();
+            if (_levelManager == null) {
+                transform.gameObject.AddComponent<LevelManager>();
+                _levelManager = FindObjectOfType<LevelManager>();
+            }
+
             SetUpButtons();
+            SetUpWinScreenPanel();
         }
 
         private void Start() { }
@@ -63,6 +88,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
             _debug_PlaceTileButton = _mainCanvas.transform.Find("Debug_PlaceTileButton").GetComponent<Button>();
             _debug_PlaceTileButton.onClick.AddListener(OnDebug_PlaceTileButtonClicked);
+        }
+
+        private void SetUpWinScreenPanel() {
+            _winScreenOKButton = _winScreenPanel.gameObject.FindObject("WinScreenOKButton").GetComponent<Button>();
+            _winScreenOKButton.onClick.AddListener(OnWinScreenOKButtonClicked);
+
+            _winScreenText = _winScreenPanel.gameObject.FindObject("WinScreenText").GetComponent<Text>();
         }
 
         private void UpdateCurrentPlayer() {            
@@ -92,6 +124,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             bool heroPhaseButtonsEnabled = _turnController.CurrentPhase == TurnController.Phases.Hero;
             _moveButton.interactable = heroPhaseButtonsEnabled;
             _attackButton.interactable = heroPhaseButtonsEnabled;
+        }
+
+        private void OnWinScreenOKButtonClicked() {
+            _levelManager.GoToMainMenu();
         }
 
         public event Action NextPhaseButtonClicked;
