@@ -3,11 +3,10 @@ using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
-    public class UIController : MonoBehaviour {
+namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
+    public class AdventureUIController : MonoBehaviour {
         private TurnController _turnController;
         private GameObject _mainCanvas;
-        private LevelManager _levelManager;
 
         private Text _currecntPlayerText;
         private Text _currentPhaseText;
@@ -62,12 +61,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             _winScreenPanel = _mainCanvas.transform.Find("WinScreenPanel").gameObject;
             if (_winScreenPanel == null) { throw new NullReferenceException("No WinScreenPanel found in scene"); }
 
-            _levelManager = FindObjectOfType<LevelManager>();
-            if (_levelManager == null) {
-                transform.gameObject.AddComponent<LevelManager>();
-                _levelManager = FindObjectOfType<LevelManager>();
-            }
-
             SetUpButtons();
             SetUpWinScreenPanel();
         }
@@ -92,7 +85,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         private void SetUpWinScreenPanel() {
             _winScreenOKButton = _winScreenPanel.gameObject.FindObject("WinScreenOKButton").GetComponent<Button>();
-            _winScreenOKButton.onClick.AddListener(OnWinScreenOKButtonClicked);
+            _winScreenOKButton.onClick.AddListener(LevelManager.GoToMainMenu);
 
             _winScreenText = _winScreenPanel.gameObject.FindObject("WinScreenText").GetComponent<Text>();
         }
@@ -124,10 +117,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             bool heroPhaseButtonsEnabled = _turnController.CurrentPhase == TurnController.Phases.Hero;
             _moveButton.interactable = heroPhaseButtonsEnabled;
             _attackButton.interactable = heroPhaseButtonsEnabled;
-        }
-
-        private void OnWinScreenOKButtonClicked() {
-            _levelManager.GoToMainMenu();
         }
 
         public event Action NextPhaseButtonClicked;

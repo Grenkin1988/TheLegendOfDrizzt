@@ -1,4 +1,5 @@
 ﻿using System;
+using TheLegendOfDrizzt.Assets.Scripts.Controller.UI;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
 using TheLegendOfDrizzt.Assets.Scripts.Model.Trigger;
@@ -8,7 +9,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class AdventureController : MonoBehaviour {
         private Adventure _adventure;
         private Map _adventureMap;
-        private UIController _uiController;
+        private AdventureUIController _uiController;
 
         public void SetUpAdventureController(Adventure adventure, Map adventureMap) {
             _adventure = adventure;
@@ -33,7 +34,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         private void Awake() {
-            _uiController = FindObjectOfType<UIController>();
+            _uiController = FindObjectOfType<AdventureUIController>();
             if (_uiController == null) { throw new NullReferenceException("No UIController found in scene"); }
         }
 

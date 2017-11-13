@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TheLegendOfDrizzt.Assets.Scripts.Controller.UI;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using TheLegendOfDrizzt.Assets.Scripts.Utility;
@@ -13,7 +14,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private TileStack _tileStack;
         private MouseController _mouseController;
         private TurnController _turnController;
-        private UIController _uiController;
+        private AdventureUIController _uiController;
         private List<Player> _players = new List<Player>();
         private int? _nextPlayerIndex = null;
         private AdventureController _adventureController;
@@ -29,7 +30,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             _adventureController = FindObjectOfType<AdventureController>();
             if (_adventureController == null) { throw new NullReferenceException("No AdventureController found in scene"); }
 
-            _uiController = FindObjectOfType<UIController>();
+            _uiController = FindObjectOfType<AdventureUIController>();
             if (_uiController == null) { throw new NullReferenceException("No UIController found in scene"); }
             _uiController.NextPhaseButtonClicked += NextPhase;
             _uiController.MoveButtonClicked += SetMoveMode;

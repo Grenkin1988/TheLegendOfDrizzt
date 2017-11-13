@@ -12,8 +12,10 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
@@ -246,7 +248,8 @@
     <Compile Include="Assets\Scripts\Controller\MouseController.cs" />
     <Compile Include="Assets\Scripts\Controller\SpriteManager.cs" />
     <Compile Include="Assets\Scripts\Controller\TurnController.cs" />
-    <Compile Include="Assets\Scripts\Controller\UIController.cs" />
+    <Compile Include="Assets\Scripts\Controller\UI\StartMenuUIController.cs" />
+    <Compile Include="Assets\Scripts\Controller\UI\AdventureUIController.cs" />
     <Compile Include="Assets\Scripts\Data\AdventureData.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterData.cs" />
     <Compile Include="Assets\Scripts\Data\Condition\StandNearSquareConditionData.cs" />
@@ -285,6 +288,7 @@
     <None Include="Assets\StreamingAssets\Data\SimpleTiles.xml" />
     <None Include="Assets\StreamingAssets\Data\SpecialTiles.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>
