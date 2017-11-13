@@ -6,19 +6,26 @@ using TheLegendOfDrizzt.Assets.Scripts.Model.Trigger;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
-    public class AdventureController : MonoBehaviour {
+    public class AdventureController {
         private Adventure _adventure;
         private Map _adventureMap;
         private AdventureUIController _uiController;
 
-        public void SetUpAdventureController(Adventure adventure, Map adventureMap) {
+        public AdventureController(Adventure adventure, Map adventureMap, AdventureUIController uiController) {
             _adventure = adventure;
             _adventureMap = adventureMap;
+            _uiController = uiController;
+        }
+
+        public void PrepareTileStackForAdventure(TileStack tileStack, string adventureName) {
+            tileStack.SetSpecialTile("UndergroundRiver", 8);
+            tileStack.GenerateTileStack();
+            tileStack.ShuffleTileStack();
         }
 
         public void TriggerEvent(string tileTrigger) {
             if (_adventure == null) {
-                throw new NullReferenceException($"No Adventure found. Probably forgot to {nameof(SetUpAdventureController)}");
+                throw new NullReferenceException(nameof(_adventure));
             }
 
             if (_adventure.Triggers.ContainsKey(tileTrigger)) {
@@ -32,17 +39,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             }
             return false;
         }
-
-        private void Awake() {
-            _uiController = FindObjectOfType<AdventureUIController>();
-            if (_uiController == null) { throw new NullReferenceException("No UIController found in scene"); }
-        }
-
-        // Use this for initialization
-        private void Start() { }
-
-        // Update is called once per frame
-        private void Update() { }
 
         private void TriggerEvent(BaseTrigger trigger) {
             if (trigger is TextTrigger) {
@@ -59,7 +55,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         private void TriggerPlaceDoubleTileEvent(PlaceDoubleTileTrigger trigger) {
             if (_adventureMap == null) {
-                throw new NullReferenceException($"No Map found. Probably forgot to {nameof(SetUpAdventureController)}");
+                throw new NullReferenceException(nameof(_adventureMap));
             }
             _adventureMap.PlaceDoubleTileToTileWithName(trigger.DoubleTileName, trigger.TileToAttach);
         }
