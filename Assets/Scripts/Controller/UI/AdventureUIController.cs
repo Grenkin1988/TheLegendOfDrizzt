@@ -16,7 +16,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
 
         private Button _moveButton;
         private Button _attackButton;
-        private Button _debug_PlaceTileButton;
 
         public GameObject ModalPanel;
         public Text PopupText;
@@ -78,9 +77,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
 
             _attackButton = _mainCanvas.transform.Find("AttackButton").GetComponent<Button>();
             _attackButton.onClick.AddListener(OnAttackButtonClicked);
-
-            _debug_PlaceTileButton = _mainCanvas.transform.Find("Debug_PlaceTileButton").GetComponent<Button>();
-            _debug_PlaceTileButton.onClick.AddListener(OnDebug_PlaceTileButtonClicked);
         }
 
         private void SetUpWinScreenPanel() {
@@ -132,11 +128,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
         public event Action AttackButtonClicked;
         protected virtual void OnAttackButtonClicked() {
             AttackButtonClicked?.Invoke();
-        }
-
-        public event Action Debug_PlaceTileButtonClicked;
-        protected virtual void OnDebug_PlaceTileButtonClicked() {
-            Debug_PlaceTileButtonClicked?.Invoke();
         }
     }
 }

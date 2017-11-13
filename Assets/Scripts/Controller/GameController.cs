@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TheLegendOfDrizzt.Assets.Scripts.Controller.UI;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
-using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using TheLegendOfDrizzt.Assets.Scripts.View;
 using UnityEngine;
 
@@ -81,8 +80,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 _uiController.NextPhaseButtonClicked += NextPhase;
                 _uiController.MoveButtonClicked += SetMoveMode;
                 _uiController.AttackButtonClicked += SetAttackMode;
-
-                _uiController.Debug_PlaceTileButtonClicked += SetDebug_PlaceTileMode;
             }
         }
 
@@ -99,8 +96,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 _uiController.NextPhaseButtonClicked -= NextPhase;
                 _uiController.MoveButtonClicked -= SetMoveMode;
                 _uiController.AttackButtonClicked -= SetAttackMode;
-
-                _uiController.Debug_PlaceTileButtonClicked -= SetDebug_PlaceTileMode;
             }
         }
 

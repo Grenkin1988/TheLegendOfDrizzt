@@ -11,7 +11,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             Debug_PlaceTile = 10001
         }
 
-        public MouseModes CurrentMode { get; private set; }= MouseModes.None;
+        public MouseModes CurrentMode { get; private set; } = MouseModes.None;
 
         public void ChangeMouseMode(MouseModes newMode) {
             CurrentMode = newMode;
