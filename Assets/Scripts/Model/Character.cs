@@ -6,6 +6,7 @@ using UnityEngine;
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Character {
         private CharacterData _data;
+        public GameObject _characterPathGameObject;
 
         public string Name { get; }
         public GameObject CharacterGameObject { get; private set; }
@@ -13,6 +14,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         public int Y { get; private set; }
         public Tile CurrentTile { get; private set; }
         public Square CurrentSquare { get; private set; }
+        public Tile MovementTargetTile { get; private set; }
+        public Square MovementTargetSquare { get; private set; }
         public BreadthFirstSearch BreadthFirstSearch { get; private set; }
 
         public Character(CharacterData data) {
@@ -34,12 +37,49 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             CurrentSquare = square;
             X = x + tile.X;
             Y = y + tile.Y;
-            CharacterGameObject.transform.position = new Vector3(X, Y, 0);
+            DestroyPath();
+            CharacterGameObject.transform.position = new Vector3(X + 0.5f, Y + 0.5f, 0);
         }
 
         public void RecalculatePathfinding(Square[,] squaresMap) {
             BreadthFirstSearch = new BreadthFirstSearch(squaresMap, CurrentSquare, _data.Speed);
             BreadthFirstSearch.LoopSquares();
+        }
+
+
+        public bool UpdateMovementTarget(int x, int y, Tile tile) {
+            MovementTargetTile = tile;
+            Square square = tile[x, y];
+            if(MovementTargetSquare == square) { return false;}
+            MovementTargetSquare = square;
+            return true;
+        }
+
+        public void UpdatePath() {
+            DestroyPath();
+            if (MovementTargetSquare != null) {
+                DrawPath();
+            }
+        }
+
+        private void DestroyPath() {
+            Object.Destroy(_characterPathGameObject);
+        }
+
+        private void DrawPath() {
+            Coordinates? coordinates = MovementTargetTile.FindSquareCoordinates(MovementTargetSquare);
+            if (coordinates == null) { return; }
+            float x = coordinates.Value.X + MovementTargetTile.X + 0.5f;
+            float y = coordinates.Value.Y + MovementTargetTile.Y + 0.5f;
+
+            _characterPathGameObject = new GameObject("Path");
+            _characterPathGameObject.transform.SetParent(CharacterGameObject.transform);
+            var targetGameObject = new GameObject($"Target_{MovementTargetSquare.MapCoordinates.X}_{MovementTargetSquare.MapCoordinates.Y}");
+            targetGameObject.transform.position = new Vector3(x, y, 0);
+            targetGameObject.transform.SetParent(_characterPathGameObject.transform);
+            var characterRenderer = targetGameObject.AddComponent<SpriteRenderer>();
+            characterRenderer.sprite = SpriteManager.Instance.LoadSpriteByName("travel_path_target");
+            characterRenderer.sortingLayerName = "PathTarget";
         }
 
         private void InitializeCharacter() {

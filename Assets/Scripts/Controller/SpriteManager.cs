@@ -14,6 +14,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         private const string TILE_SPRITE_PATH = "Images/Tiles";
         private const string DECAL_SPRITE_PATH = "Images/Decals";
         private const string CHARACTERS_SPRITE_PATH = "Images/Characters";
+        private const string PATH_SPRITE_PATH = "Images/Path";
         private const string DEFAULT_SPRITE_NAME = "Default";
         private const char NAME_SEPARATOR = '_';
 
@@ -38,6 +39,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             LoadTileSprites();
             LoadDecalSprites();
             LoadCharacterSprites();
+            LoadPathSprites();
         }
 
         public Sprite LoadSpriteByName(string name) {
@@ -78,6 +80,17 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             Sprite[] sprites = Resources.LoadAll<Sprite>(CHARACTERS_SPRITE_PATH);
             foreach (Sprite sprite in sprites) {
                 string name = GetSpriteName(sprite);
+                if (!_spritesMap.ContainsKey(name)) {
+                    _spritesMap[name] = new List<Sprite>();
+                }
+                _spritesMap[name].Add(sprite);
+            }
+        }
+
+        private void LoadPathSprites() {
+            Sprite[] sprites = Resources.LoadAll<Sprite>(PATH_SPRITE_PATH);
+            foreach (Sprite sprite in sprites) {
+                string name = sprite.name;
                 if (!_spritesMap.ContainsKey(name)) {
                     _spritesMap[name] = new List<Sprite>();
                 }

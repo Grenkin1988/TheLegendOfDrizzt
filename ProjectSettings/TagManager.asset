@@ -49,6 +49,12 @@ TagManager:
   - name: Decal
     uniqueID: 1083266285
     locked: 0
+  - name: Path
+    uniqueID: 2809957625
+    locked: 0
   - name: Player
     uniqueID: 548741979
+    locked: 0
+  - name: PathTarget
+    uniqueID: 2514963025
     locked: 0

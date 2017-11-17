@@ -42,23 +42,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             Y = y;
         }
 
-        private void FillTileByLayout(string squaresSequence) {
-            string[] splittedSequence = squaresSequence.Split(';');
-            if (splittedSequence.Length != TileSize * TileSize) {
-                throw new InvalidOperationException($"Squares sequence must contain {TileSize * TileSize} squares");
-            }
-            int splittedSequenceIndex = 0;
-            for (int x = 0; x < TileSize; x++) {
-                for (int y = 0; y < TileSize; y++) {
-                    string terrainTypeText = splittedSequence[splittedSequenceIndex];
-                    var terrain = Enums.ParceEnumValue<TerrainTypes>(terrainTypeText);
-                    Squares[x, y] = new Square(terrain, this);
-                    splittedSequenceIndex++;
-                }
-            }
-            ArrowDirection = Directions.South;
-        }
-
         public void RotateTileClockwise() {
             Square[,] newArray = MathUtility.RotateArrayClockwise(Squares, TileSize);
             int newArrowDirection = (int)ArrowDirection + 1;
@@ -91,5 +74,33 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         }
 
         public override string ToString() => ID;
+
+        public Coordinates? FindSquareCoordinates(Square square) {
+            for (int x = 0; x < TileSize; x++) {
+                for (int y = 0; y < TileSize; y++) {
+                    if (Squares[x, y] == square) {
+                        return new Coordinates(x, y);
+                    }
+                }
+            }
+            return null;
+        }
+        
+        private void FillTileByLayout(string squaresSequence) {
+            string[] splittedSequence = squaresSequence.Split(';');
+            if (splittedSequence.Length != TileSize * TileSize) {
+                throw new InvalidOperationException($"Squares sequence must contain {TileSize * TileSize} squares");
+            }
+            int splittedSequenceIndex = 0;
+            for (int x = 0; x < TileSize; x++) {
+                for (int y = 0; y < TileSize; y++) {
+                    string terrainTypeText = splittedSequence[splittedSequenceIndex];
+                    var terrain = Enums.ParceEnumValue<TerrainTypes>(terrainTypeText);
+                    Squares[x, y] = new Square(terrain, this);
+                    splittedSequenceIndex++;
+                }
+            }
+            ArrowDirection = Directions.South;
+        }
     }
 }
