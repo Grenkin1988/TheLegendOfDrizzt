@@ -2,15 +2,16 @@
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Square {
+        public Coordinates MapCoordinates { get; set; }
         public TerrainTypes TerrainType { get; private set; }
+        public int? DistanceFromStart { get; set; }
 
         public Square(TerrainTypes terrainType) {
             TerrainType = terrainType;
         }
 
-        public override string ToString() {
-            return $"Terrain: {TerrainType}";
-        }
+        public override string ToString() 
+            => $"X: {MapCoordinates.X}, Y: {MapCoordinates.Y} - Terrain: {TerrainType} [{DistanceFromStart}]";
 
         public bool CanMoveHere() {
             return TerrainType.CanMoveOnHere();

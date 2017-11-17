@@ -1,9 +1,12 @@
 ﻿using TheLegendOfDrizzt.Assets.Scripts.Controller;
 using TheLegendOfDrizzt.Assets.Scripts.Data;
+using TheLegendOfDrizzt.Assets.Scripts.Model.PathFinding;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Character {
+        private CharacterData _data;
+        private BreadthFirstSearch _breadthFirstSearch;
         public string Name { get; }
         public GameObject CharacterGameObject { get; private set; }
         public int X { get; private set; }
@@ -12,6 +15,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         public Square CurrentSquare { get; private set; }
 
         public Character(CharacterData data) {
+            _data = data;
             Name = data.Name;
             InitializeCharacter();
         }
@@ -30,6 +34,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             X = x + tile.X;
             Y = y + tile.Y;
             CharacterGameObject.transform.position = new Vector3(X, Y, 0);
+        }
+
+        public void RecalculatePathfinding(Square[,] squaresMap) {
+            _breadthFirstSearch = new BreadthFirstSearch(squaresMap, CurrentSquare, _data.Speed);
+            _breadthFirstSearch.LoopSquares();
         }
 
         private void InitializeCharacter() {

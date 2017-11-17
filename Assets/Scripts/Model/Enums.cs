@@ -34,6 +34,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
         }
 
+        public static bool CannotMoveOnHere(this TerrainTypes type) {
+            return !type.CanMoveOnHere();
+        }
+
         public static Directions Oposite(this Directions direction) {
             switch (direction) {
                 case Directions.South: { return Directions.North; }

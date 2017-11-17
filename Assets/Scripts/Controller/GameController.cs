@@ -163,6 +163,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         private void SetMoveMode() {
+            _turnController.CurrentPlayer.Character.RecalculatePathfinding(_adventureMap.SquaresMap);
             _mouseController.ChangeMouseMode(MouseController.MouseModes.Move);
         }
 

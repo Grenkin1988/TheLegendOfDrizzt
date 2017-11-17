@@ -142,7 +142,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
 
                 for (int x = 0; x < Tile.TileSize; x++) {
                     for (int y = 0; y < Tile.TileSize; y++) {
-                        SquaresMap[zeroSquareX + x + tile.X, zeroSquareY + y + tile.Y] = tile[x, y];
+                        int squareX = zeroSquareX + x + tile.X;
+                        int squareY = zeroSquareY + y + tile.Y;
+                        SquaresMap[squareX, squareY] = tile[x, y];
+                        SquaresMap[squareX, squareY].MapCoordinates = new Coordinates(squareX, squareY);
                     }
                 }
             }

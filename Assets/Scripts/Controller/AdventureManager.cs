@@ -12,7 +12,12 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 new PlayerData {
                     Name = "Palayer 1",
                     CharacterData = new CharacterData {
-                        Name = "Drizzt"
+                        Name = "Drizzt",
+                        ArmorClass = 16,
+                        HitPoints = 8,
+                        Speed = 7,
+                        SurgeValue = 4,
+                        Size = 1
                     }
                 }
             };
