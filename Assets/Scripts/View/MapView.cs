@@ -8,12 +8,37 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
     public class MapView : IDisposable {
         private Map _map;
         private GameObject _adventureMapGameObject;
+        private List<SquareView> ColoredSquareViews = new List<SquareView>();
 
         private readonly Dictionary<Tile, TileView> TileViewModels = new Dictionary<Tile, TileView>();
 
         public MapView(Map map) {
             _map = map;
             InitializeMapView();
+        }
+
+        public Tile GetTileByGameObject(GameObject tileGameObject) {
+            return TileViewModels.FirstOrDefault(pair => pair.Value.TileGameObject.Equals(tileGameObject)).Key;
+        }
+
+        public void DrawReachableZone(Character character) {
+            foreach (Square reachableSquare in character.BreadthFirstSearch.ReachableSquares) {
+                Tile parent = reachableSquare.ParentTile;
+                TileView parentTileView;
+                if (parent == null || !TileViewModels.TryGetValue(parent, out parentTileView)) { continue; }
+
+                SquareView squareView = parentTileView.GetSquareViewForSquare(reachableSquare);
+                if (squareView == null) { continue; }
+                squareView.SquareRenderer.color = Color.green;
+                ColoredSquareViews.Add(squareView);
+            }
+        }
+
+        public void ResetReachableZone() {
+            foreach (SquareView coloredSquareView in ColoredSquareViews) {
+                coloredSquareView.SquareRenderer.color = Color.white;
+            }
+            ColoredSquareViews.Clear();
         }
 
         private void InitializeMapView() {
@@ -27,10 +52,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
                 tileViewModel.Draw();
                 TileViewModels.Add(tile, tileViewModel);
             }
-        }
-
-        public Tile GetTileByGameObject(GameObject tileGameObject) {
-            return TileViewModels.FirstOrDefault(pair => pair.Value.TileGameObject.Equals(tileGameObject)).Key;
         }
 
         private void MapOnNewTileCreated(Tile tile) {

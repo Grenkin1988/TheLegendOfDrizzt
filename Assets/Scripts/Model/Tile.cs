@@ -52,7 +52,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
                 for (int y = 0; y < TileSize; y++) {
                     string terrainTypeText = splittedSequence[splittedSequenceIndex];
                     var terrain = Enums.ParceEnumValue<TerrainTypes>(terrainTypeText);
-                    Squares[x, y] = new Square(terrain);
+                    Squares[x, y] = new Square(terrain, this);
                     splittedSequenceIndex++;
                 }
             }
@@ -86,6 +86,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
 
         public bool CanMoveHere(int x, int y, Character character) {
             Square square = Squares[x, y];
+
             return square.CanMoveHere();
         }
 

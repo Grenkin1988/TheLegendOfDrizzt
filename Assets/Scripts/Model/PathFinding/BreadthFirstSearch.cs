@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model.PathFinding {
     public class BreadthFirstSearch {
@@ -19,6 +21,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.PathFinding {
         private int _maxMovement;
 
         private Square StartingSquare { get; }
+
+        public IReadOnlyCollection<Square> ReachableSquares => 
+            _visited.Keys
+            .Where(square => square.DistanceFromStart <= _maxMovement)
+            .ToList();
 
         public BreadthFirstSearch(Square[,] squares, Square startingSquare, int maxMovement) {
             _squaresMap = squares;

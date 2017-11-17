@@ -6,13 +6,14 @@ using UnityEngine;
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Character {
         private CharacterData _data;
-        private BreadthFirstSearch _breadthFirstSearch;
+
         public string Name { get; }
         public GameObject CharacterGameObject { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
         public Tile CurrentTile { get; private set; }
         public Square CurrentSquare { get; private set; }
+        public BreadthFirstSearch BreadthFirstSearch { get; private set; }
 
         public Character(CharacterData data) {
             _data = data;
@@ -37,8 +38,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         }
 
         public void RecalculatePathfinding(Square[,] squaresMap) {
-            _breadthFirstSearch = new BreadthFirstSearch(squaresMap, CurrentSquare, _data.Speed);
-            _breadthFirstSearch.LoopSquares();
+            BreadthFirstSearch = new BreadthFirstSearch(squaresMap, CurrentSquare, _data.Speed);
+            BreadthFirstSearch.LoopSquares();
         }
 
         private void InitializeCharacter() {

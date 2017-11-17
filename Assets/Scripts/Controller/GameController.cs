@@ -116,7 +116,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             if (_mouseController.CurrentMode == MouseController.MouseModes.Move 
                 && tile.CanMoveHere(x, y, _turnController.CurrentPlayer.Character)) {
                 _turnController.CurrentPlayer.Character.MoveHere(x, y, tile);
-                _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+                SetNoneMode();
             }
 
             Directions? placementDirection;
@@ -151,7 +151,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         private void NextPhase() {
-            _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+            SetNoneMode();
 
             ExecutePhaseEnd();
 
@@ -162,16 +162,24 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             ExecutePhase();
         }
 
+        private void SetNoneMode() {
+            _mapView.ResetReachableZone();
+            _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
+        }
+
         private void SetMoveMode() {
             _turnController.CurrentPlayer.Character.RecalculatePathfinding(_adventureMap.SquaresMap);
+            _mapView.DrawReachableZone(_turnController.CurrentPlayer.Character);
             _mouseController.ChangeMouseMode(MouseController.MouseModes.Move);
         }
 
         private void SetAttackMode() {
+            _mapView.ResetReachableZone();
             _mouseController.ChangeMouseMode(MouseController.MouseModes.Attack);
         }
 
         private void SetDebug_PlaceTileMode() {
+            _mapView.ResetReachableZone();
             _mouseController.ChangeMouseMode(MouseController.MouseModes.Debug_PlaceTile);
         }
 

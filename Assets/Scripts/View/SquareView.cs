@@ -8,6 +8,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
         private readonly Transform _parentTransform;
 
         public GameObject SquareGameObject { get; private set; }
+        public SpriteRenderer SquareRenderer { get; private set; }
 
         public SquareView(Square square, Transform parentTransform) {
             _parentTransform = parentTransform;
@@ -25,10 +26,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
                 90 * SpriteManager.GetNumberOfTileSpriteRotationsNeeded(_square.TerrainType, placementDirection));
             SquareGameObject.transform.SetParent(_parentTransform, false);
             SquareGameObject.AddComponent<BoxCollider2D>();
-            var squareRenderer = SquareGameObject.AddComponent<SpriteRenderer>();
+            SquareRenderer = SquareGameObject.AddComponent<SpriteRenderer>();
             string tileTypeText = _square.TerrainType.ToString();
-            squareRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
-            squareRenderer.sortingLayerName = "Tiles";
+            SquareRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
+            SquareRenderer.sortingLayerName = "Tiles";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TheLegendOfDrizzt.Assets.Scripts.Controller;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
@@ -8,8 +9,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
         private readonly Tile _tile;
         private readonly Transform _parentTransform;
         private SquareView[,] _squareViews;
+        private readonly Dictionary<Square, SquareView> _squareViewModels = new Dictionary<Square, SquareView>();
 
         public GameObject TileGameObject { get; private set; }
+        public SpriteRenderer TileRenderer { get; private set; }
 
         public TileView(Tile tile, Transform parentTransform) {
             _tile = tile;
@@ -21,7 +24,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
             TileGameObject = new GameObject($"Tile_{_tile.X}_{_tile.Y}-{_tile.Name}");
             TileGameObject.transform.position = new Vector3(_tile.X, _tile.Y, 0);
             TileGameObject.transform.SetParent(_parentTransform, true);
-            
+
             DrawArrow();
 
             if (!string.IsNullOrEmpty(_tile.Decal)) {
@@ -30,11 +33,20 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
 
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 4; y++) {
-                    var squareView = new SquareView(_tile[x, y], TileGameObject.transform);
+                    Square square = _tile[x, y];
+                    if (square == null) { continue; }
+                    var squareView = new SquareView(square, TileGameObject.transform);
                     squareView.Draw(x, y, _tile.ArrowDirection);
                     _squareViews[x, y] = squareView;
+                    _squareViewModels[square] = squareView;
                 }
             }
+        }
+
+        public SquareView GetSquareViewForSquare(Square square) {
+            SquareView squareView;
+            _squareViewModels.TryGetValue(square, out squareView);
+            return squareView;
         }
 
         private void DrawArrow() {
@@ -42,10 +54,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
             arrow.transform.position = new Vector3(2, 2, 0);
             arrow.transform.Rotate(0, 0, 90 * SpriteManager.GetNumberOfSpriteRotationsNeeded(_tile.ArrowDirection));
             arrow.transform.SetParent(TileGameObject.transform, false);
-            var tileRenderer = arrow.AddComponent<SpriteRenderer>();
+            TileRenderer = arrow.AddComponent<SpriteRenderer>();
             string tileTypeText = $"Arrow{_tile.ArrowColor.ToString()}";
-            tileRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
-            tileRenderer.sortingLayerName = "Decal";
+            TileRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
+            TileRenderer.sortingLayerName = "Decal";
         }
 
         private void DrawDecal() {

@@ -15,7 +15,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                         Name = "Drizzt",
                         ArmorClass = 16,
                         HitPoints = 8,
-                        Speed = 7,
+                        Speed = 3,
                         SurgeValue = 4,
                         Size = 1
                     }
