@@ -8,7 +8,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
     public class MapView : IDisposable {
         private Map _map;
         private GameObject _adventureMapGameObject;
-        private List<SquareView> ColoredSquareViews = new List<SquareView>();
+        private Dictionary<Square, SquareView> ColoredSquareViews = new Dictionary<Square, SquareView>();
 
         private readonly Dictionary<Tile, TileView> TileViewModels = new Dictionary<Tile, TileView>();
 
@@ -30,13 +30,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
                 SquareView squareView = parentTileView.GetSquareViewForSquare(reachableSquare);
                 if (squareView == null) { continue; }
                 squareView.SquareRenderer.color = Color.green;
-                ColoredSquareViews.Add(squareView);
+                ColoredSquareViews[reachableSquare] = squareView;
             }
         }
 
         public void ResetReachableZone() {
-            foreach (SquareView coloredSquareView in ColoredSquareViews) {
-                coloredSquareView.SquareRenderer.color = Color.white;
+            foreach (KeyValuePair<Square, SquareView> coloredSquareView in ColoredSquareViews) {
+                coloredSquareView.Value.SquareRenderer.color = Color.white;
+                coloredSquareView.Key.DistanceFromStart = null;
             }
             ColoredSquareViews.Clear();
         }

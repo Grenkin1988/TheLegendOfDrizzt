@@ -31,14 +31,17 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
         }
 
-        public void MoveHere(int x, int y, Tile tile) {
-            CurrentTile = tile;
+        public bool MoveToTarget(int x, int y, Tile tile) {
+            if(tile != MovementTargetTile) { return false; }
             Square square = tile[x, y];
+            if (square != MovementTargetSquare) { return false; }
+            CurrentTile = tile;
             CurrentSquare = square;
             X = x + tile.X;
             Y = y + tile.Y;
-            DestroyPath();
+            ResetPath();
             CharacterGameObject.transform.position = new Vector3(X + 0.5f, Y + 0.5f, 0);
+            return true;
         }
 
         public void RecalculatePathfinding(Square[,] squaresMap) {
@@ -46,11 +49,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             BreadthFirstSearch.LoopSquares();
         }
 
-
         public bool UpdateMovementTarget(int x, int y, Tile tile) {
             MovementTargetTile = tile;
             Square square = tile[x, y];
-            if(MovementTargetSquare == square) { return false;}
+            if(MovementTargetSquare == square 
+                || CurrentSquare == square) { return false;}
             MovementTargetSquare = square;
             return true;
         }
@@ -62,8 +65,24 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             }
         }
 
+        public void ResetPath() {
+            MovementTargetTile = null;
+            MovementTargetSquare = null;
+            DestroyPath();
+        }
+
         private void DestroyPath() {
             Object.Destroy(_characterPathGameObject);
+        }
+
+        private void MoveHere(int x, int y, Tile tile) {
+            CurrentTile = tile;
+            Square square = tile[x, y];
+            CurrentSquare = square;
+            X = x + tile.X;
+            Y = y + tile.Y;
+            ResetPath();
+            CharacterGameObject.transform.position = new Vector3(X + 0.5f, Y + 0.5f, 0);
         }
 
         private void DrawPath() {

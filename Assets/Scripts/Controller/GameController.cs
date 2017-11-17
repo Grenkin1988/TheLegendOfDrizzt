@@ -113,7 +113,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             Tile tile = _mapView.GetTileByGameObject(tileGameObject);
             if (tile == null) { return; }
 
-            if (_mouseController.CurrentMode == MouseController.MouseModes.Move 
+            if (_mouseController.CurrentMode == MouseController.MouseModes.Move
                 && tile.CanMoveHere(x, y, _turnController.CurrentPlayer.Character)) {
 
                 if (_turnController.CurrentPlayer.Character.UpdateMovementTarget(x, y, tile)) {
@@ -121,12 +121,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                     return;
                 }
 
-                _turnController.CurrentPlayer.Character.MoveHere(x, y, tile);
-                SetNoneMode();
+                if (_turnController.CurrentPlayer.Character.MoveToTarget(x, y, tile)) {
+                    SetNoneMode();
+                }
             }
 
             Directions? placementDirection;
-            if (_mouseController.CurrentMode == MouseController.MouseModes.Debug_PlaceTile 
+            if (_mouseController.CurrentMode == MouseController.MouseModes.Debug_PlaceTile
                 && _adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
                 if (!placementDirection.HasValue) { return; }
                 Tile newTile = _tileStack.GetNexTile();
@@ -169,7 +170,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         private void SetNoneMode() {
-            _mapView.ResetReachableZone();
+            ResetPath();
             _mouseController.ChangeMouseMode(MouseController.MouseModes.None);
         }
 
@@ -180,8 +181,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         private void SetAttackMode() {
-            _mapView.ResetReachableZone();
+            ResetPath();
             _mouseController.ChangeMouseMode(MouseController.MouseModes.Attack);
+        }
+
+        private void ResetPath() {
+            _mapView.ResetReachableZone();
+            _turnController.CurrentPlayer.Character.ResetPath();
         }
 
         private void ExecutePhase() {
@@ -204,9 +210,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             Directions? placementDirection;
             Character character = _turnController.CurrentPlayer.Character;
             if (_adventureMap.IsValidPositionForNewTilePlacement(
-                character.CurrentTile, 
+                character.CurrentTile,
                 character.X - character.CurrentTile.X,
-                character.Y - character.CurrentTile.Y, 
+                character.Y - character.CurrentTile.Y,
                 out placementDirection)) {
                 if (!placementDirection.HasValue) { return; }
                 Tile newTile = _tileStack.GetNexTile();
@@ -233,7 +239,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                     return;
                 }
                 default:
-                    throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException();
             }
         }
 
