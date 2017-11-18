@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
     public abstract class WinningConditionBase {

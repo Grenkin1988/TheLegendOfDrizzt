@@ -7,7 +7,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
         private readonly Square _square;
         private readonly Transform _parentTransform;
 
-        public GameObject SquareGameObject { get; private set; }
+        private GameObject _squareGameObject;
+
         public SpriteRenderer SquareRenderer { get; private set; }
 
         public SquareView(Square square, Transform parentTransform) {
@@ -18,15 +19,15 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
         public void Draw(int x, int y, Directions placementDirection) {
             float newX = x + 0.5f;
             float newY = y + 0.5f;
-            SquareGameObject = new GameObject("Square_" + x + "_" + y);
-            SquareGameObject.transform.position = new Vector3(newX, newY, 0);
-            SquareGameObject.transform.Rotate(
+            _squareGameObject = new GameObject("Square_" + x + "_" + y);
+            _squareGameObject.transform.position = new Vector3(newX, newY, 0);
+            _squareGameObject.transform.Rotate(
                 0, 
                 0, 
                 90 * SpriteManager.GetNumberOfTileSpriteRotationsNeeded(_square.TerrainType, placementDirection));
-            SquareGameObject.transform.SetParent(_parentTransform, false);
-            SquareGameObject.AddComponent<BoxCollider2D>();
-            SquareRenderer = SquareGameObject.AddComponent<SpriteRenderer>();
+            _squareGameObject.transform.SetParent(_parentTransform, false);
+            _squareGameObject.AddComponent<BoxCollider2D>();
+            SquareRenderer = _squareGameObject.AddComponent<SpriteRenderer>();
             string tileTypeText = _square.TerrainType.ToString();
             SquareRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
             SquareRenderer.sortingLayerName = "Tiles";

@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
@@ -8,7 +9,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             Move = 1,
             Attack = 2,
 
-            Debug_PlaceTile = 10001
+            DEBUG_PLACE_TILE = 10001
         }
 
         public MouseModes CurrentMode { get; private set; } = MouseModes.None;
@@ -17,8 +18,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
             CurrentMode = newMode;
         }
 
+        [UsedImplicitly]
         private void Update() {
-            if ((CurrentMode == MouseModes.Move || CurrentMode == MouseModes.Debug_PlaceTile) 
+            if ((CurrentMode == MouseModes.Move || CurrentMode == MouseModes.DEBUG_PLACE_TILE) 
                 && Input.GetMouseButtonDown(0)) {
                 Vector3 mouseCoordinate = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(mouseCoordinate, Vector2.zero);
@@ -37,7 +39,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         public event Action<GameObject, int, int> TileClicked;
-        protected virtual void OnTileClicked(GameObject tileGameObject, int squareX, int squareY) {
+        private void OnTileClicked(GameObject tileGameObject, int squareX, int squareY) {
             TileClicked?.Invoke(tileGameObject, squareX, squareY);
         }
     }

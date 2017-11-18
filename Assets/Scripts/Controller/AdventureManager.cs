@@ -1,7 +1,7 @@
 ﻿using TheLegendOfDrizzt.Assets.Scripts.Data;
+using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
 using TheLegendOfDrizzt.Assets.Scripts.Data.Trigger;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
-using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public static class AdventureManager {

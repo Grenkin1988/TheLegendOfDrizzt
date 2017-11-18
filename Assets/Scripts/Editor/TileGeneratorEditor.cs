@@ -1,18 +1,21 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Model;
+﻿using JetBrains.Annotations;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEditor;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Editor {
     public class TileGeneratorEditor : EditorWindow {
-        private string layout;
+        private string _layout;
 
         [MenuItem("Window/Tile Generator")]
+        [UsedImplicitly]
         private static void Init() {
             GetWindow(typeof(TileGeneratorEditor)).Show();
         }
 
+        [UsedImplicitly]
         private void OnGUI() {
-            layout = EditorGUILayout.TextField("Layout", layout, new GUIStyle {
+            _layout = EditorGUILayout.TextField("Layout", _layout, new GUIStyle {
                 wordWrap = true,
                 richText = true,
                 stretchHeight = true
@@ -61,20 +64,21 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Editor {
         }
 
         private void Clear() {
-            layout = string.Empty;
+            _layout = string.Empty;
         }
 
         private void AddSquare(TerrainTypes type) {
-            if (string.IsNullOrEmpty(layout)) {
-                layout += type;
+            if (string.IsNullOrEmpty(_layout)) {
+                _layout += type;
             } else {
-                layout += $";{type}";
+                _layout += $";{type}";
             }
         }
 
         private void CopyToClipboard() {
-            var te = new TextEditor();
-            te.text = layout;
+            var te = new TextEditor {
+                text = _layout
+            };
             te.SelectAll();
             te.Copy();
         }

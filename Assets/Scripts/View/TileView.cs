@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TheLegendOfDrizzt.Assets.Scripts.Controller;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
@@ -12,7 +11,6 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
         private readonly Dictionary<Square, SquareView> _squareViewModels = new Dictionary<Square, SquareView>();
 
         public GameObject TileGameObject { get; private set; }
-        public SpriteRenderer TileRenderer { get; private set; }
 
         public TileView(Tile tile, Transform parentTransform) {
             _tile = tile;
@@ -54,10 +52,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
             arrow.transform.position = new Vector3(2, 2, 0);
             arrow.transform.Rotate(0, 0, 90 * SpriteManager.GetNumberOfSpriteRotationsNeeded(_tile.ArrowDirection));
             arrow.transform.SetParent(TileGameObject.transform, false);
-            TileRenderer = arrow.AddComponent<SpriteRenderer>();
+            var arrowRenderer = arrow.AddComponent<SpriteRenderer>();
             string tileTypeText = $"Arrow{_tile.ArrowColor.ToString()}";
-            TileRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
-            TileRenderer.sortingLayerName = "Decal";
+            arrowRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
+            arrowRenderer.sortingLayerName = "Decal";
         }
 
         private void DrawDecal() {

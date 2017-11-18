@@ -1002,9 +1002,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b783fb27445979b4daf5242fb18ab9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZoomFactor: 2.5
-  MinZoom: 4
-  MaxZoom: 15
+  _zoomFactor: 2.5
+  _minZoom: 4
+  _maxZoom: 15
 --- !u!1 &1162131645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,8 +1978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c654077ec3aca8c4cbb27bbec500e9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModalPanel: {fileID: 2048535886}
-  PopupText: {fileID: 1935903885}
+  _modalPanel: {fileID: 2048535886}
+  _popupText: {fileID: 1935903885}
 --- !u!1 &1659392863
 GameObject:
   m_ObjectHideFlags: 0

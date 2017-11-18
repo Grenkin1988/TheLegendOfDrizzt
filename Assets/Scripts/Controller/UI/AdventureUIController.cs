@@ -1,9 +1,11 @@
 ﻿using System;
+using JetBrains.Annotations;
 using TheLegendOfDrizzt.Assets.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
+    [UsedImplicitly]
     public class AdventureUIController : MonoBehaviour {
         private TurnController _turnController;
         private GameObject _mainCanvas;
@@ -17,8 +19,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
         private Button _moveButton;
         private Button _attackButton;
 
-        public GameObject ModalPanel;
-        public Text PopupText;
+        private GameObject _modalPanel;
+        private Text _popupText;
 
         private GameObject _winScreenPanel;
         private Text _winScreenText;
@@ -32,11 +34,11 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
         }
 
         public void ShowPopupDialog(string text) {
-            if (PopupText == null) {
+            if (_popupText == null) {
                 throw new NullReferenceException("No PopupText found in scene");
             }
-            PopupText.text = text;
-            ModalPanel.SetActive(true);
+            _popupText.text = text;
+            _modalPanel.SetActive(true);
         }
 
         public void ShowWinScreenDialog(string text) {
@@ -47,12 +49,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
             _winScreenPanel.SetActive(true);
         }
 
+        [UsedImplicitly]
         private void Awake() {
             _mainCanvas = GameObject.Find("MainCanvas");
             if (_mainCanvas == null) { throw new NullReferenceException("No MainCanvas found in scene"); }
 
-            ModalPanel = _mainCanvas.transform.Find("ModalPanel").gameObject;
-            if (ModalPanel == null) { throw new NullReferenceException("No ModalPanel found in scene"); }
+            _modalPanel = _mainCanvas.transform.Find("ModalPanel").gameObject;
+            if (_modalPanel == null) { throw new NullReferenceException("No ModalPanel found in scene"); }
 
             _turnController = FindObjectOfType<TurnController>();
             if (_turnController == null) { throw new NullReferenceException("No TurnController found in scene"); }
@@ -61,12 +64,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
             if (_winScreenPanel == null) { throw new NullReferenceException("No WinScreenPanel found in scene"); }
 
             SetUpButtons();
+            SetUpPopupDialogPanel();
             SetUpWinScreenPanel();
         }
-
-        private void Start() { }
-
-        private void Update() { }
 
         private void SetUpButtons() {
             _nextPhaseButton = _mainCanvas.transform.Find("NextPhaseButton").GetComponent<Button>();
@@ -77,6 +77,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
 
             _attackButton = _mainCanvas.transform.Find("AttackButton").GetComponent<Button>();
             _attackButton.onClick.AddListener(OnAttackButtonClicked);
+        }
+
+        private void SetUpPopupDialogPanel() {
+            _popupText = _modalPanel.gameObject.FindObject("PopupText").GetComponent<Text>();
         }
 
         private void SetUpWinScreenPanel() {
@@ -116,17 +120,17 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
         }
 
         public event Action NextPhaseButtonClicked;
-        protected virtual void OnNextPhaseButtonClicked() {
+        private void OnNextPhaseButtonClicked() {
             NextPhaseButtonClicked?.Invoke();
         }
 
         public event Action MoveButtonClicked;
-        protected virtual void OnMoveButtonClicked() {
+        private void OnMoveButtonClicked() {
             MoveButtonClicked?.Invoke();
         }
 
         public event Action AttackButtonClicked;
-        protected virtual void OnAttackButtonClicked() {
+        private void OnAttackButtonClicked() {
             AttackButtonClicked?.Invoke();
         }
     }

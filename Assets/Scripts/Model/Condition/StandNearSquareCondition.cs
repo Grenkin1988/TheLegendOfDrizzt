@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
 using TheLegendOfDrizzt.Assets.Scripts.Utility;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {

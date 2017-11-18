@@ -1,10 +1,9 @@
-﻿using System;
-
+﻿
 namespace TheLegendOfDrizzt.Assets.Scripts.Model {
     public class Square {
         public Tile ParentTile { get; }
         public Coordinates MapCoordinates { get; set; }
-        public TerrainTypes TerrainType { get; private set; }
+        public TerrainTypes TerrainType { get; }
         public int? DistanceFromStart { get; set; }
 
         public Square(TerrainTypes terrainType, Tile parentTile) {

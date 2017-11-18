@@ -58,6 +58,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.View {
         }
 
         public void MoveTo() {
+            _characterController.MoveTo();
             _characterGameObject.transform.position = new Vector3(_character.X + 0.5f, _character.Y + 0.5f, 0);
         }
     }

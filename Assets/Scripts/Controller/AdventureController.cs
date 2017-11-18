@@ -3,7 +3,6 @@ using TheLegendOfDrizzt.Assets.Scripts.Controller.UI;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
 using TheLegendOfDrizzt.Assets.Scripts.Model.Trigger;
-using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class AdventureController {

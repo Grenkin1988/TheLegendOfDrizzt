@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
+using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
 using TheLegendOfDrizzt.Assets.Scripts.Data.Trigger;
-using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Data {
     [Serializable]

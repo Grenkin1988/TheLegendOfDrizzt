@@ -1,16 +1,20 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+    [UsedImplicitly]
     public class CustomCharacterController : MonoBehaviour {
 
-        // Use this for initialization
+        [UsedImplicitly]
         private void Start () {
 		
         }
 	
-        // Update is called once per frame
+        [UsedImplicitly]
         private void Update () {
 		
         }
+
+        public void MoveTo() { }
     }
 }

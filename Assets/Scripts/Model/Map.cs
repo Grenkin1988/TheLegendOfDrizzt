@@ -13,10 +13,10 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         private const int TileMapBorder = 0;
         private const int SquareMapBorder = 1;
 
-        private int _tileMaxX = 0;
-        private int _tileMinX = 0;
-        private int _tileMaxY = 0;
-        private int _tileMinY = 0;
+        private int _tileMaxX;
+        private int _tileMinX;
+        private int _tileMaxY;
+        private int _tileMinY;
 
         private readonly TilesLibrary TilesLibrary;
         private readonly Random _random = new Random();

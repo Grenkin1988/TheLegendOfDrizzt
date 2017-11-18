@@ -1,7 +1,9 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Model;
+﻿using JetBrains.Annotations;
+using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+    [UsedImplicitly]
     public class TurnController : MonoBehaviour {
 
         public enum Phases {
@@ -25,11 +27,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
         }
 
         // Use this for initialization
+        [UsedImplicitly]
         private void Start () {
 		
         }
 	
         // Update is called once per frame
+        [UsedImplicitly]
         private void Update () {
 		
         }
