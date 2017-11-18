@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
 namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
-    public class CharacterController : MonoBehaviour {
+    public class CustomCharacterController : MonoBehaviour {
 
         // Use this for initialization
-        void Start () {
+        private void Start () {
 		
         }
 	
         // Update is called once per frame
-        void Update () {
+        private void Update () {
 		
         }
     }
