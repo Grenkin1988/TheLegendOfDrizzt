@@ -15,6 +15,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         public Tile MovementTargetTile { get; private set; }
         public Square MovementTargetSquare { get; private set; }
         public BreadthFirstSearch BreadthFirstSearch { get; private set; }
+        public Square[] PathToTarget { get; private set; }
 
         public Character(CharacterData data) {
             _data = data;
@@ -46,7 +47,8 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             if (MovementTargetSquare == square
                 || CurrentSquare == square) { return false; }
             MovementTargetSquare = square;
-            return true;
+            PathToTarget = BreadthFirstSearch.GetPathTo(MovementTargetSquare);
+            return PathToTarget != null && PathToTarget.Length != 0;
         }
 
         public void UpdatePath() {

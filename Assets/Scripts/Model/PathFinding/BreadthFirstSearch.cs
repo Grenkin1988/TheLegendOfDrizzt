@@ -63,6 +63,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model.PathFinding {
                     }
                 }
             }
+            path.Reverse();
             return path.ToArray();
         }
 
