@@ -24,7 +24,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
         }
 
         public void SetStartingPosition(int x, int y, Tile tile) {
-            MoveHere(x, y, tile);
+            MoveHere(x, y, tile, true);
             _characterView.Show();
         }
 
@@ -64,14 +64,14 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Model {
             _characterView.DestroyPath();
         }
 
-        private void MoveHere(int x, int y, Tile tile) {
+        private void MoveHere(int x, int y, Tile tile, bool isInitialPlace = false) {
             CurrentTile = tile;
             Square square = tile[x, y];
             CurrentSquare = square;
             X = x + tile.X;
             Y = y + tile.Y;
             ResetPath();
-            _characterView.MoveTo();
+            _characterView.MoveTo(isInitialPlace);
         }
 
         private void InitializeCharacter() {
