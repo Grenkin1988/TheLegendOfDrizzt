@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using TheLegendOfDrizzt.Assets.Scripts.Model;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
     public class CustomCharacterController : MonoBehaviour {
 
         [SerializeField]
-        private float _moveSpeed = 0.5f;
+        private float _moveSpeed = 0.1f;
         private bool _isMoving = false;
         private Vector3 _nextTarget;
 
@@ -19,6 +20,13 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
 
         [UsedImplicitly]
         private void Update() {
+            while (_isMoving) {
+                float step = _moveSpeed * Time.deltaTime;
+                transform.position = Vector3.Lerp(transform.position, _nextTarget, step);
+                if ((transform.position - _nextTarget).magnitude <= 0.05f) {
+                    _isMoving = false;
+                }
+            }
         }
 
         public void MoveToBySteps(Square[] characterPathToTarget) {
@@ -30,8 +38,9 @@ namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
                 float targetX = nextCoordinates.Value.X + next.ParentTile.X + 0.5f;
                 float targetY = nextCoordinates.Value.Y + next.ParentTile.Y + 0.5f;
                 _nextTarget = new Vector3(targetX, targetY, 0);
+                Update();
                 while (_isMoving) {
-                    Move();
+                    Task.Delay(100);
                 }
             }
         }
