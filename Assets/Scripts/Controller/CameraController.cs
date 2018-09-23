@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+namespace TheLegendOfDrizzt.Controller {
     public class CameraController : MonoBehaviour {
         private Vector3 LastFrameCameraPosition;
 

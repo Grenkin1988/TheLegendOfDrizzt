@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Data.Trigger {
+namespace TheLegendOfDrizzt.Data.Trigger {
     [Serializable]
     public class BaseTriggerData {
         [XmlAttribute]

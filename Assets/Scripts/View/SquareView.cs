@@ -1,8 +1,8 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Controller;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+﻿using TheLegendOfDrizzt.Controller;
+using TheLegendOfDrizzt.Model;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.View {
+namespace TheLegendOfDrizzt.View {
     public class SquareView {
         private readonly Square _square;
         private readonly Transform _parentTransform;

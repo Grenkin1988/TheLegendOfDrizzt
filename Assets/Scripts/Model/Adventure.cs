@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TheLegendOfDrizzt.Assets.Scripts.Data;
-using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
-using TheLegendOfDrizzt.Assets.Scripts.Model.Trigger;
+using TheLegendOfDrizzt.Data;
+using TheLegendOfDrizzt.Model.Condition;
+using TheLegendOfDrizzt.Model.Trigger;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class Adventure {
         public string Name { get; }
         public Dictionary<string, BaseTrigger> Triggers { get; }

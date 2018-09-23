@@ -1,10 +1,10 @@
 ﻿using System;
-using TheLegendOfDrizzt.Assets.Scripts.Controller.UI;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
-using TheLegendOfDrizzt.Assets.Scripts.Model.Condition;
-using TheLegendOfDrizzt.Assets.Scripts.Model.Trigger;
+using TheLegendOfDrizzt.Controller.UI;
+using TheLegendOfDrizzt.Model;
+using TheLegendOfDrizzt.Model.Condition;
+using TheLegendOfDrizzt.Model.Trigger;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+namespace TheLegendOfDrizzt.Controller {
     public class AdventureController {
         private Adventure _adventure;
         private Map _adventureMap;

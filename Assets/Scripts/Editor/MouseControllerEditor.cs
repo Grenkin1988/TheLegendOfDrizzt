@@ -1,4 +1,4 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Controller;
+﻿using TheLegendOfDrizzt.Controller;
 using UnityEditor;
 using UnityEngine;
 

@@ -1,6 +1,6 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Data;
+﻿using TheLegendOfDrizzt.Data;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class Player {
         public string Name { get; }
         public Character Character { get; }

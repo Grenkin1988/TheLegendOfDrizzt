@@ -1,8 +1,8 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Data;
-using TheLegendOfDrizzt.Assets.Scripts.Model.PathFinding;
-using TheLegendOfDrizzt.Assets.Scripts.View;
+﻿using TheLegendOfDrizzt.Data;
+using TheLegendOfDrizzt.Model.PathFinding;
+using TheLegendOfDrizzt.View;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class Character {
         private CharacterData _data;
         private CharacterView _characterView;

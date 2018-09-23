@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TheLegendOfDrizzt.Assets.Scripts.Data;
-using TheLegendOfDrizzt.Assets.Scripts.Utility;
+using TheLegendOfDrizzt.Data;
+using TheLegendOfDrizzt.Utility;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class TileStack {
         private const int TIMES_TO_SHUFFLE = 5;
         private readonly Stack<TileData> _deck;

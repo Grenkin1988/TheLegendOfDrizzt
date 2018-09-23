@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Model;
 using UnityEditor;
 using UnityEngine;
 

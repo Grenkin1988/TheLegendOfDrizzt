@@ -1,9 +1,9 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Data;
-using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
-using TheLegendOfDrizzt.Assets.Scripts.Data.Trigger;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+﻿using TheLegendOfDrizzt.Data;
+using TheLegendOfDrizzt.Data.Condition;
+using TheLegendOfDrizzt.Data.Trigger;
+using TheLegendOfDrizzt.Model;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+namespace TheLegendOfDrizzt.Controller {
     public static class AdventureManager {
         public static string CurrentAdventureName { get; set; } = "Adventure1";
 

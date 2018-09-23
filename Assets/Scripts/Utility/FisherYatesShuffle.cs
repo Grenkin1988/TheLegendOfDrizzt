@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
+namespace TheLegendOfDrizzt.Utility {
     public static class FisherYatesShuffle {
         private static readonly Random _random = new Random();
 

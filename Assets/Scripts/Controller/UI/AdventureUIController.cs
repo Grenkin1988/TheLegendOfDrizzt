@@ -1,10 +1,10 @@
 ﻿using System;
 using JetBrains.Annotations;
-using TheLegendOfDrizzt.Assets.Scripts.Utility;
+using TheLegendOfDrizzt.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
+namespace TheLegendOfDrizzt.Controller.UI {
     [UsedImplicitly]
     public class AdventureUIController : MonoBehaviour {
         private TurnController _turnController;

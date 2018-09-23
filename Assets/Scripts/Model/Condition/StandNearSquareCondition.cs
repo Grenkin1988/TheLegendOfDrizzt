@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
-using TheLegendOfDrizzt.Assets.Scripts.Utility;
+using TheLegendOfDrizzt.Data.Condition;
+using TheLegendOfDrizzt.Utility;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
+namespace TheLegendOfDrizzt.Model.Condition {
     public class StandNearSquareCondition : WinningConditionBase {
         private Map _adventureMap;
         private List<Coordinates> _coordinatesToCheck = new List<Coordinates>();

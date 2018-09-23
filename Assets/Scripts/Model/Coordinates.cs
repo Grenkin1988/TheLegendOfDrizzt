@@ -1,4 +1,4 @@
-﻿namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+﻿namespace TheLegendOfDrizzt.Model {
     public struct Coordinates {
         public int X { get; set; }
         public int Y { get; set; }

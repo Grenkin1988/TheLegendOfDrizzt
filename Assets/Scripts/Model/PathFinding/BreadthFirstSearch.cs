@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model.PathFinding {
+namespace TheLegendOfDrizzt.Model.PathFinding {
     public class BreadthFirstSearch {
         private static readonly Coordinates[] _prioritizedDirection = {
             new Coordinates(0, 1),

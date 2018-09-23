@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+namespace TheLegendOfDrizzt.Controller {
     public static class LevelManager {
         private const string START_MENU_SCENE = "Start Menu";
         private const string ADVENTURE_SCENE = "Adventure";
