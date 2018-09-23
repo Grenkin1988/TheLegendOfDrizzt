@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Editor {
+namespace TheLegendOfDrizzt.Editor {
     [CustomEditor(typeof(MouseController))]
     public class MouseControllerEditor : UnityEditor.Editor {
         private MouseController _mouseController;
