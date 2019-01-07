@@ -1,0 +1,12 @@
+
+=== Mon Jan  7 21:06:33 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.collab-proxy@1.2.15
+  com.unity.timeline@0.0.0-builtin
+  com.unity.xr.legacyinputhelpers@1.0.0
+The following packages were updated:
+  com.unity.package-manager-ui from version 1.9.11 to 0.0.0-builtin
