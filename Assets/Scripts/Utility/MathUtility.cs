@@ -1,6 +1,6 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Model;
+﻿using TheLegendOfDrizzt.Model;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Utility {
+namespace TheLegendOfDrizzt.Utility {
     public static class MathUtility {
         public static T[,] RotateArrayClockwise<T>(T[,] inputArray, int arraySize) {
             var newArray = new T[arraySize, arraySize];

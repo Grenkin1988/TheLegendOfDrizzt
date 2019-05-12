@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using TheLegendOfDrizzt.Assets.Scripts.Controller.UI;
-using TheLegendOfDrizzt.Assets.Scripts.Data;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
-using TheLegendOfDrizzt.Assets.Scripts.View;
+using TheLegendOfDrizzt.Controller.UI;
+using TheLegendOfDrizzt.Data;
+using TheLegendOfDrizzt.Model;
+using TheLegendOfDrizzt.View;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+namespace TheLegendOfDrizzt.Controller {
     public class GameController : MonoBehaviour {
         private Map _adventureMap;
         private TileStack _tileStack;

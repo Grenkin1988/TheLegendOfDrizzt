@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller.UI {
+namespace TheLegendOfDrizzt.Controller.UI {
     [UsedImplicitly]
     public class StartMenuUIController : MonoBehaviour {
         private GameObject _mainCanvas;

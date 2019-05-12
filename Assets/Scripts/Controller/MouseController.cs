@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+namespace TheLegendOfDrizzt.Controller {
     public class MouseController : MonoBehaviour {
         public enum MouseModes {
             None = 0,

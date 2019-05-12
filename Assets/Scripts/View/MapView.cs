@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Model;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.View {
+namespace TheLegendOfDrizzt.View {
     public class MapView : IDisposable {
         private Map _map;
         private GameObject _adventureMapGameObject;

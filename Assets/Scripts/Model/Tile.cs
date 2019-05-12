@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TheLegendOfDrizzt.Assets.Scripts.Data;
-using TheLegendOfDrizzt.Assets.Scripts.Utility;
+using TheLegendOfDrizzt.Data;
+using TheLegendOfDrizzt.Utility;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class Tile {
         public static readonly int TileSize = 4;
         private readonly Adjacent<Tile> AdjacentTiles;

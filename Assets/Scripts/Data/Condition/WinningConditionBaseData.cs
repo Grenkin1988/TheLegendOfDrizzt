@@ -1,4 +1,4 @@
 ﻿
-namespace TheLegendOfDrizzt.Assets.Scripts.Data.Condition {
+namespace TheLegendOfDrizzt.Data.Condition {
     public abstract class WinningConditionBaseData { }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Xml.Serialization;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Model;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Data.Condition {
+namespace TheLegendOfDrizzt.Data.Condition {
     [Serializable]
     public class StandNearSquareConditionData : WinningConditionBaseData {
         [XmlAttribute]

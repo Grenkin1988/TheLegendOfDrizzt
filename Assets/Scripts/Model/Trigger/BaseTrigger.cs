@@ -1,6 +1,6 @@
-﻿using TheLegendOfDrizzt.Assets.Scripts.Data.Trigger;
+﻿using TheLegendOfDrizzt.Data.Trigger;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model.Trigger {
+namespace TheLegendOfDrizzt.Model.Trigger {
     public class BaseTrigger {
         public string Name { get; }
 

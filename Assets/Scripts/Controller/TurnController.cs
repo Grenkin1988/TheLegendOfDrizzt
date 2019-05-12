@@ -1,8 +1,8 @@
 ﻿using JetBrains.Annotations;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Model;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Controller {
+namespace TheLegendOfDrizzt.Controller {
     [UsedImplicitly]
     public class TurnController : MonoBehaviour {
 

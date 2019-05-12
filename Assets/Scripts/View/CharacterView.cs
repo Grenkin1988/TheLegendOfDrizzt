@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using TheLegendOfDrizzt.Assets.Scripts.Controller;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Controller;
+using TheLegendOfDrizzt.Model;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.View {
+namespace TheLegendOfDrizzt.View {
     public class CharacterView {
         private const string TRAVEL_PATH = "travel_path_";
         private Character _character;

@@ -1,5 +1,5 @@
 ﻿
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class Square {
         public Tile ParentTile { get; }
         public Coordinates MapCoordinates { get; set; }

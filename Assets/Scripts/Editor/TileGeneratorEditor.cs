@@ -1,9 +1,9 @@
 ﻿using JetBrains.Annotations;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Model;
 using UnityEditor;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Editor {
+namespace TheLegendOfDrizzt.Editor {
     public class TileGeneratorEditor : EditorWindow {
         private string _layout;
 

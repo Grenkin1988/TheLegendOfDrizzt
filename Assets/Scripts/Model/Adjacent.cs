@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class Adjacent<T> : Dictionary<Directions, T> where T : class {
         public Adjacent() {
             Initialize();

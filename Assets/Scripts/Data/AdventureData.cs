@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml.Serialization;
-using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
-using TheLegendOfDrizzt.Assets.Scripts.Data.Trigger;
+using TheLegendOfDrizzt.Data.Condition;
+using TheLegendOfDrizzt.Data.Trigger;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Data {
+namespace TheLegendOfDrizzt.Data {
     [Serializable]
     [XmlInclude(typeof(TextTriggerData))]
     [XmlInclude(typeof(PlaceDoubleTileTriggerData))]

@@ -1,7 +1,7 @@
 ﻿using System;
-using TheLegendOfDrizzt.Assets.Scripts.Data.Condition;
+using TheLegendOfDrizzt.Data.Condition;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model.Condition {
+namespace TheLegendOfDrizzt.Model.Condition {
     public abstract class WinningConditionBase {
         public abstract bool IsConditionMet(Player palyer);
 

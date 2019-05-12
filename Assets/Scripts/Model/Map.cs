@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using TheLegendOfDrizzt.Assets.Scripts.Data;
+using TheLegendOfDrizzt.Data;
 using UnityEngine;
 using Random = System.Random;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Model {
+namespace TheLegendOfDrizzt.Model {
     public class Map {
         private const string START_TILE_NAME = "StartTile";
 

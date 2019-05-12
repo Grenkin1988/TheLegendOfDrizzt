@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.Data {
+namespace TheLegendOfDrizzt.Data {
     public class TilesLibrary {
         private static TilesLibrary _instance;
         private static readonly object _padlock = new object();

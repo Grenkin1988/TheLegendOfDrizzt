@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using TheLegendOfDrizzt.Assets.Scripts.Controller;
-using TheLegendOfDrizzt.Assets.Scripts.Model;
+using TheLegendOfDrizzt.Controller;
+using TheLegendOfDrizzt.Model;
 using UnityEngine;
 
-namespace TheLegendOfDrizzt.Assets.Scripts.View {
+namespace TheLegendOfDrizzt.View {
     public class TileView {
         private readonly Tile _tile;
         private readonly Transform _parentTransform;
