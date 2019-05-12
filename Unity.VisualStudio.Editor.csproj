@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>TheLegendOfDrizzt</RootNamespace>
-    <ProjectGuid>{385B63EC-DF6D-CC07-E33D-D761A20C7C5F}</ProjectGuid>
+    <ProjectGuid>{BABC9459-F113-A6C4-D880-C4310104DD79}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <AssemblyName>Unity.VisualStudio.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -53,26 +53,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Editor\MouseControllerEditor.cs" />
-     <Compile Include="Assets\Scripts\Editor\TileGeneratorEditor.cs" />
- <Reference Include="Unity.ugui">
- <HintPath>D:/Development/UnityProjects/TheLegendOfDrizzt/Library/ScriptAssemblies/Unity.ugui.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>D:/Development/UnityProjects/TheLegendOfDrizzt/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>D:/Development/UnityProjects/TheLegendOfDrizzt/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ugui.Editor">
- <HintPath>D:/Development/UnityProjects/TheLegendOfDrizzt/Library/ScriptAssemblies/Unity.ugui.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Development/UnityProjects/TheLegendOfDrizzt/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Development/UnityProjects/TheLegendOfDrizzt/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
+     <Compile Include="D:\Development\UnityProjects\TheLegendOfDrizzt\Library\PackageCache\com.unity.ide.visualstudio@1.0.10\Editor\Discovery.cs" />
+     <Compile Include="D:\Development\UnityProjects\TheLegendOfDrizzt\Library\PackageCache\com.unity.ide.visualstudio@1.0.10\Editor\ProjectGeneration.cs" />
+     <Compile Include="D:\Development\UnityProjects\TheLegendOfDrizzt\Library\PackageCache\com.unity.ide.visualstudio@1.0.10\Editor\Utility.cs" />
+     <Compile Include="D:\Development\UnityProjects\TheLegendOfDrizzt\Library\PackageCache\com.unity.ide.visualstudio@1.0.10\Editor\VSEditor.cs" />
+     <Compile Include="D:\Development\UnityProjects\TheLegendOfDrizzt\Library\PackageCache\com.unity.ide.visualstudio@1.0.10\Editor\VSInitializer.cs" />
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Program Files/Unity/2019.2.0b1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -613,12 +598,6 @@
  <Reference Include="Boo.Lang">
  <HintPath>D:/Program Files/Unity/2019.2.0b1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{CDC8800A-5F4D-04DB-FD1B-08EC529DFABD}</Project>
-      <Name>Assembly-CSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
