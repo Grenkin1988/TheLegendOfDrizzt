@@ -6,7 +6,7 @@ using UnityEngine;
 namespace TheLegendOfDrizzt.View {
     public class CharacterView {
         private const string TRAVEL_PATH = "travel_path_";
-        private Character _character;
+        private readonly Character _character;
 
         private GameObject _characterPathGameObject;
         private GameObject _characterGameObject;
@@ -30,7 +30,7 @@ namespace TheLegendOfDrizzt.View {
         }
 
         public void DrawPath() {
-            Coordinates? coordinates = _character.MovementTargetTile.FindSquareCoordinates(_character.MovementTargetSquare);
+            var coordinates = _character.MovementTargetTile.FindSquareCoordinates(_character.MovementTargetSquare);
             if (coordinates == null) { return; }
             float x = coordinates.Value.X + _character.MovementTargetTile.X + 0.5f;
             float y = coordinates.Value.Y + _character.MovementTargetTile.Y + 0.5f;
@@ -64,9 +64,9 @@ namespace TheLegendOfDrizzt.View {
         }
 
         private void DrawSteps() {
-            Square previous = _character.PathToTarget.First();
+            var previous = _character.PathToTarget.First();
             for (int i = 1; i < _character.PathToTarget.Length; i++) {
-                Square current = _character.PathToTarget[i];
+                var current = _character.PathToTarget[i];
                 DrawToPathPart(current, previous);
                 DrawFromPathPart(current, previous);
                 previous = current;
@@ -78,7 +78,7 @@ namespace TheLegendOfDrizzt.View {
             int deltaY = current.MapCoordinates.Y - previous.MapCoordinates.Y;
             string tileName = $"{TRAVEL_PATH}{GetToDirection(deltaX, deltaY)}";
 
-            Coordinates? coordinates = previous.ParentTile.FindSquareCoordinates(previous);
+            var coordinates = previous.ParentTile.FindSquareCoordinates(previous);
             if (coordinates == null) { return; }
             float targetX = coordinates.Value.X + previous.ParentTile.X + 0.5f;
             float targetY = coordinates.Value.Y + previous.ParentTile.Y + 0.5f;
@@ -96,7 +96,7 @@ namespace TheLegendOfDrizzt.View {
             int deltaY = current.MapCoordinates.Y - previous.MapCoordinates.Y;
             string tileName = $"{TRAVEL_PATH}{GetFromDirection(deltaX, deltaY)}";
 
-            Coordinates? coordinates = current.ParentTile.FindSquareCoordinates(current);
+            var coordinates = current.ParentTile.FindSquareCoordinates(current);
             if (coordinates == null) { return; }
             float targetX = coordinates.Value.X + current.ParentTile.X + 0.5f;
             float targetY = coordinates.Value.Y + current.ParentTile.Y + 0.5f;

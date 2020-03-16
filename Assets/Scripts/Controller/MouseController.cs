@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Controller {
@@ -18,7 +17,6 @@ namespace TheLegendOfDrizzt.Controller {
             CurrentMode = newMode;
         }
 
-        [UsedImplicitly]
         private void Update() {
             if ((CurrentMode == MouseModes.Move || CurrentMode == MouseModes.DEBUG_PLACE_TILE) 
                 && Input.GetMouseButtonDown(0)) {

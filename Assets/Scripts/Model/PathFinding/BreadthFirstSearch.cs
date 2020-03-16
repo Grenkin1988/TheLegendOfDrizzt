@@ -14,10 +14,10 @@ namespace TheLegendOfDrizzt.Model.PathFinding {
             new Coordinates(1, -1, true)
         };
 
-        private Queue<Square> _frontire = new Queue<Square>();
-        private Dictionary<Square, bool> _visited = new Dictionary<Square, bool>();
-        private Square[,] _squaresMap;
-        private int _maxMovement;
+        private readonly Queue<Square> _frontire = new Queue<Square>();
+        private readonly Dictionary<Square, bool> _visited = new Dictionary<Square, bool>();
+        private readonly Square[,] _squaresMap;
+        private readonly int _maxMovement;
 
         private Square StartingSquare { get; }
 
@@ -37,8 +37,8 @@ namespace TheLegendOfDrizzt.Model.PathFinding {
 
         public void LoopSquares() {
             while (_frontire.Count != 0) {
-                Square current = _frontire.Dequeue();
-                foreach (Square neighbor in GetNeighbors(_squaresMap, current)) {
+                var current = _frontire.Dequeue();
+                foreach (var neighbor in GetNeighbors(_squaresMap, current)) {
                     if (_visited.ContainsKey(neighbor)
                         || current.DistanceFromStart >= _maxMovement) { continue; }
                     neighbor.DistanceFromStart = current.DistanceFromStart + 1;
@@ -53,9 +53,9 @@ namespace TheLegendOfDrizzt.Model.PathFinding {
             var path = new List<Square> {
                 target
             };
-            Square current = target;
+            var current = target;
             while (current != StartingSquare) {
-                foreach (Square neighbor in GetNeighbors(_squaresMap, current)) {
+                foreach (var neighbor in GetNeighbors(_squaresMap, current)) {
                     if (neighbor.DistanceFromStart < current.DistanceFromStart) {
                         current = neighbor;
                         path.Add(current);
@@ -73,13 +73,13 @@ namespace TheLegendOfDrizzt.Model.PathFinding {
 
             var neighbours = new List<Square>();
             var walls = new List<Square>();
-            foreach (Coordinates coordinates in _prioritizedDirection) {
+            foreach (var coordinates in _prioritizedDirection) {
                 int xToCheck = square.MapCoordinates.X + coordinates.X;
                 int yToCheck = square.MapCoordinates.Y + coordinates.Y;
                 if (xToCheck < 0 || xToCheck >= maxX) { continue; }
                 if (yToCheck < 0 || yToCheck >= maxY) { continue; }
 
-                Square nextSquare = squares[xToCheck, yToCheck];
+                var nextSquare = squares[xToCheck, yToCheck];
 
                 if (nextSquare == null
                     || nextSquare.TerrainType.CannotMoveOnHere()) {

@@ -1,9 +1,7 @@
-﻿using JetBrains.Annotations;
-using TheLegendOfDrizzt.Model;
+﻿using TheLegendOfDrizzt.Model;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Controller {
-    [UsedImplicitly]
     public class TurnController : MonoBehaviour {
 
         public enum Phases {
@@ -24,18 +22,6 @@ namespace TheLegendOfDrizzt.Controller {
             if (CurrentPhase == Phases.Villain) { return false; }
             CurrentPhase++;
             return true;
-        }
-
-        // Use this for initialization
-        [UsedImplicitly]
-        private void Start () {
-		
-        }
-	
-        // Update is called once per frame
-        [UsedImplicitly]
-        private void Update () {
-		
         }
     }
 }

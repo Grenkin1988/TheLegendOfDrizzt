@@ -44,7 +44,7 @@ namespace TheLegendOfDrizzt.Controller {
 
         public Sprite LoadSpriteByName(string name) {
             if (_spritesMap.ContainsKey(name)) {
-                List<Sprite> list = _spritesMap[name];
+                var list = _spritesMap[name];
                 int index = 0;
                 if (list.Count > 1) {
                     index = _random.Next(list.Count);
@@ -55,8 +55,8 @@ namespace TheLegendOfDrizzt.Controller {
         }
 
         private void LoadTileSprites() {
-            Sprite[] sprites = Resources.LoadAll<Sprite>(TILE_SPRITE_PATH);
-            foreach (Sprite sprite in sprites) {
+            var sprites = Resources.LoadAll<Sprite>(TILE_SPRITE_PATH);
+            foreach (var sprite in sprites) {
                 string name = GetSpriteName(sprite);
                 if (!_spritesMap.ContainsKey(name)) {
                     _spritesMap[name] = new List<Sprite>();
@@ -66,8 +66,8 @@ namespace TheLegendOfDrizzt.Controller {
         }
 
         private void LoadDecalSprites() {
-            Sprite[] sprites = Resources.LoadAll<Sprite>(DECAL_SPRITE_PATH);
-            foreach (Sprite sprite in sprites) {
+            var sprites = Resources.LoadAll<Sprite>(DECAL_SPRITE_PATH);
+            foreach (var sprite in sprites) {
                 string name = GetSpriteName(sprite);
                 if (!_spritesMap.ContainsKey(name)) {
                     _spritesMap[name] = new List<Sprite>();
@@ -77,7 +77,7 @@ namespace TheLegendOfDrizzt.Controller {
         }
 
         private void LoadCharacterSprites() {
-            Sprite[] sprites = Resources.LoadAll<Sprite>(CHARACTERS_SPRITE_PATH);
+            var sprites = Resources.LoadAll<Sprite>(CHARACTERS_SPRITE_PATH);
             foreach (Sprite sprite in sprites) {
                 string name = GetSpriteName(sprite);
                 if (!_spritesMap.ContainsKey(name)) {
@@ -88,7 +88,7 @@ namespace TheLegendOfDrizzt.Controller {
         }
 
         private void LoadPathSprites() {
-            Sprite[] sprites = Resources.LoadAll<Sprite>(PATH_SPRITE_PATH);
+            var sprites = Resources.LoadAll<Sprite>(PATH_SPRITE_PATH);
             foreach (Sprite sprite in sprites) {
                 string name = sprite.name;
                 if (!_spritesMap.ContainsKey(name)) {

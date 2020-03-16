@@ -10,7 +10,7 @@ namespace TheLegendOfDrizzt.Data {
         private static TilesLibrary _instance;
         private static readonly object _padlock = new object();
         private const char NAME_SEPARATOR = '_';
-        private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(TileData[]));
+        private static readonly XmlSerializer _serializer = new XmlSerializer(typeof(TileData[]));
 
         private readonly Dictionary<string, TileData> _simpleTiles;
         private readonly Dictionary<string, TileData> _specialTiles;
@@ -58,9 +58,9 @@ namespace TheLegendOfDrizzt.Data {
 
             if (File.Exists(filePath)) {
                 string xml = File.ReadAllText(filePath);
-                var loadedData = (TileData[])Serializer.Deserialize(new StringReader(xml));
+                var loadedData = (TileData[])_serializer.Deserialize(new StringReader(xml));
 
-                foreach (TileData tileData in loadedData) {
+                foreach (var tileData in loadedData) {
                     _simpleTiles[tileData.Name] = tileData;
                 }
             } else {
@@ -73,9 +73,9 @@ namespace TheLegendOfDrizzt.Data {
 
             if (File.Exists(filePath)) {
                 string xml = File.ReadAllText(filePath);
-                var loadedData = (TileData[])Serializer.Deserialize(new StringReader(xml));
+                var loadedData = (TileData[])_serializer.Deserialize(new StringReader(xml));
 
-                foreach (TileData tileData in loadedData) {
+                foreach (var tileData in loadedData) {
                     _specialTiles[tileData.Name] = tileData;
                 }
             } else {
@@ -97,16 +97,15 @@ namespace TheLegendOfDrizzt.Data {
 
             if (File.Exists(filePath)) {
                 string xml = File.ReadAllText(filePath);
-                var loadedData = (TileData[])Serializer.Deserialize(new StringReader(xml));
+                var loadedData = (TileData[])_serializer.Deserialize(new StringReader(xml));
 
-                foreach (TileData tileData in loadedData) {
+                foreach (var tileData in loadedData) {
                     string[] name = GetTileDataName(tileData);
                     if (!_doubleTiles.ContainsKey(name[0])) {
                         _doubleTiles[name[0]] = new List<TileData>();
                     }
-                    int result;
                     if (name.Length > 1
-                        && int.TryParse(name[1], out result)
+                        && int.TryParse(name[1], out int result)
                         && result > 0) {
                         _doubleTiles[name[0]].Insert(result - 1, tileData);
                     } else {

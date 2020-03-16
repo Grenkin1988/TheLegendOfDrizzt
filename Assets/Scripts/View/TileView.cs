@@ -7,7 +7,7 @@ namespace TheLegendOfDrizzt.View {
     public class TileView {
         private readonly Tile _tile;
         private readonly Transform _parentTransform;
-        private SquareView[,] _squareViews;
+        private readonly SquareView[,] _squareViews;
         private readonly Dictionary<Square, SquareView> _squareViewModels = new Dictionary<Square, SquareView>();
 
         public GameObject TileGameObject { get; private set; }
@@ -31,7 +31,7 @@ namespace TheLegendOfDrizzt.View {
 
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 4; y++) {
-                    Square square = _tile[x, y];
+                    var square = _tile[x, y];
                     if (square == null) { continue; }
                     var squareView = new SquareView(square, TileGameObject.transform);
                     squareView.Draw(x, y, _tile.ArrowDirection);
@@ -42,8 +42,7 @@ namespace TheLegendOfDrizzt.View {
         }
 
         public SquareView GetSquareViewForSquare(Square square) {
-            SquareView squareView;
-            _squareViewModels.TryGetValue(square, out squareView);
+            _squareViewModels.TryGetValue(square, out var squareView);
             return squareView;
         }
 
@@ -53,7 +52,7 @@ namespace TheLegendOfDrizzt.View {
             arrow.transform.Rotate(0, 0, 90 * SpriteManager.GetNumberOfSpriteRotationsNeeded(_tile.ArrowDirection));
             arrow.transform.SetParent(TileGameObject.transform, false);
             var arrowRenderer = arrow.AddComponent<SpriteRenderer>();
-            string tileTypeText = $"Arrow{_tile.ArrowColor.ToString()}";
+            string tileTypeText = $"Arrow{_tile.ArrowColor}";
             arrowRenderer.sprite = SpriteManager.Instance.LoadSpriteByName(tileTypeText);
             arrowRenderer.sortingLayerName = "Decal";
         }

@@ -21,7 +21,7 @@ namespace TheLegendOfDrizzt.Model {
         }
 
         private void Initialize() {
-            foreach (Directions direction in Enums.GetValues<Directions>()) {
+            foreach (var direction in Enums.GetValues<Directions>()) {
                 this[direction] = null;
             }
         }

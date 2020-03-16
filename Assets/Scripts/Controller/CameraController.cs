@@ -1,9 +1,8 @@
-﻿using JetBrains.Annotations;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TheLegendOfDrizzt.Controller {
     public class CameraController : MonoBehaviour {
-        private Vector3 LastFrameCameraPosition;
+        private Vector3 _lastFrameCameraPosition;
 
         [SerializeField]
         private float _zoomFactor = 2.5f;
@@ -12,11 +11,10 @@ namespace TheLegendOfDrizzt.Controller {
         [SerializeField]
         private float _maxZoom = 15.0f;
 
-        [UsedImplicitly]
         private void Update() {
-            Vector3 currentFrameCameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var currentFrameCameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Input.GetMouseButton(1) || Input.GetMouseButton(2)) {
-                Vector3 difference = LastFrameCameraPosition - currentFrameCameraPosition;
+                var difference = _lastFrameCameraPosition - currentFrameCameraPosition;
                 Camera.main.transform.Translate(difference);
             }
 
@@ -25,7 +23,7 @@ namespace TheLegendOfDrizzt.Controller {
                 Camera.main.orthographicSize += sw * _zoomFactor;
                 Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, _minZoom, _maxZoom);
             }
-            LastFrameCameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _lastFrameCameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System;
-using JetBrains.Annotations;
 using TheLegendOfDrizzt.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TheLegendOfDrizzt.Controller.UI {
-    [UsedImplicitly]
     public class AdventureUIController : MonoBehaviour {
         private TurnController _turnController;
         private GameObject _mainCanvas;
@@ -49,7 +47,6 @@ namespace TheLegendOfDrizzt.Controller.UI {
             _winScreenPanel.SetActive(true);
         }
 
-        [UsedImplicitly]
         private void Awake() {
             _mainCanvas = GameObject.Find("MainCanvas");
             if (_mainCanvas == null) { throw new NullReferenceException("No MainCanvas found in scene"); }

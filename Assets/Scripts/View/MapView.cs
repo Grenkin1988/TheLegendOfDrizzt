@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace TheLegendOfDrizzt.View {
     public class MapView : IDisposable {
-        private Map _map;
+        private readonly Map _map;
         private GameObject _adventureMapGameObject;
-        private Dictionary<Square, SquareView> ColoredSquareViews = new Dictionary<Square, SquareView>();
+        private Dictionary<Square, SquareView> _coloredSquareViews = new Dictionary<Square, SquareView>();
 
-        private readonly Dictionary<Tile, TileView> TileViewModels = new Dictionary<Tile, TileView>();
+        private readonly Dictionary<Tile, TileView> _tileViewModels = new Dictionary<Tile, TileView>();
 
         public MapView(Map map) {
             _map = map;
@@ -18,28 +18,27 @@ namespace TheLegendOfDrizzt.View {
         }
 
         public Tile GetTileByGameObject(GameObject tileGameObject) {
-            return TileViewModels.FirstOrDefault(pair => pair.Value.TileGameObject.Equals(tileGameObject)).Key;
+            return _tileViewModels.FirstOrDefault(pair => pair.Value.TileGameObject.Equals(tileGameObject)).Key;
         }
 
         public void DrawReachableZone(Character character) {
-            foreach (Square reachableSquare in character.BreadthFirstSearch.ReachableSquares) {
-                Tile parent = reachableSquare.ParentTile;
-                TileView parentTileView;
-                if (parent == null || !TileViewModels.TryGetValue(parent, out parentTileView)) { continue; }
+            foreach (var reachableSquare in character.BreadthFirstSearch.ReachableSquares) {
+                var parent = reachableSquare.ParentTile;
+                if (parent == null || !_tileViewModels.TryGetValue(parent, out var parentTileView)) { continue; }
 
-                SquareView squareView = parentTileView.GetSquareViewForSquare(reachableSquare);
+                var squareView = parentTileView.GetSquareViewForSquare(reachableSquare);
                 if (squareView == null) { continue; }
                 squareView.SquareRenderer.color = Color.green;
-                ColoredSquareViews[reachableSquare] = squareView;
+                _coloredSquareViews[reachableSquare] = squareView;
             }
         }
 
         public void ResetReachableZone() {
-            foreach (KeyValuePair<Square, SquareView> coloredSquareView in ColoredSquareViews) {
+            foreach (var coloredSquareView in _coloredSquareViews) {
                 coloredSquareView.Value.SquareRenderer.color = Color.white;
                 coloredSquareView.Key.DistanceFromStart = null;
             }
-            ColoredSquareViews.Clear();
+            _coloredSquareViews.Clear();
         }
 
         private void InitializeMapView() {
@@ -48,17 +47,17 @@ namespace TheLegendOfDrizzt.View {
             _adventureMapGameObject.transform.SetParent(GameObject.Find("_Dynamic").transform);
             _adventureMapGameObject.transform.position = new Vector3();
 
-            foreach (Tile tile in _map.GetAllTiles().Values) {
+            foreach (var tile in _map.GetAllTiles().Values) {
                 var tileViewModel = new TileView(tile, _adventureMapGameObject.transform);
                 tileViewModel.Draw();
-                TileViewModels.Add(tile, tileViewModel);
+                _tileViewModels.Add(tile, tileViewModel);
             }
         }
 
         private void MapOnNewTileCreated(Tile tile) {
             var tileViewModel = new TileView(tile, _adventureMapGameObject.transform);
             tileViewModel.Draw();
-            TileViewModels.Add(tile, tileViewModel);
+            _tileViewModels.Add(tile, tileViewModel);
         }
 
         public void Dispose() {

@@ -8,14 +8,14 @@ namespace TheLegendOfDrizzt.Model {
     public class TileStack {
         private const int TIMES_TO_SHUFFLE = 5;
         private readonly Stack<TileData> _deck;
-        private readonly TilesLibrary TilesLibrary;
+        private readonly TilesLibrary _tilesLibrary;
 
         private List<TileData> _allTilesWithoutSpecial;
         private string _specialTileName;
         private int _specialTilePosition;
 
         public TileStack() {
-            TilesLibrary = TilesLibrary.Instance;
+            _tilesLibrary = TilesLibrary.Instance;
             _deck = new Stack<TileData>();
             _allTilesWithoutSpecial = new List<TileData>();
         }
@@ -26,8 +26,8 @@ namespace TheLegendOfDrizzt.Model {
         }
 
         public void GenerateTileStack() {
-            _allTilesWithoutSpecial.AddRange(TilesLibrary.SimpleTiles.Values);
-            _allTilesWithoutSpecial.AddRange(TilesLibrary.SpecialTiles
+            _allTilesWithoutSpecial.AddRange(_tilesLibrary.SimpleTiles.Values);
+            _allTilesWithoutSpecial.AddRange(_tilesLibrary.SpecialTiles
                 .Where(pair => pair.Key != _specialTileName)
                 .Select(pair => pair.Value));
         }
@@ -36,7 +36,7 @@ namespace TheLegendOfDrizzt.Model {
             if (_allTilesWithoutSpecial.Count == 0) {
                 Debug.LogError($"Tile stack is empty! Run {nameof(GenerateTileStack)} first");
             }
-            TileData[] tilesToShuffle = _allTilesWithoutSpecial.ToArray();
+            var tilesToShuffle = _allTilesWithoutSpecial.ToArray();
             for (int i = 0; i < TIMES_TO_SHUFFLE; i++) {
                 FisherYatesShuffle.ShuffleSequence(tilesToShuffle);
             }
@@ -49,7 +49,7 @@ namespace TheLegendOfDrizzt.Model {
 
         public Tile GetNexTile() {
             if (_deck.Count != 0) {
-                TileData tile = _deck.Pop();
+                var tile = _deck.Pop();
                 return new Tile(tile);
             } else {
                 Debug.LogError("No more Tiles in stack");
@@ -58,11 +58,11 @@ namespace TheLegendOfDrizzt.Model {
         }
 
         private void AddSpecialTileAtPosition(string tileName, int tilePositionAfterShuffle) {
-            if (!TilesLibrary.SpecialTiles.ContainsKey(tileName)) {
+            if (!_tilesLibrary.SpecialTiles.ContainsKey(tileName)) {
                 Debug.LogError($"Specian tile with name: {tileName} do not exist in library!");
                 return;
             }
-            _allTilesWithoutSpecial.Insert(tilePositionAfterShuffle, TilesLibrary.SpecialTiles[tileName]);
+            _allTilesWithoutSpecial.Insert(tilePositionAfterShuffle, _tilesLibrary.SpecialTiles[tileName]);
         }
 
         private void AddTilesToStack() {

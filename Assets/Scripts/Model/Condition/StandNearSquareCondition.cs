@@ -6,10 +6,10 @@ using TheLegendOfDrizzt.Utility;
 namespace TheLegendOfDrizzt.Model.Condition {
     public class StandNearSquareCondition : WinningConditionBase {
         private Map _adventureMap;
-        private List<Coordinates> _coordinatesToCheck = new List<Coordinates>();
-        private string _relatedTileName;
-        private TerrainTypes _type;
-        private int _distanse;
+        private readonly List<Coordinates> _coordinatesToCheck = new List<Coordinates>();
+        private readonly string _relatedTileName;
+        private readonly TerrainTypes _type;
+        private readonly int _distanse;
 
         public StandNearSquareCondition(StandNearSquareConditionData data) {
             _relatedTileName = data.RelatedTileName;
@@ -31,14 +31,14 @@ namespace TheLegendOfDrizzt.Model.Condition {
                 return false;
             }
             if (player.Character.CurrentSquare.TerrainType == _type) { return true; }
-            Coordinates currentSquareCordinates = _adventureMap.SquaresMap.CoordinatesOf(player.Character.CurrentSquare);
+            var currentSquareCordinates = _adventureMap.SquaresMap.CoordinatesOf(player.Character.CurrentSquare);
             int x = currentSquareCordinates.X;
             int y = currentSquareCordinates.Y;
             if (x < 0 || y < 0) {
                 throw new ArgumentException("Current character square is not in the map");
             }
 
-            foreach (Coordinates coordinates in _coordinatesToCheck) {
+            foreach (var coordinates in _coordinatesToCheck) {
                 var coordinateToCheck = new Coordinates(coordinates.X + x, coordinates.Y + y);
                 if (coordinateToCheck.X < 0
                     || coordinateToCheck.X >= _adventureMap.SquaresMap.GetLength(0)
@@ -46,7 +46,7 @@ namespace TheLegendOfDrizzt.Model.Condition {
                     || coordinateToCheck.Y >= _adventureMap.SquaresMap.GetLength(1)) {
                     continue;
                 }
-                Square squareToCheck = _adventureMap.SquaresMap[coordinateToCheck.X, coordinateToCheck.Y];
+                var squareToCheck = _adventureMap.SquaresMap[coordinateToCheck.X, coordinateToCheck.Y];
                 if (squareToCheck?.TerrainType == _type) {
                     return true;
                 }

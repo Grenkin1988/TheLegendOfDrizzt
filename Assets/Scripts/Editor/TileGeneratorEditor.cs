@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using TheLegendOfDrizzt.Model;
+﻿using TheLegendOfDrizzt.Model;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,12 +7,10 @@ namespace TheLegendOfDrizzt.Editor {
         private string _layout;
 
         [MenuItem("Window/Tile Generator")]
-        [UsedImplicitly]
         private static void Init() {
             GetWindow(typeof(TileGeneratorEditor)).Show();
         }
 
-        [UsedImplicitly]
         private void OnGUI() {
             _layout = EditorGUILayout.TextField("Layout", _layout, new GUIStyle {
                 wordWrap = true,

@@ -28,7 +28,7 @@ namespace TheLegendOfDrizzt.Utility {
 
             for (int x = 0; x < w; ++x) {
                 for (int y = 0; y < h; ++y) {
-                    T value2 = matrix[x, y];
+                    var value2 = matrix[x, y];
                     if (value2 == null) { continue; }
                     if (matrix[x, y].Equals(value)) {
                         return new Coordinates(x, y);

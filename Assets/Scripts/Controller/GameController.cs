@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using TheLegendOfDrizzt.Controller.UI;
 using TheLegendOfDrizzt.Data;
 using TheLegendOfDrizzt.Model;
@@ -21,7 +20,6 @@ namespace TheLegendOfDrizzt.Controller {
         private AdventureUIController _uiController;
         private AdventureController _adventureController;
 
-        [UsedImplicitly]
         private void Awake() {
             _mouseController = FindObjectOfType<MouseController>();
             if (_mouseController == null) { throw new NullReferenceException("No MouseController found in scene"); }
@@ -33,7 +31,6 @@ namespace TheLegendOfDrizzt.Controller {
             if (_uiController == null) { throw new NullReferenceException("No UIController found in scene"); }
         }
 
-        [UsedImplicitly]
         private void Start() {
             _adventureMap = new Map();
             _mapView = new MapView(_adventureMap);
@@ -58,10 +55,7 @@ namespace TheLegendOfDrizzt.Controller {
             _mapView?.Dispose();
         }
 
-        [UsedImplicitly]
-        private void OnApplicationQuit() {
-            OnDestroy();
-        }
+        private void OnApplicationQuit() => OnDestroy();
 
         private void AttachEventHandlers() {
             if (_adventureMap != null) {
@@ -106,7 +100,7 @@ namespace TheLegendOfDrizzt.Controller {
         }
 
         private void MouseControllerOnTileClicked(GameObject tileGameObject, int x, int y) {
-            Tile tile = _mapView.GetTileByGameObject(tileGameObject);
+            var tile = _mapView.GetTileByGameObject(tileGameObject);
             if (tile == null) { return; }
 
             if (_mouseController.CurrentMode == MouseController.MouseModes.Move
@@ -122,11 +116,10 @@ namespace TheLegendOfDrizzt.Controller {
                 }
             }
 
-            Directions? placementDirection;
             if (_mouseController.CurrentMode == MouseController.MouseModes.DEBUG_PLACE_TILE
-                && _adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out placementDirection)) {
+                && _adventureMap.IsValidPositionForNewTilePlacement(tile, x, y, out var placementDirection)) {
                 if (!placementDirection.HasValue) { return; }
-                Tile newTile = _tileStack.GetNexTile();
+                var newTile = _tileStack.GetNexTile();
                 if (newTile != null) {
                     _adventureMap.PlaceNewTileNearExistent(tile, newTile, placementDirection.Value);
                 }
@@ -134,7 +127,7 @@ namespace TheLegendOfDrizzt.Controller {
         }
 
         private void SetUpPlayers(params PlayerData[] data) {
-            foreach (PlayerData playerData in data) {
+            foreach (var playerData in data) {
                 var character = new Character(playerData.CharacterData);
                 var player = new Player(playerData, character);
                 _players.Add(player);
@@ -203,15 +196,14 @@ namespace TheLegendOfDrizzt.Controller {
         }
 
         private void ExecuteExplorationPhase() {
-            Directions? placementDirection;
-            Character character = _turnController.CurrentPlayer.Character;
+            var character = _turnController.CurrentPlayer.Character;
             if (_adventureMap.IsValidPositionForNewTilePlacement(
                 character.CurrentTile,
                 character.X - character.CurrentTile.X,
                 character.Y - character.CurrentTile.Y,
-                out placementDirection)) {
+                out var placementDirection)) {
                 if (!placementDirection.HasValue) { return; }
-                Tile newTile = _tileStack.GetNexTile();
+                var newTile = _tileStack.GetNexTile();
                 if (newTile != null) {
                     _adventureMap.PlaceNewTileNearExistent(character.CurrentTile, newTile, placementDirection.Value);
                 }

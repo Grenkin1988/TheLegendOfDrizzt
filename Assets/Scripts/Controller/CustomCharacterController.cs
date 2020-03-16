@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
-using JetBrains.Annotations;
 using TheLegendOfDrizzt.Model;
 using UnityEngine;
 
 namespace TheLegendOfDrizzt.Controller {
-    [UsedImplicitly]
     public class CustomCharacterController : MonoBehaviour {
 
         [SerializeField]
@@ -12,12 +10,6 @@ namespace TheLegendOfDrizzt.Controller {
         private bool _isMoving = false;
         private Vector3 _nextTarget;
 
-        [UsedImplicitly]
-        private void Start() {
-
-        }
-
-        [UsedImplicitly]
         private void Update() {
             while (_isMoving) {
                 float step = _moveSpeed * Time.deltaTime;

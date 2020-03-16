@@ -4,7 +4,7 @@ using TheLegendOfDrizzt.View;
 
 namespace TheLegendOfDrizzt.Model {
     public class Character {
-        private CharacterData _data;
+        private readonly CharacterData _data;
         private CharacterView _characterView;
 
         public string Name { get; }
@@ -30,7 +30,7 @@ namespace TheLegendOfDrizzt.Model {
 
         public bool MoveToTarget(int x, int y, Tile tile) {
             if (tile != MovementTargetTile) { return false; }
-            Square square = tile[x, y];
+            var square = tile[x, y];
             if (square != MovementTargetSquare) { return false; }
             MoveHere(x, y, tile);
             return true;
@@ -43,7 +43,7 @@ namespace TheLegendOfDrizzt.Model {
 
         public bool UpdateMovementTarget(int x, int y, Tile tile) {
             MovementTargetTile = tile;
-            Square square = tile[x, y];
+            var square = tile[x, y];
             if (MovementTargetSquare == square
                 || CurrentSquare == square) { return false; }
             MovementTargetSquare = square;
@@ -66,7 +66,7 @@ namespace TheLegendOfDrizzt.Model {
 
         private void MoveHere(int x, int y, Tile tile, bool isInitialPlace = false) {
             CurrentTile = tile;
-            Square square = tile[x, y];
+            var square = tile[x, y];
             CurrentSquare = square;
             X = x + tile.X;
             Y = y + tile.Y;

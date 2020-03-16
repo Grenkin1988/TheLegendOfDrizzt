@@ -1,17 +1,14 @@
 ﻿using System;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TheLegendOfDrizzt.Controller.UI {
-    [UsedImplicitly]
     public class StartMenuUIController : MonoBehaviour {
         private GameObject _mainCanvas;
 
         private Button _selectAdventureButton;
         private Button _exitButton;
 
-        [UsedImplicitly]
         private void Awake() {
             _mainCanvas = GameObject.Find("MainCanvas");
             if (_mainCanvas == null) { throw new NullReferenceException("No MainCanvas found in scene"); }
